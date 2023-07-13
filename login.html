@@ -1,28 +1,21 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>log in rakaya</title>
 
-    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+    <title>RAKAYA | HOME </title>
 
-    <style>
 
-       section{
-        background: none !important;
-       }
-
-       #loginBox2{
-          background-color:  #faf8f2 ;
-       }
-
-       #loginBox1{
-        margin: 8rem;
-        width: 50rem;
-       }
-    </style>
 
 </head>
 
@@ -30,50 +23,79 @@
 <body>
 
 
-    
-<section class="bg-gray-50 dark:bg-gray-900" id="loginId" >
 
 
 
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 " id="loginBox1">
-   
-        <div class="max-w-md bg-gray-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700" id="loginBox2">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                    تسجيل الدخول
-                </h1>
+    <section>
 
-                <form class="space-y-4 md:space-y-6" action="#">
-                    <div>
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الايميل</label>
-                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
-                    </div>
-                    <div>
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة المرور</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                              <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="">
-                            </div>
-                            <div class="ml-3 text-sm">
-                              <label for="remember" class="text-gray-500 dark:text-gray-300">تذكرني</label>
-                            </div>
+
+
+        <div class="loginBox1">
+
+            <div data-aos="fade-up" data-aos-duration="1000" class="loginBox2">
+
+
+                <div class="aboveLogin">
+                    <a href="index.html">
+
+                        <img src="./assets/ركايا_full_.png" alt="logo">
+
+
+                    </a>
+
+                </div>
+
+
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1
+                        class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        تسجيل الدخول
+                    </h1>
+
+                    <form class="space-y-4 md:space-y-6" action="#">
+                        <div>
+                            <label for="email"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">الايميل</label>
+                            <input type="email" name="email" id="email" class="inputBoxs" placeholder="name@google.com"
+                                required="">
                         </div>
-                        <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">نسيت كلمة المرور</a>
-                    </div>
-                    <button type="submit" class="w-full text-gray-900 bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">تسجيل الدخول</button>
-                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                       <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">تسجيل جديد</a>
-                    </p>
-                </form>
+                        <div>
+                            <label for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة المرور</label>
+                            <input type="password" name="password" id="password" placeholder="••••••••"
+                                class="inputBoxs " required="">
+                        </div>
+                        <div class="flex items-center justify-between  ">
+
+                            <div class="flex items-start ">
+
+                                <div class="flex items-center h-5 checked:border-gray-900 , changecheckbox  ">
+                                    <input id="remember" aria-describedby="remember" type="checkbox" class=""
+                                        required="">
+                                </div>
+
+                                <div class="mx-1 text-sm">
+                                    <label for="remember" class="text-gray-500 dark:text-gray-300"> تذكرني </label>
+                                </div>
+
+                            </div>
+                            <a href="#"
+                                class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">نسيت
+                                كلمة المرور</a>
+                        </div>
+                        <button type="submit"
+                            class="w-full h-12 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-300">تسجيل
+                            الدخول</button>
+                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                            لم تسجل بعد ؟ <a href="signUp.html"
+                                class="font-medium text-gray-900 hover:underline dark:text-primary-500">سجل الآن</a>
+                        </p>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-  </section>
-
+    </section>
 
 
 
@@ -85,8 +107,15 @@
 
 
 
-    
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <script>
+        AOS.init();
+    </script>
 </body>
+
 </html>

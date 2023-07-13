@@ -1,0 +1,120 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Almarai", sans-serif !important;
+}
+
+body {
+  direction: rtl;
+  background-image: url(./assets/log1.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  width: 100%;
+}
+
+.loginBox1 {
+  padding: 20px;
+}
+.inputBoxs {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+
+.loginBox2 {
+  background-color: #faf8f2d6;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  border-radius: 5px;
+}
+button {
+  background: #816c4a !important;
+  color: #fff;
+  font-weight: bold;
+  transition: all 0.5s ease;
+}
+button:hover {
+  background: #523623 !important;
+}
+
+.changecheckbox input:checked {
+  background-color: gray !important;
+  box-shadow: 0px 0px 0px 3px rgb(219, 215, 215);
+}
+
+.aboveLogin {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboveLogin img {
+  height: 100px;
+  width: 100px;
+}
+
+@media only screen and (min-width: 900px) {
+  section {
+    width: 50%;
+  }
+
+  .loginBox1 {
+    padding: 20px;
+  }
+  .inputBoxs {
+    width: 100%;
+  }
+  .inputBoxs:focus {
+    border-color: gray !important;
+  }
+
+  .loginBox2 {
+    background-color: #faf8f2d6;
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+  }
+  button {
+    background: #816c4a !important;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.5s ease;
+  }
+  button:hover {
+    background: #523623 !important;
+  }
+
+  .changecheckbox input:checked {
+    background-color: gray !important;
+    box-shadow: 0px 0px 0px 3px rgb(219, 215, 215);
+  }
+
+  .aboveLogin {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .aboveLogin img {
+    height: 8rem;
+    width: 10rem;
+  }
+}

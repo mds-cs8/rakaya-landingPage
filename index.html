@@ -4,14 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ui library >> tailwend -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+    <!-- custtom css -->
     <link rel="stylesheet" href="style.css">
+    <!-- animation library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <title>RAKAYA | HOME </title>
 </head>
 
 <body>
+
+    <!-- intro loaded -->
+    <div class="intro_loaded" id="intro">
+        <img class="scale-up-center" src="./assets/ركايا_ابيض.png" alt="">
+    </div>
+    <!-- end intro loaded -->
     <!-- header -->
     <header>
 
@@ -23,13 +38,13 @@
 
 
 
-                <a href="https://flowbite.com/" class="flex items-center">
-                    <img src="./assets/ركايا_full_.png" class="h-16 md:h-20 mr-3" alt="Flowbite Logo">
+                <a href="" class="flex items-center">
+                    <img src="./assets/ركايا_full_.png" class="h-14 sm:h-20 mr-3" alt="Flowbite Logo">
                 </a>
 
                 <div class="flex md:order-2">
                     <a href="login.html"
-                        class="text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">تسجيل
+                        class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
                         الدخول
                     </a>
                     <button data-collapse-toggle="navbar-sticky" type="button"
@@ -49,7 +64,7 @@
                         id="navigationsmm">
                         <li>
                             <a href="#"
-                                class="block py-2 pl-3 pr-4 text-white bg-transparent rounded md:bg-transparent md:text-white md:p-0 md:dark:text-blue-500 mx-2"
+                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2"
                                 aria-current="page">الصفحة الرئيسية</a>
                         </li>
                         <li>
@@ -58,7 +73,7 @@
                                 نحن</a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="#service"
                                 class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2">خدماتنا</a>
                         </li>
                         <li>
@@ -75,20 +90,55 @@
         </nav>
 
         <div class="headerin">
-            <h1>
-                ركايا آفاق واسعة وامكانيات عالية
-            </h1>
+            <div class="header-title">
+                <h1>
+                    ركايا آفاق واسعة وامكانيات عالية
+                </h1>
+                <p>من واقع خبرتنا في سوق العمل السعودي نقدم الاستشارات التقنية و احدث الانظمة التقنية والامنية التي
+                    تواكب
+                    التقدم التقني
+
+                </p>
+                <div class="numbersSection">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="counter-box">
+                                <h2 class="counter">215</h2> <span>+</span>
+                                <h4>مطورين</h4>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="counter-box">
+                                <h2 class="counter">400 </h2> <span>+</span>
+                                <h4>عملاء</h4>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="counter-box">
+                                <h2 class="counter">300</h2> <span>+</span>
+                                <h4>شركاء</h4>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </header>
 
     <!--about us section-->
 
-    <section class="bg-white dark:bg-gray-900" id="about">
+    <section class="bg-white dark:bg-gray-900" id="about" data-aos="fade-up">
 
         <div class="grid max-w-screen-xl px-8 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12" id="aboutbox">
-            <div class="mr-auto place-self-center lg:col-span-7" id="aboutContent">
-                <h3>من نحن ؟</h3>
+            <div class="mr-auto place-self-center lg:col-span-7" id="aboutContent" data-aos="zoom-in">
+                <h3 class="text-4xl">من نحن ؟</h3>
 
                 <p>ﺷﺮﻛﺔ ﺳﻌﻮدﻳﺔ ﻣﺘﺨﺼﺼﺔ ﻓﻲ ﺗﻘﺪﻳﻢ اﻟﺨﺪﻣﺎت اﻹﺳﺘﺸﺎرﻳﺔ ، ﻟﺘﻤﻜﻴﻦ اﻟﻘﺪرات ﻓﻲ
                     اﻟﻤﻨﻈﻤﺎت واﻟﻤﺠﺘﻤﻌﺎت ﻋﻠﻰ اﻟﺴﻌﻲ ﻧﺤﻮ ﻣﻮاﻛﺒﺔ اﻟﻌﺎﻟﻢ ﻓﻲ اﻟﺘﻄﻮر ﻟﺠﻤﻴﻊ
@@ -97,7 +147,7 @@
                 </p>
 
             </div>
-            <div class=" lg:mt-0 lg:col-span-5 lg:flex" id="aboutImg">
+            <div class=" lg:mt-0 lg:col-span-5 lg:flex" id="aboutImg" data-aos="zoom-in">
                 <img src="./assets/ركايا_full_.png" width="300" height="300" alt="Flowbite Logo">
                 <!-- class="h-2 mr-3" -->
             </div>
@@ -107,7 +157,7 @@
 
     <!--values section-->
 
-    <section class="bg-white dark:bg-gray-900" id="values">
+    <section class="bg-white dark:bg-gray-900" id="values" data-aos="fade-up">
 
         <center>
 
@@ -122,7 +172,7 @@
                 <div class=" space-y-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-12 md:space-y-0"
                     id="valuescontainer">
 
-                    <div class="value1">
+                    <div class="value" data-aos="zoom-in" data-aos-duration="500">
                         <div
                             class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                             <img src="./assets/honesty.png" class="v1" alt="Flowbite Logo">
@@ -137,7 +187,7 @@
                     </div>
 
 
-                    <div class="value2">
+                    <div class="value" data-aos="zoom-in" data-aos-duration="1000">
 
                         <div
                             class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
@@ -155,7 +205,7 @@
 
 
 
-                    <div class="value3">
+                    <div class="value" data-aos="zoom-in" data-aos-duration="1500">
                         <div
                             class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                             <img src="./assets/customer-service.png" class="v3" alt="Flowbite Logo">
@@ -169,7 +219,7 @@
                     </div>
 
 
-                    <div class="value4">
+                    <div class="value" data-aos="zoom-in" data-aos-duration="2000">
                         <div
                             class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                             <img src="./assets/excellence (2).png" class="v4" alt="Flowbite Logo">
@@ -201,15 +251,14 @@
 
 
     <div class="container mx-auto ">
-        <div class="service" data-aos="fade-up">
+        <div id="service" class="service" data-aos="fade-up">
             <div class="service-title">
-                <span class="section-title">الخدمات</span>
-                <h3>نقدم لكم ابرز خدماتنا</h3>
+                <h3 class="text-4xl">نقدم لكم ابرز خدماتنا</h3>
             </div>
             <div class="service-box">
 
 
-                <div class="item">
+                <div class="item" data-aos="fade-left" data-aos-duration="500">
 
                     <div class="item-name ">
                         <h4>التخطيط الاستراتيجي
@@ -228,10 +277,10 @@
                         </ul>
                     </div>
                     <div class="item-icon">
-                        <img src="./assets/social-media.png" alt="icon">
+                        <img src="./assets/plan.png" alt="icon">
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" data-aos="fade-right" data-aos-duration="600">
 
                     <div class="item-name">
                         <h4>بناء قدرات الموارد البشرية
@@ -252,10 +301,10 @@
                         </ul>
                     </div>
                     <div class="item-icon">
-                        <img src="./assets/social-media.png" alt="icon">
+                        <img src="./assets/human-resources.png" alt="icon">
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" data-aos="fade-left" data-aos-duration="700">
 
                     <div class="item-name">
                         <h4>التميز المؤسسي
@@ -276,10 +325,10 @@
                         </ul>
                     </div>
                     <div class="item-icon">
-                        <img src="./assets/social-media.png" alt="icon">
+                        <img src="./assets/badge.png" alt="icon">
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" data-aos="fade-right" data-aos-duration="800">
 
                     <div class="item-name">
                         <h4>الإبداع وريادة الأعمال
@@ -300,10 +349,10 @@
                         </ul>
                     </div>
                     <div class="item-icon">
-                        <img src="./assets/social-media.png" alt="icon">
+                        <img src="./assets/creativity.png" alt="icon">
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" data-aos="fade-left" data-aos-duration="900">
 
                     <div class="item-name">
                         <h4> الخدمات الرقمية والتواصل الإجتماعي
@@ -324,10 +373,10 @@
                         </ul>
                     </div>
                     <div class="item-icon">
-                        <img src="./assets/social-media.png" alt="icon">
+                        <img src="./assets/social-media (1).png" alt="icon">
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" data-aos="fade-right" data-aos-duration="1000">
 
                     <div class="item-name">
                         <h4>خدمة الامتياز التجاري
@@ -348,7 +397,7 @@
                         </ul>
                     </div>
                     <div class="item-icon">
-                        <img src="./assets/social-media.png" alt="icon">
+                        <img src="./assets/deal.png" alt="icon">
                     </div>
                 </div>
 
@@ -361,17 +410,19 @@
         <!--partners section-->
 
 
-        <section class="bg-white dark:bg-gray-900" id="partners">
+        <section class="bg-white dark:bg-gray-900" id="partners" data-aos="fade-up">
 
-            <div class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
+            <div class="partners-box py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
 
                 <h2
                     class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 dark:text-white md:text-4xl">
-                    شركائونا</h2>
+                    شركاء النجاح</h2>
+                <p>نفخر في ركايا بشراكاتنا مع عدد من أبرز الشركات التقنية العالمية لتقديم الخدمات الموثوقة لعملائنا</p>
                 <div
                     class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
 
-                    <a href="https://www.haj.gov.sa/Home" class="flex justify-center items-center">
+                    <a href="https://www.haj.gov.sa/Home" class="flex justify-center items-center" data-aos="zoom-in"
+                        data-aos-duration="500">
 
                         <img class="h-20  rounded-lg" src="./assets/وزارة_الحج-لوقو-removebg-preview.png"
                             alt="image description">
@@ -379,29 +430,33 @@
 
                     </a>
 
-                    <a href="https://www.sfda.gov.sa/ " class="flex justify-center items-center" target="_blank">
+                    <a href="https://www.sfda.gov.sa/ " class="flex justify-center items-center" target="_blank"
+                        data-aos="zoom-in" data-aos-duration="600">
                         <img class="h-20  rounded-lg" src="./assets/الهيئة-العامة-للغذاء-والدواء-1.png">
 
                     </a>
 
                     <a href="  https://www.sdb.gov.sa/ar-sa/individual/individual-finance  "
-                        class="flex justify-center items-center">
+                        class="flex justify-center items-center" data-aos="zoom-in" data-aos-duration="700">
                         <img class="h-20  rounded-lg" src="./assets/بنك_التنمية-لوقو-removebg-preview (1).png"
                             alt="image description">
 
 
                     </a>
 
-                    <a href="https://www.google.com.sa/?hl=ar" class="flex justify-center items-center">
+                    <a href="https://www.google.com.sa/?hl=ar" class="flex justify-center items-center"
+                        data-aos="zoom-in" data-aos-duration="800">
                         <img class="h-20  rounded-lg" src="./assets/google-logo-removebg-preview.png"
                             alt=" description">
 
                     </a>
-                    <a href="https://www.my.gov.sa/wps/portal/snp/main" class="flex justify-center items-center">
+                    <a href="https://www.my.gov.sa/wps/portal/snp/main" class="flex justify-center items-center"
+                        data-aos="zoom-in" data-aos-duration="900">
                         <img class="h-12  rounded-lg" src="./assets/المنصة -لوقو.png" alt="description">
 
                     </a>
-                    <a href="https://www.alrajhibank.com.sa/" class="flex justify-center items-center">
+                    <a href="https://www.alrajhibank.com.sa/" class="flex justify-center items-center"
+                        data-aos="zoom-in" data-aos-duration="1000">
                         <img class="h-12  rounded-lg" src="./assets/الراجحي-لوقو.png" alt=" description">
 
                     </a>
@@ -411,30 +466,43 @@
     </div>
 
 
+
+
+
+    <!-- footer section -->
     <footer>
         <div class="our-company">
-            <h3>ركايا للاستشارات الادارية</h3>
+            <img src="./assets/ركايا_name_.png" alt="icon">
             <p>
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                blind texts.
-
+                من واقع خبرتنا في سوق العمل السعودي نقدم الاستشارات التقنية و احدث الانظمة التقنية والامنية التي تواكب
+                التقدم التقني
 
             </p>
             <div class="social-media">
-                <img src="./assets/icons/twitter (1).png" alt="">
-                <img src="./assets/icons/linkedin.png" alt="">
-                <img src="./assets/icons/whatsapp.png" alt="">
+                <img src="./assets/twitter.png" alt="">
+                <img src="./assets/whatsapp.png" alt="">
+                <img src="./assets/linkedin.png" alt="">
+
             </div>
         </div>
         <div class="contact-us">
             <h3>تواصل معنا</3>
                 <form action="">
-                    <input type="text" placeholder="الموضوع">
-                    <input type="email" placeholder="البريد الالكتروني">
+                    <div class="input">
+                        <input type="text" placeholder="الموضوع">
+                        <input type="email" placeholder="البريد الالكتروني">
+                    </div>
+
                     <textarea name="" id="" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
+                    <button class="form-btn">ارسل</button>
                 </form>
         </div>
     </footer>
+    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-2 text-center  , underfooter">
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400 mb-0 mt-2">جميع الحقوق محفوظة لشركة
+            ركايا 2023.</span>
+    </div>
+
 
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -442,7 +510,19 @@
         AOS.init();
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="jquery.counterup.min.js"></script>
+    <script src="./custom.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
 
+        });
+
+    </script>
 </body>
 
 </html>
