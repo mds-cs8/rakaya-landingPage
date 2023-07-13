@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
 function countUp(numberElement) {
   let current = 0;
   const total = parseInt(numberElement.textContent);
-  const increment = Math.ceil(total / 1000);
+  const increment = Math.ceil(total / 150);
 
   function step() {
     current += increment;
