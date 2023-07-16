@@ -91,7 +91,7 @@ button:hover {
   .loginBox2 {
     background-color: #faf8f2d6;
     width: 100%;
-    height: auto;
+    height: 600px;
     display: flex;
     padding: 20px;
     flex-direction: column;
