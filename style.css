@@ -17,6 +17,7 @@
 body {
   direction: rtl !important;
   min-height: 100vh !important ;
+  overflow-x: hidden;
 }
 
 /* -----intro style with animation----- */
@@ -49,7 +50,7 @@ body {
   transition: 1s;
 }
 .intro_loaded img {
-  width: 300px;
+  width: 250px;
 }
 
 /* here animation moving and class */
@@ -86,12 +87,13 @@ body {
 header {
   width: 100%;
   height: 100vh;
-  margin-bottom: 80px;
+  /* margin-bottom: 80px; */
 }
 .login {
   background: #303954 !important;
   padding: 10px;
   transition: all 0.5s ease;
+  font-size: 10px;
 }
 
 .login:hover {
@@ -107,6 +109,7 @@ header {
   align-items: center;
   text-align: center;
   position: relative;
+  margin-top: 3rem;
 }
 .headerin::before {
   content: "";
@@ -198,6 +201,7 @@ nav button {
 #navigationsmm a {
   color: #0d0b0b !important;
   font-size: 20px;
+  margin: 20px;
 }
 
 /* end header style */
@@ -205,16 +209,42 @@ nav button {
 section {
   background: var(--sectionBackground) !important;
   margin-bottom: 80px;
-  min-height: 40vh;
 }
 /* about us style */
 
+.aboutSec {
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 80px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
 #aboutbox {
-  gap: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 100px;
+  align-items: center;
+  justify-content: center;
+}
+#aboutImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+#aboutbox img {
+  width: 100%;
+}
+#aboutContent {
+  width: 90%;
 }
 
 #aboutbox #aboutContent h3 {
-  /* padding-bottom: 0.5rem; */
+  margin-bottom: 10px;
   color: var(--textColor);
   font-weight: bolder;
 }
@@ -296,12 +326,12 @@ section {
   padding: 20px;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
+  height: auto;
   align-items: center;
 }
 .service h3 {
   font-weight: bold !important;
-  margin-bottom: 40px;
+  margin: 70px 0;
   color: var(--textColor);
 }
 .service-box {
@@ -468,6 +498,34 @@ form {
 
 /* responsive style for mid and large screen */
 @media only screen and (min-width: 900px) {
+  .aboutSec {
+    width: 100%;
+    min-height: 50vh;
+    margin-top: 80px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #aboutbox {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #aboutImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+  }
+  #aboutbox img {
+    width: 70%;
+  }
+  #aboutContent {
+    width: 50%;
+  }
+
   .service-box .item {
     display: flex;
     justify-content: space-evenly;
@@ -533,6 +591,13 @@ form {
     font-weight: bolder;
     color: #816c4a9a;
     font-size: 2.6rem;
+  }
+
+  .login {
+    background: #303954 !important;
+    padding: 10px;
+    transition: all 0.5s ease;
+    font-size: 18px;
   }
 }
 
