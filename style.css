@@ -204,7 +204,7 @@ nav button {
 
 section {
   background: var(--sectionBackground) !important;
-  /* margin-bottom: 80px; */
+  margin-bottom: 80px;
   min-height: 40vh;
 }
 /* about us style */
@@ -214,7 +214,7 @@ section {
 }
 
 #aboutbox #aboutContent h3 {
-  padding-bottom: 0.5rem;
+  /* padding-bottom: 0.5rem; */
   color: var(--textColor);
   font-weight: bolder;
 }

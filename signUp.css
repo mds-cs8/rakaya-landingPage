@@ -62,8 +62,12 @@ body {
 
 
 .headOfSign img {
-  height: 150px;
-  width: 150px;
+  width: 60%;
+}
+.headOfSign a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .headOfSign h1 {
