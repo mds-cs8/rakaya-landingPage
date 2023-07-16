@@ -209,15 +209,15 @@ nav button {
 section {
   background: var(--sectionBackground) !important;
   margin-bottom: 80px;
+  width: 100%;
 }
 /* about us style */
 
 .aboutSec {
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
   margin-top: 80px !important;
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 20px 0;
 }
@@ -226,21 +226,22 @@ section {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  gap: 100px;
   align-items: center;
-  justify-content: center;
 }
 #aboutImg {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 80%;
+  margin-bottom: 30px;
 }
 #aboutbox img {
-  width: 100%;
+  width: 70%;
+
 }
 #aboutContent {
   width: 90%;
+  margin:5rem 0;
 }
 
 #aboutbox #aboutContent h3 {
@@ -283,7 +284,9 @@ section {
 /* end value style */
 
 /*  partners style */
-
+#partners {
+  width: 100% !important;
+}
 #partners .partners-box {
   display: flex;
   flex-direction: column;
@@ -500,7 +503,7 @@ form {
 @media only screen and (min-width: 900px) {
   .aboutSec {
     width: 100%;
-    min-height: 50vh;
+    min-height: 70vh;
     margin-top: 80px !important;
     display: flex;
     justify-content: center;
@@ -602,6 +605,14 @@ form {
 }
 
 @media only screen and (min-width: 1000px) {
+  .aboutSec {
+    width: 100%;
+    min-height: 70vh;
+    margin-top: 80px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .service-box .item {
     display: flex;
     justify-content: space-evenly;
