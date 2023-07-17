@@ -107,6 +107,7 @@ header {
   align-items: center;
   text-align: center;
   position: relative;
+  margin-top: 3rem;
 }
 .headerin::before {
   content: "";
@@ -185,6 +186,7 @@ span {
 
   color: #ffffff;
 }
+
 
 nav {
   background: #faf8f2 !important;
