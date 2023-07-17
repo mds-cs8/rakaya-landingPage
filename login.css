@@ -73,6 +73,8 @@ button:hover {
   height: 100%;
 }
 
+
+/* responsive style */
 @media only screen and (min-width: 900px) {
   section {
     width: 50%;

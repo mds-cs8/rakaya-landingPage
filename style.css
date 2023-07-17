@@ -20,6 +20,8 @@ body {
   overflow-x: hidden;
 }
 
+
+
 /* -----intro style with animation----- */
 .intro_loaded {
   width: 100%;
@@ -82,6 +84,8 @@ body {
 /* end animation moving and class */
 
 /* -----end intro style with animation----- */
+
+
 
 /* header style */
 header {
@@ -211,7 +215,9 @@ section {
   background: var(--sectionBackground) !important;
   margin-bottom: 80px;
   width: 100%;
+
 }
+
 /* about us style */
 
 .aboutSec {
@@ -259,17 +265,21 @@ section {
 }
 /*  end about us style */
 
+
+
 /*  value style */
 
 #values h2 {
   color: var(--textColor);
 }
 
+
 #values #valuescontainer {
   margin-right: 40px;
   margin-left: 40px;
   margin-bottom: 60px;
   margin-top: 80px;
+
   color: var(--textColor);
 }
 .value {
@@ -283,6 +293,9 @@ section {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 /* end value style */
+
+
+
 
 /*  partners style */
 #partners {
@@ -314,6 +327,9 @@ section {
 }
 
 /*  end partners style */
+
+
+
 
 /*  service style */
 
@@ -404,6 +420,10 @@ section {
   background: var(--textColor);
 }
 /* end service style */
+
+
+
+
 
 /*  footer style */
 
@@ -500,7 +520,11 @@ form {
 }
 /*  end footer style */
 
-/* responsive style for mid and large screen */
+
+
+
+
+/* responsive style  */
 @media only screen and (min-width: 900px) {
   .aboutSec {
     width: 100%;

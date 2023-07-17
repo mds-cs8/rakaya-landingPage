@@ -7,6 +7,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }, 2000);
 });
 // -----------------------------------------------------
+
+//code for counter
 function countUp(numberElement) {
   let current = 0;
   const total = parseInt(numberElement.textContent);

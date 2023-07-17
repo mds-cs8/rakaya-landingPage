@@ -93,6 +93,8 @@ button {
   button:hover {
     background: #523623 !important;
   }
+
+  /* re */
 @media only screen and (max-width: 700px) {
   .headOfSingsection {
     width: 40%;
