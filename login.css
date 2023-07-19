@@ -22,6 +22,7 @@ section {
   width: 100%;
 }
 
+
 .loginBox1 {
   padding: 20px;
 }
@@ -40,6 +41,12 @@ section {
   flex-direction: column;
   border-radius: 5px;
 }
+
+input[type="text"]{
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
 button {
   background: #816c4a !important;
   color: #fff;

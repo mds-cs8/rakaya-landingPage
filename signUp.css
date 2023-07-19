@@ -18,21 +18,83 @@ body {
   align-items: center;
 }
 
-.headOfSingsection {
-  width: 40%;
-  height: 500px;
-}
+
+/* section1 */
+
 .signupSectionClass {
   width: 40%;
-  height: 500px;
+  height: 500px ;
 }
 .signupBox1 {
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
+  border-radius: 5px;
+
 }
 
 .inputBoxs:focus {
   border-color: gray !important;
+}
+
+ input[type="text"]{
+  width: 12.2rem !important;
+  height: 2rem;
+ 
+  
+}
+
+input 
+{
+  height: 2rem ;
+  width: 10rem ;
+
+}
+
+.userType
+ { 
+  display: flex;
+  height: 2rem ;
+  width: 14rem ;
+  margin-right: 4rem;
+
+}
+
+.userType label{
+  margin-right: 2rem;
+  display: flex;
+  white-space: nowrap; 
+}
+
+
+
+.genderAndUserType{
+      display: inline-flex;
+      justify-content: center;
+}
+
+.genderAndUserType .gender {
+  display: flex;
+  width: 10rem ;
+  
+}
+
+.gender input[type="radio"]:checked {
+  background-color:gray;
+   /* border-color: black; */
+  
+}
+
+.users {
+  appearance: none; /* Hide the default arrow provided by the browser */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('assets/down-arrow.png'); /* Replace 'path/to/arrow-icon.png' with the actual path to your arrow icon */
+  background-position: left center; /* Adjust the icon's position (right, center, etc.) */
+  background-size: 17px;
+  background-position: 10px;
+  background-repeat: no-repeat;
+  
+ 
 }
 
 .signupBox2 {
@@ -41,15 +103,35 @@ body {
   /* background-color:  gray ;  */
   width: 100%;
   height: 100%;
+  border-radius: 5px;
+
 }
 
 .signupBox2 h1 {
   color: #523623;
 }
 
+.name {
+  display:inline-flex;
+justify-content: space-between;
+}
 
+.name .name2{
+        margin-right: 3.5rem;
+}
+
+
+/* section2 */
+
+.headOfSingsection {
+  width: 40%;  
+  height:634px;
+  margin-top: 10%;
+  
+}
 
 .headOfSign {
+
   background-color: #faf8f2d6;
   text-align: center;
   width: 100%;
@@ -58,6 +140,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  border-radius: 5px;
+
 }
 
 
@@ -96,13 +180,68 @@ button {
 
   /* re */
 @media only screen and (max-width: 700px) {
+  /* section{
+    display:block;
+   
+  } */
   .headOfSingsection {
-    width: 40%;
+    width: 90%;
     height: 500px;
     display: none;
   }
   .signupSectionClass {
     width: 90%;
     height: 500px;
+
   }
+
+    /*                         */
+
+  .name input[type="text"]{
+    width: 100% !important;
+    height: 2rem;
+
+    
+    
+  }
+/* 
+  .name {
+    display:inline-flex;
+    margin-left: 0;
+    margin-right: 0;
+
+    width: 80px ;
+  } */
+  
+  .name2{
+      margin-right: 0px;
+      position:relative;
+      /* right: 5px; */
+  }
+
+  /* .inputBoxs{
+    width: 10px ;
+    align-items: center;
+  
+  }
+ */
+
+  .gender{
+    width:5rem;
+    font-size: 15px;
+    margin-bottom: 1rem;
+  }
+
+
+  .userType{
+    font-size: 15px; 
+    position: relative;
+    left: 5.5rem;
+   }
+
+    .genderAndUserType{
+      display: block;
+     
+    }
+  
 }
