@@ -1,9 +1,15 @@
 <?php
+
+
 session_start();
-if(isset($_SESSION['user'])){
+if(isset($_SESSION['user']))
+{
     header('location:index.php');
     exit();
 }
+
+
+
 if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
     $mail = $_COOKIE['email']; 
     $pass = $_COOKIE['password']; 
@@ -16,11 +22,15 @@ if(isset($_POST['submit'])){
  include 'conn-db.php';
    $password=filter_var($_POST['password'],FILTER_SANITIZE_STRING);
    $email=filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
-
+    
+    // create cookie
    if(isset($_POST['remember'])){
     setcookie("email" , $_POST['email'], time() + (60 * 60 * 24));
     setcookie("password" , $_POST['password'], time() + (60 * 60 * 24));
    }
+
+   //validate and insert-----------------------------------------------------
+
    $errors=[];
    
 
@@ -38,27 +48,29 @@ if(isset($_POST['submit'])){
 
 
    // insert or errros 
-   if(empty($errors)){
+   if(empty($errors))
+   {
    
-
-    $stm="SELECT * FROM user WHERE email ='$email'";
+    $stm="SELECT * FROM user WHERE email ='$email' ";
     $q=$conn->prepare($stm);
     $q->execute();
     $data=$q->fetch();
+
     if(!$data){
-       $errors[] = "لا يوجد حساب بهذا الايميل";
+       $errors[] = "لا يوجد حساب لهذا البريد الالكتروني";
     }else{
         
          $password_hash=$data['password']; 
          
          if(!password_verify($password,$password_hash)){
-            $errors[] = "خطأ فى تسجيل الدخول";
-         }else{
+            $errors[] = "خطأ في تسجيل الدخول , فضلاً تأكد من كلمة المرور";
+         }
+         else{
             $_SESSION['user']=[
                 "name"=>$data['name'],
                 "email"=>$email,
               ];
-            header('location:index.php');
+            header('location:index.php');       //navigate tp this page if log-in successful
 
          }
     }
@@ -119,14 +131,15 @@ if(isset($_POST['submit'])){
                         تسجيل الدخول
                     </h1>
 
-                    <form class="space-y-4 md:space-y-6" action="login.php" method="POST">
+                    <form class="space-y-4 md:space-y-6" action="login.php" method="POST" >
 
                     <?php 
                              if(isset($errors)){
                                      if(!empty($errors)){
                                        foreach($errors as $msg){
-                                           echo $msg . "<br>";
-                                       }
+                                        echo   " <strong> <small > $msg <br> </small> </strong> "   ;
+
+                                    }
                                        }
                                                }
                      ?>
@@ -158,7 +171,7 @@ if(isset($_POST['submit'])){
                                 </div>
 
                             </div>
-                            <a href="#"
+                            <a href="resetPassword.php"
                                 class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">نسيت
                                 كلمة المرور</a>
                         </div>

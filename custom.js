@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
     intro.style.top = "-100vh";
   }, 2000);
 });
+
 // -----------------------------------------------------
 
 //code for counter
@@ -53,6 +54,10 @@ let repasswordCheck = false;
 let emailCheck = false;
 let passwordCheck = false;
 
+
+
+
+
 btncheck(
   emailCheck,
   passwordCheck,
@@ -61,7 +66,11 @@ btncheck(
   name1Check,
   name2Check
 );
-function validation() {
+
+
+function validation() 
+{
+
   name1.addEventListener("input", () => {
     if (nameRegex.test(name1.value)) {
       name1_msg.innerHTML = "";
@@ -127,8 +136,12 @@ function validation() {
   password.addEventListener("input", () => {
     if (passwordRegex.test(password.value)) {
       password.style.borderBottom = "3px solid green";
+      password_msg.innerHTML = "كلمة المرور قوية";
+      password_msg.style.color = "green";
       passwordCheck = true;
     } else {
+
+       password_msg.innerHTML = "كلمة المرور غير صحيحة , كلمة المرور يجب أن لا تقل عن 6 ارقام (1 حرف كبير ,1 حرف صغير , رمز وارقام)";
       password_msg.style.color = "red";
       password.style.borderBottom = "3px solid red";
       passwordCheck = false;
@@ -146,11 +159,11 @@ function validation() {
   repassword.addEventListener("input", () => {
     if (repassword.value === password.value) {
       repassword_msg.style.color = "green";
-      repassword_msg.innerHTML = "";
+      repassword_msg.innerHTML = "كلمة المرور متطابقة";
       repassword.style.borderBottom = "3px solid green";
       repasswordCheck = true;
     } else {
-      repassword_msg.innerHTML = "كلمة مرور متطابقة";
+      repassword_msg.innerHTML = "كلمة المرور غير متطابقة";
       repassword_msg.style.color = "red";
       repassword.style.borderBottom = "3px solid red";
       repasswordCheck = false;
@@ -171,7 +184,7 @@ function validation() {
       phone.style.borderBottom = "3px solid green";
       phoneCheck = true;
     } else {
-      phone_msg.innerHTML = "كلمة مرور غير مقبولة";
+      phone_msg.innerHTML = "رقم الهاتف غير صحيح , يجب ان يحتوي على ارقام فقط";
       phone_msg.style.color = "red";
       phone.style.borderBottom = "3px solid red";
       phoneCheck = false;
@@ -186,13 +199,17 @@ function validation() {
     );
   });
 }
+
 validation();
 
+
+// check all inputs 
 function btncheck(email, password, repass, name1, name2, phone) {
   let sign = document.getElementById("sign-btn");
   if (email && password && repass && name1 && name2 && phone) {
     sign.removeAttribute("disabled");
     sign.style.cursor = "pointer";
+
   } else {
     sign.setAttribute("disabled", "disabled");
     sign.style.cursor = "not-allowed";

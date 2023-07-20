@@ -2,11 +2,11 @@
 $dbHost="localhost";
 $dbUser="root";
 $dbPass="";
-$dbName="rakaya";
+$dbName="rakaya2";
 
 try{
     $conn= new PDO("mysql:host=$dbHost;dbname=$dbName",$dbUser,$dbPass);
-   // echo "success";
+//    echo "success";
 }catch(Exception $e){
     echo $e->getMessage();
     exit();
