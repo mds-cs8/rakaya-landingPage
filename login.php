@@ -1,3 +1,11 @@
+<?php
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 
 
@@ -30,7 +38,7 @@
 
                 <!-- logo -->
                 <div class="aboveLogin">
-                    <a href="index.html">
+                    <a href="index.php">
 
                         <img src="./assets/ركايا_full_.png" alt="rakaya logo">
 
@@ -46,7 +54,7 @@
                         تسجيل الدخول
                     </h1>
 
-                <form class="space-y-4 md:space-y-6" action="#" method="POST">
+                <form class="space-y-4 md:space-y-6" action="login.php" method="POST">
                      
                         <div>
                             <label for="email"
@@ -78,11 +86,11 @@
                                 class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">نسيت
                                 كلمة المرور</a>
                         </div>
-                        <button type="submit"
+                        <button type="submit" name="submit"
                             class="w-full h-12 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-300">تسجيل
                             الدخول</button>
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            لم تسجل بعد ؟ <a href="signUp.html"
+                            لم تسجل بعد ؟ <a href="signUp.php"
                                 class="font-medium text-gray-900 hover:underline dark:text-primary-500">سجل الآن</a>
                         </p>
                     </form>
