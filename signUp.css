@@ -11,90 +11,113 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-
 /* section1 */
 
 .signupSectionClass {
   width: 40%;
-  height: 500px ;
+  height: auto;
 }
 .signupBox1 {
   /* width: 100%;
   height: 100%; */
   border-radius: 5px;
-
 }
 
 .inputBoxs:focus {
   border-color: gray !important;
 }
 
- input[type="text"]{
-  width: 12.2rem !important;
+.name {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.name1,
+.name2 {
+  width: 45%;
+  margin-bottom: 10px;
+}
+.name input {
+  margin-bottom: 5px;
+}
+
+.email-phone {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.email,
+.phone {
+  width: 45%;
+  margin-bottom: 10px;
+}
+.email-phone input {
+  margin-bottom: 5px;
+}
+
+.password {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.password input {
+  margin: 5px 0;
+}
+.pass1,
+.pass2 {
+  width: 45%;
+  margin-bottom: 5px;
+}
+input {
   height: 2rem;
- 
-  
+  width: 10rem;
 }
 
-input 
-{
-  height: 2rem ;
-  width: 10rem ;
-
-}
-
-.userType
- { 
+.genderAndUserType {
+  width: 100%;
+  height: 100%;
   display: flex;
-  height: 2rem ;
-  width: 14rem ;
-  margin-right: 4rem;
-
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-items: center;
 }
-
-.userType label{
-  margin-right: 2rem;
+.genderAndUserType label {
+  width: 100px;
+}
+.gender,
+.userType {
   display: flex;
-  white-space: nowrap; 
-}
-
-
-
-.genderAndUserType{
-      display: inline-flex;
-      justify-content: center;
-}
-
-.genderAndUserType .gender {
-  display: flex;
-  width: 10rem ;
-  
+  width: 40%;
+  margin-bottom: 10px;
 }
 
 .gender input[type="radio"]:checked {
-  background-color:gray;
-   /* border-color: black; */
-  
+  background-color: gray;
+  /* border-color: black; */
 }
 
 .users {
   appearance: none; /* Hide the default arrow provided by the browser */
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url('assets/down-arrow.png'); /* Replace 'path/to/arrow-icon.png' with the actual path to your arrow icon */
+  background-image: url("assets/down-arrow.png"); /* Replace 'path/to/arrow-icon.png' with the actual path to your arrow icon */
   background-position: left center; /* Adjust the icon's position (right, center, etc.) */
   background-size: 17px;
   background-position: 10px;
   background-repeat: no-repeat;
-  
- 
+  width: 150px;
 }
 
 .signupBox2 {
@@ -104,34 +127,20 @@ input
   width: 100%;
   height: 100%;
   border-radius: 5px;
-
 }
 
 .signupBox2 h1 {
   color: #523623;
 }
 
-.name {
-  display:inline-flex;
-justify-content: space-between;
-}
-
-.name .name2{
-        margin-right: 3.5rem;
-}
-
-
 /* section2 */
 
 .headOfSingsection {
-  width: 40%;  
-  height:634px;
-  margin-top: 10%;
-  
+  width: 40%;
+  height: 580px;
 }
 
 .headOfSign {
-
   background-color: #faf8f2d6;
   text-align: center;
   width: 100%;
@@ -141,12 +150,10 @@ justify-content: space-between;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 5px;
-
 }
 
-
 .headOfSign img {
-  width: 60%;
+  width: 40%;
 }
 .headOfSign a {
   width: 100%;
@@ -169,21 +176,17 @@ justify-content: space-between;
   font-size: small;
 }
 button {
-    background: #816c4a !important;
-    color: #fff !important;
-    font-weight: bold;
-    transition: all 0.5s ease;
-  }
-  button:hover {
-    background: #523623 !important;
-  }
+  background: #816c4a !important;
+  color: #fff !important;
+  font-weight: bold;
+  transition: all 0.5s ease;
+}
+button:hover {
+  background: #523623 !important;
+}
 
-  /* re */
-@media only screen and (max-width: 700px) {
-  /* section{
-    display:block;
-   
-  } */
+/* re */
+@media only screen and (max-width: 900px) {
   .headOfSingsection {
     width: 90%;
     height: 500px;
@@ -191,57 +194,47 @@ button {
   }
   .signupSectionClass {
     width: 90%;
-    height: 500px;
-
+    height: auto;
   }
 
-    /*                         */
-
-  .name input[type="text"]{
-    width: 100% !important;
-    height: 2rem;
-
-    
-    
-  }
-/* 
   .name {
-    display:inline-flex;
-    margin-left: 0;
-    margin-right: 0;
-
-    width: 80px ;
-  } */
-  
-  .name2{
-      margin-right: 0px;
-      position:relative;
-      /* right: 5px; */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .name1,
+  .name2 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .name input {
+    margin: 10px 0;
   }
 
-  /* .inputBoxs{
-    width: 10px ;
-    align-items: center;
-  
+  .email,
+  .phone {
+    width: 100%;
+    margin-bottom: 10px;
   }
- */
-
-  .gender{
-    width:5rem;
-    font-size: 15px;
-    margin-bottom: 1rem;
+  .email-phone input {
+    margin: 10px 0;
   }
 
+  .pass1,
+  .pass2 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  input {
+    height: 2rem;
+    width: 10rem;
+  }
 
-  .userType{
-    font-size: 15px; 
-    position: relative;
-    left: 5.5rem;
-   }
-
-    .genderAndUserType{
-      display: block;
-     
-    }
-  
+  .gender,
+  .userType {
+    display: flex;
+    width: 80%;
+    margin-bottom: 10px;
+  }
 }

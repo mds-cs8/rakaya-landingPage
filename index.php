@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,11 +46,29 @@
                 <a href="" class="flex items-center">
                     <img src="./assets/ركايا_full_.png" class="h-14 sm:h-20 mr-3" alt="Rakaya Logo">
                 </a>
+
                 <!-- 1div  log-in link and button in navbar -->
                 <div class="flex md:order-2">
-                    <a href="login.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
+                <?php 
+                     if(isset($_SESSION['user'])){
+                 ?>
+                    <a href="logout.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
+                        الخروج
+                    </a>
+
+                <?php 
+                  }else{
+                   ?>
+
+                  <a href="login.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
                         الدخول
                     </a>
+
+                    <?php 
+
+                      }
+                      
+                      ?>
                     <button data-collapse-toggle="navbar-sticky" type="button"
                         class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         aria-controls="navbar-sticky" aria-expanded="false">
