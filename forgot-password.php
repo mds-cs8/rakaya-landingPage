@@ -41,7 +41,7 @@
 
                     <h1
                         class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        اعادة تعيين كلمة المرور
+                        ادخل البريد الإلكتروني لإستعادة كلمة المرور
                     </h1>
 
                     <form class="space-y-4 md:space-y-6" action="sendPasswordReset.php" method="POST" >

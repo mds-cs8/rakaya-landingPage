@@ -209,7 +209,7 @@ include 'conn-db.php';
                              
                              <!-- pass2 -->
                             <div class="pass2">
-                                <label for="password2" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <label for="repassword" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     تأكيد كلمة المرور
                                 </label>
                                 <input type="password" name="repassword" id="repassword" placeholder="••••••••"
