@@ -13,6 +13,8 @@ if(isset($_SESSION['user']))
 
 if(isset($_POST['submit']))
 {
+   
+
 
     //////
 include 'conn-db.php';
@@ -39,7 +41,7 @@ include 'conn-db.php';
     $errors[]="البريد الاكترونى غير صالح";
    }
 
-   $stm="SELECT email FROM user WHERE email ='$email'";
+   $stm="SELECT email FROM user WHERE email ='$email' ";
    $q=$conn->prepare($stm);
    $q->execute();
    $data=$q->fetch();

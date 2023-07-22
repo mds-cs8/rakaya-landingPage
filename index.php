@@ -40,11 +40,11 @@ session_start();
         <nav class="fixed w-full z-20 top-0 left-0 ">
         
             <!-- whole div in navbar -->
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 , wholeDiv">
 
                <!-- company logo in navbar -->
-                <a href="" class="flex items-center">
-                    <img src="./assets/ركايا_full_.png" class="h-14 sm:h-20 mr-3" alt="Rakaya Logo">
+                <a href="" class="flex items-center ">
+                    <img src="./assets/ركايا_full_.png" class=" h-20 sm:h-20 mr-3 , logoNav" alt="Rakaya Logo">
                 </a>
 
                 <!-- 1div  log-in link and button in navbar -->
@@ -67,7 +67,7 @@ session_start();
                     <?php 
 
                       }
-                      
+
                       ?>
                     <button data-collapse-toggle="navbar-sticky" type="button"
                         class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"

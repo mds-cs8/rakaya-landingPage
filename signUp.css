@@ -133,6 +133,8 @@ input {
 
 .signupBox2 h1 {
   color: #523623;
+  font-size: 30px;
+
 }
 
 /* section2 */
@@ -156,22 +158,25 @@ input {
   border-radius: 5px;
 }
 
-.headOfSign img {
-  width: 40%;
+.headOfSign img{
+  width: 65%;
+  height: 150px;
 }
 .headOfSign a {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 0px;
 }
 
 .headOfSign h1 {
   color: #523623;
-  font-size: x-large;
+  font-size: 25px;
+  margin-bottom:unset;
 }
 .headOfSign h2 {
   font-weight: bolder;
-  font-size: larger;
+  font-size: 30px;
   color: #523623;
 }
 

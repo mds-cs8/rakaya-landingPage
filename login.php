@@ -171,7 +171,7 @@ if(isset($_POST['submit'])){
                                 </div>
 
                             </div>
-                            <a href="resetPassword.php"
+                            <a href="forgot-password.php"
                                 class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">نسيت
                                 كلمة المرور</a>
                         </div>

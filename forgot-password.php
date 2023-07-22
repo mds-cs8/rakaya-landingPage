@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-
-
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rakaya</title>
+    <title>Rakaya-forgot password</title>
 
     <!-- ui library >> tailwend -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
@@ -57,27 +53,9 @@
                                 required>
                         </div>
 
-                        <div>
-                            <label for="repassword1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة المرور</label>
-                            <input type="password" name="password" id="repassword1" placeholder="••••••••"
-                                class="inputBoxs " required >
-                        </div>
-
-                            
-                        <div>
-                            <label for="repassword2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> تأكيد كلمة المرور </label>
-                            <input type="password" name="password" id="repassword2" placeholder="••••••••"
-                                class="inputBoxs " required >
-                        </div>
-                   
-                         
-                        <button type= "submit" name="submit" class="w-full h-12 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-300">تسجيل
-                            الدخول</button>
-
-                        <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                            لم تسجل بعد ؟ <a href="signUp.php"
-                                class="font-medium text-gray-900 hover:underline dark:text-primary-500">سجل الآن</a>
-                        </p> -->
+                 
+                        <button type= "submit" name="submit" class="w-full h-12 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-300">
+                            أرسل</button>
 
 
                     </form>
