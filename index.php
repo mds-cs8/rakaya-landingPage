@@ -184,7 +184,7 @@ session_start();
 
             <div id="aboutVideo">
                 <!-- <img src="./assets/ركايا_full_.png" width="300" height="300" alt="Rakaya Logo"> -->
-                <video class="w-full h-auto max-w-full, rakayaVideo"  src="./assets/rakaya.mp4"   controls type="video/mp4">your browser not support this video</video>
+                <video class=" rakayaVideo"  src="./assets/rakaya.mp4"   controls type="video/mp4">your browser not support this video</video>
             </div>
         </div>
 

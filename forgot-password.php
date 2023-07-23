@@ -26,13 +26,73 @@ include 'conn-db.php';
    
    if(!$data){
     $foundEmail= "لا يوجد حساب بهذا البريد الالكتروني";
-    echo 'heee';
+   
     $validationPassed = false;
 
     }
     else{
         $validationPassed = true;
-    }
+
+
+                                    
+                            //value of email inside submited form
+
+                            $email = $_POST["email"];
+
+                            // get random token ->convert it to hex ->use this in url
+                            $token = bin2hex(random_bytes(16) );
+
+                            // hash the token and it will produce 64character
+                            $token_hash = hash("sha256", $token );
+
+                            $expiry = date( "Y-m-d H:i:s"  , time() + 60 *30 );  // the token valid for 30 minute
+
+                            $mysqli = require __DIR__ . "/conn-db.php";   //get the DB
+
+                            //save token to DB 
+                            $sql = "UPDATE user
+                                    SET reset_token_hash = ?,
+                                    reset_token_expires_at = ?
+                                    WHERE email = ?";
+
+                            $stmt = $mysqli->prepare($sql);
+                            $stmt->bind_param("sss", $token_hash , $expiry , $email );
+                            $stmt->execute();
+
+                            //check if the email there then the message of email
+                            if($mysqli->affected_rows)
+                            {
+                            $mail = require_once __DIR__ . "/send-email.php";
+                            $mail->setFrom("noreply@exapmle.com");
+                            $mail->addAddress($email);
+                            $mail->Subject = "Password Reset"; 
+                            $mail->Body = <<<END
+
+                            Click <a href="localhost/rakaya2/rakaya-landingPage/reset-password.php?token=$token">here</a> 
+                            to reset your password.
+
+                            END;
+
+
+                            //code handle sending message to user email 
+                                try{
+                                    $mail->send();
+
+
+
+                                }catch(Exception $e)
+                                {
+                                    echo"Messsage could not be  send  .Mailer error: {$mail->ErrorInfo}";
+                                }
+
+
+
+                            }    //end if
+                 
+                  header("Location: sendPasswordReset.php");
+
+
+    }//end else
   
 
 
@@ -65,31 +125,6 @@ include 'conn-db.php';
     <link rel="stylesheet" href="login.css">
     
 
-    <script>
-       
-       
-    function submitForm() 
-    {
-        // Read the value of the hidden input field
-        var validationPassed = document.getElementById('validationPassed').value;
-
-        // Check if validationPassed is true to submit the form to "sendPasswordReset.php"
-        if (validationPassed =='true') {
-
-
-            document.getElementById('resetForm').action = 'sendPasswordReset.php';
-            // return true;
-
-            
-           // Submit the form automaticaly
-           document.getElementById('resetForm').submit();
-
-        } 
-    }
-
-    </script>
-
-  
 
 </head>
 
@@ -104,11 +139,9 @@ include 'conn-db.php';
 
                 <!-- logo -->
                 <div class="aboveLogin">
+
                     <a href="index.php">
-
                         <img src="./assets/ركايا_full_.png" alt="rakaya logo">
-
-
                     </a>
 
                 </div>
@@ -125,7 +158,7 @@ include 'conn-db.php';
                     <!-- <?php echo $validationPassed ? 'true' : 'false'; ?> -->
 
 
-                    <form id="resetForm"   class="space-y-6 md:space-y-6" onsubmit="submitForm()"  action="forgot-password.php" method="POST" >
+                    <form id="resetForm"   class="space-y-6 md:space-y-6"   action="forgot-password.php" method="POST" >
                       
 
 
@@ -153,9 +186,7 @@ include 'conn-db.php';
 
                         ?>
                             
-                            <?php 
-                            echo "<script> submitForm(); </script>";
-                            ?>
+                           
 
                           
                           <input type="hidden" id ="validationPassed" name="validationPassed" value="<?php echo $validationPassed ? 'true' : 'false'; ?>">
@@ -197,12 +228,6 @@ include 'conn-db.php';
 
     <script src="./custom.js"></script>
 
-
-
-        
-    <!-- JavaScript code to handle the form submission -->
-       <!-- <script src="./submitFormValidation.js"></script> -->
-  
 
 </body>
 

@@ -16,10 +16,10 @@
 
 .rakayaVideo{
    
-    border-color:  #423827;
-     border-radius: 20px;
+  border-radius: 20px;
      border-style:outset;
-
+     width: 80%;
+     height: auto;
 
 }
 
