@@ -9,6 +9,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // -----------------------------------------------------
 
+
+
 //code for counter
 function countUp(numberElement) {
   let current = 0;
@@ -204,7 +206,8 @@ validation();
 
 
 // check all inputs 
-function btncheck(email, password, repass, name1, name2, phone) {
+function btncheck(email, password, repass, name1, name2, phone) 
+{
   let sign = document.getElementById("sign-btn");
   if (email && password && repass && name1 && name2 && phone) {
     sign.removeAttribute("disabled");
