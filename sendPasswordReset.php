@@ -105,12 +105,11 @@ END;
 
                 <!-- reset form -->
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-
+                        <h1 class=" font-medium  text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"> عزيزنا العميل</h1>
                     <h2
-                        class=" font-medium  text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        class="  text-center text-xl  leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                            بإمكانك الآن إعادة تعيين  كلمة مرور جديدة لحسابك  <br>  عبر بريدك الإلكتروني      
                           
-
                     </h2>
 
 
