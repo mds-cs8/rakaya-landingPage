@@ -52,9 +52,17 @@ session_start();
                 <?php 
                      if(isset($_SESSION['user'])){
                  ?>
+                    
+                    
                     <a href="logout.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
                         الخروج
                     </a>
+
+                    <a href="profile.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">
+                        الملف الشخصي
+                    </a>
+
+
 
                 <?php 
                   }else{

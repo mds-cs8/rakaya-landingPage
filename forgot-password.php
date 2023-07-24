@@ -66,8 +66,7 @@ include 'conn-db.php';
                             $mail->setFrom("noreply@exapmle.com");
                             $mail->addAddress($email);
                             $mail->Subject = "Password Reset"; 
-                            $mail->Body = <<<END
-
+                            $mail->Body =<<<END
                             Click <a href="localhost/rakaya2/rakaya-landingPage/reset-password.php?token=$token">here</a> 
                             to reset your password.
 
