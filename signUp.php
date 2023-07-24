@@ -2,17 +2,15 @@
 
 session_start();
 
-if(isset($_SESSION['user']))
-{
+if (isset($_SESSION['user'])) {
     header('location:index.php');
     exit();
 }
 
 
 
-if(isset($_POST['submit']))
-{
-   
+if (isset($_POST['submit'])) {
+
 
 
 include 'conn-db.php';
@@ -25,7 +23,6 @@ include 'conn-db.php';
    $users=filter_var($_POST['users'],FILTER_SANITIZE_STRING);
    $usersimg="";
    
-//    $img_name = $_POST['UserImg'];
 	
    $img_name = $_FILES['UserImg']['name'];
 	$img_size = $_FILES['UserImg']['size'];
@@ -68,39 +65,33 @@ include 'conn-db.php';
        $errors[]="يجب ان لايكون الاسم اكبر من 100 حرف ";
    }
 
-   // validate email
-   if(empty($email)){
-    $errors[]="يجب كتابة البريد الاكترونى";
-   }elseif(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
-    $errors[]="البريد الاكترونى غير صالح";
-   }
+    // validate email
+    if (empty($email)) {
+        $errors[] = "يجب كتابة البريد الاكترونى";
+    } elseif (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+        $errors[] = "البريد الاكترونى غير صالح";
+    }
 
-   $stm="SELECT email FROM user WHERE email ='$email' ";
-   $q=$conn->prepare($stm);
-   $q->execute();
-   $data=$q->fetch();
+    $stm = "SELECT email FROM user WHERE email ='$email' ";
+    $q = $conn->prepare($stm);
+    $q->execute();
+    $data = $q->fetch();
 
-   if($data){
-     $errors[]=" البريد الإلكتروني موجود بالفعل, يُرجى ادخال بريد الكرتوني آخر" ;
-   }
-
-
-   // validate password
-   if(empty($password)){
-        $errors[]="يجب كتابة  كلمة المرور ";
-   }elseif(strlen($password)<6){
-    $errors[]="يجب ان لايكون كلمة المرور  اقل  من 6 حرف ";
-}
+    if ($data) {
+        $errors[] = " البريد الإلكتروني موجود بالفعل, يُرجى ادخال بريد الكرتوني آخر";
+    }
 
 
+    // validate password
+    if (empty($password)) {
+        $errors[] = "يجب كتابة  كلمة المرور ";
+    } elseif (strlen($password) < 6) {
+        $errors[] = "يجب ان لايكون كلمة المرور  اقل  من 6 حرف ";
+    }
 
    // insert or errros 
    if(empty($errors)){
       echo "insert db";
-
-      
-    
-
       $password=password_hash($password,PASSWORD_DEFAULT);
 
       $stm=" INSERT INTO user (name, phoneNumber,email, password , userType ,gender , UserImg) VALUES ('$name','$phone','$email','$password','$users' , '$gender' , '$usersimg')";
@@ -117,8 +108,7 @@ include 'conn-db.php';
 
       ];
       header('location:index.php');
-   }}
-  
+    }}
 
 
 
@@ -148,6 +138,7 @@ include 'conn-db.php';
 
 
 <body>
+    
     <!-- 1section - right side -->
     <section class="signupSectionClass">
 
@@ -155,8 +146,7 @@ include 'conn-db.php';
 
             <div data-aos="fade-up" data-aos-duration="1000" class="signupBox2 ">
                 <div class="p-4 space-y-4 md:space-y-6 sm:p-8">
-                    <h1
-                        class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    <h1 class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         التسجيل
                     </h1>
 
@@ -223,8 +213,7 @@ include 'conn-db.php';
 
                             <!-- pass1 -->
                             <div class="pass1">
-                                <label for="password"
-                                    class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة
+                                <label for="password" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة
                                     المرور</label>
                                 <input type="password" name="password" id="password" placeholder="••••••••"
                                     class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
@@ -281,8 +270,7 @@ include 'conn-db.php';
                             <!-- gender -->
                             <div class="inline-flex flex gender ">
 
-                                <label for="gender"
-                                    class=" ml-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">الجنس</label>
+                                <label for="gender" class=" ml-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">الجنس</label>
 
                                 <input type="radio" id="female" name="gender" value="female"
                                     class="ml-2 border border-gray-300" required value="<?php if( isset($_POST["
