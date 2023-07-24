@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 session_start();
 
@@ -23,8 +23,44 @@ include 'conn-db.php';
    $phone=filter_var($_POST['phone'],FILTER_SANITIZE_NUMBER_INT);
    $gender=filter_var($_POST['gender'],FILTER_SANITIZE_STRING);
    $users=filter_var($_POST['users'],FILTER_SANITIZE_STRING);
+   $usersimg="";
+   
+//    $img_name = $_POST['UserImg'];
+	
+   $img_name = $_FILES['UserImg']['name'];
+	$img_size = $_FILES['UserImg']['size'];
+	$tmp_name = $_FILES['UserImg']['tmp_name'];
+	$error = $_FILES['UserImg']['error'];
+    $errors=[];
 
-   $errors=[];
+
+    if ($error === 0) {
+		if ($img_size > 2000000) {
+            // 2mb size
+			$errors[] = "نعتذر حجم الملف كبير";
+		}else {
+			$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+			$img_ex_lc = strtolower($img_ex);
+
+			$allowed_exs = array("jpg", "jpeg", "png"); 
+
+			if (in_array($img_ex_lc, $allowed_exs)) {
+				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+				$img_upload_path = 'usersImg/'.$new_img_name;
+				move_uploaded_file($tmp_name, $img_upload_path);
+                $usersimg = $new_img_name;
+            
+            }else {
+				$errors[] = " jpg ,  jpeg , png الرجاء رفع صورة بالامتداد التالي ";
+            }
+        }
+	}else {
+        $errors[] = "unknown error occurred!";
+	    }
+
+    
+    
+   
    // validate name
    if(empty($name)){
        $errors[]="يجب كتابة الاسم";
@@ -62,27 +98,32 @@ include 'conn-db.php';
    if(empty($errors)){
       echo "insert db";
 
+      
+    
+
       $password=password_hash($password,PASSWORD_DEFAULT);
 
-      $stm=" INSERT INTO user (name, phoneNumber,email, password , userType ,gender) VALUES ('$name','$phone','$email','$password','$users' , '$gender')";
+      $stm=" INSERT INTO user (name, phoneNumber,email, password , userType ,gender , UserImg) VALUES ('$name','$phone','$email','$password','$users' , '$gender' , '$usersimg')";
       $conn->prepare($stm)->execute();
       $_POST['name']='';
       $_POST['email']='';
       $_POST['password']='';
       $_POST['phone']='';
-
+      
       $_SESSION['user']=[
         "name"=>$name,
         "email"=>$email,
+        "img"=>$usersimg,
+
       ];
       header('location:index.php');
-   }
+   }}
   
-}
 
 
 
-?>  --> -->
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +160,7 @@ include 'conn-db.php';
                         التسجيل
                     </h1>
 
-                    <form class="space-y-2 md:space-y-6 ,form" action="signUp.php" method="POST">
+                    <form class="space-y-2 md:space-y-6 ,form" action="signUp.php" method="POST" enctype=multipart/form-data>
 
                         <!-- name -->
                         <div class="name">
@@ -162,19 +203,7 @@ include 'conn-db.php';
                                     echo $_POST["email"]; } ?>" >
 
                                 <small id="email_msg"></small>
-                                <?php 
-
-                                  if(isset($errors))
-                                   {
-                                         if(!empty($errors)){
-                                             foreach($errors as $msg){
-
-                                               echo   " <strong > <small > $msg </small> </strong> "   ;
-                                             }
-                                            }
-                                   }
-
-                                 ?>
+                               
                             </div>
 
                             <!-- phone number -->
@@ -227,6 +256,19 @@ include 'conn-db.php';
 
 
                         </div>
+                        <div class="img ">
+
+
+
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    for="file_input">رفع صورة</label>
+                                    <input class="w-full h-10 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" name="UserImg">
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG,
+                                    JPG or GIF (MAX. 800x400px).</p>
+
+
+
+                            </div>
 
 
 
@@ -253,21 +295,7 @@ include 'conn-db.php';
                                 <label for="male">ذكر</label>
 
                             </div>
-                            <div class="img ">
-
-
-
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="file_input">رفع صورة</label>
-                                <input
-                                    class="flex h-10 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 px-2"
-                                    aria-describedby="file_input_help" id="file_input" type="file">
-                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG,
-                                    JPG or GIF (MAX. 800x400px).</p>
-
-
-
-                            </div>
+                            
 
 
                             <!-- user type -->
@@ -289,6 +317,19 @@ include 'conn-db.php';
                             </div>
 
                         </div>
+                        <?php 
+
+if(isset($errors))
+{
+      if(!empty($errors)){
+          foreach($errors as $msg){
+
+            echo   " <strong > <small > $msg </small> </strong> "   ;
+          }
+         }
+}
+
+?>
 
 
 

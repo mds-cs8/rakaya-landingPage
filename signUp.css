@@ -26,8 +26,6 @@ body {
   height: auto;
 }
 .signupBox1 {
-  /* width: 100%;
-  height: 100%; */
   border-radius: 5px;
 }
 
@@ -196,7 +194,6 @@ button:hover {
   }
   .signupSectionClass {
     width: 90%;
-    height: 160vh;
   }
 
   .name {
@@ -246,4 +243,5 @@ button:hover {
   flex-direction: column;
   justify-content: space-evenly;
   padding: "5px";
+  width: 70%;
 }
