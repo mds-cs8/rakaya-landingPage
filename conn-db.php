@@ -2,7 +2,7 @@
 $dbHost="localhost";
 $dbUser="root";
 $dbPass="";
-$dbName="rakaya2";
+$dbName="rakaya";
 
 
 try{

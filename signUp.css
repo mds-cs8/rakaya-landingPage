@@ -84,25 +84,21 @@ input {
   width: 10rem;
 }
 
-.genderAndUserType 
-{
+.genderAndUserType {
   width: 100%;
-  height: 100%;
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   align-items: center;
 }
 
-.genderAndUserType label {
-  width: 120px;
-}
 .gender,
-.userType {
+.userType,
+.img {
   display: flex;
-  width: 40%;
-  margin-bottom: 10px;
+  width: 50%;
+  margin-bottom: 5px;
 }
 
 .gender input[type="radio"]:checked {
@@ -134,16 +130,13 @@ input {
 .signupBox2 h1 {
   color: #523623;
   font-size: 30px;
-
 }
 
 /* section2 */
 
 .headOfSingsection {
-
-   width: 40%;
-  height: 580px; 
-
+  width: 40%;
+  height: 580px;
 }
 
 .headOfSign {
@@ -158,7 +151,7 @@ input {
   border-radius: 5px;
 }
 
-.headOfSign img{
+.headOfSign img {
   width: 65%;
   height: 150px;
 }
@@ -172,7 +165,7 @@ input {
 .headOfSign h1 {
   color: #523623;
   font-size: 25px;
-  margin-bottom:unset;
+  margin-bottom: unset;
 }
 .headOfSign h2 {
   font-weight: bolder;
@@ -203,7 +196,7 @@ button:hover {
   }
   .signupSectionClass {
     width: 90%;
-    height: auto;
+    height: 160vh;
   }
 
   .name {
@@ -241,9 +234,16 @@ button:hover {
   }
 
   .gender,
-  .userType {
+  .userType,
+  .img {
     display: flex;
     width: 80%;
     margin-bottom: 10px;
   }
-}              
+}
+
+.img {
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: "5px";
+}
