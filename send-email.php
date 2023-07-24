@@ -1,5 +1,7 @@
 <?php
 
+// here the configuration of gmail smtp server 
+
 
 require "vendor/autoload.php"; //just download library classes that inside composer file
 
@@ -11,7 +13,7 @@ use PHPMailer\PHPMailer\SMTP;
 $mail = new PHPMailer(true);
 
 //enable debugging messages by smtp debug
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+// $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
 
 
@@ -22,7 +24,7 @@ $mail->isSMTP();
 $mail->SMTPAuth = true ;
 
 
-// configure smtpserver
+// configure smtp server
 
 $mail->Host = "smtp.gmail.com";
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;

@@ -19,6 +19,7 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
 }
 
 if(isset($_POST['submit'])){
+    
  include 'conn-db.php';
    $password=filter_var($_POST['password'],FILTER_SANITIZE_STRING);
    $email=filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);

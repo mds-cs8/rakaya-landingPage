@@ -14,6 +14,15 @@
   --paraColor: #816c4a;
 }
 
+.rakayaVideo{
+   
+  border-radius: 20px;
+     border-style:outset;
+     width: 80%;
+     height: auto;
+
+}
+
 body {
   direction: rtl !important;
   min-height: 100vh !important ;
@@ -229,16 +238,20 @@ section {
   height: 100%;
   align-items: center;
 }
-#aboutImg {
+#aboutVideo {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 80%;
   margin-bottom: 30px;
 }
+<<<<<<< HEAD
 #aboutbox img {
   width: 70%;
 }
+=======
+
+>>>>>>> 0cb2f9ca1da0cecbdd1373b97e0118335925b318
 #aboutContent {
   width: 90%;
   margin: 5rem 0;
@@ -251,10 +264,13 @@ section {
 }
 
 #aboutbox #aboutContent p {
-  text-align: right;
+  text-align: justify;
   color: var(--paraColor);
   font-size: var(--sectionSubTitleMobile);
   padding-top: 0.5rem;
+  width: 90% !important;
+  text-align-last: center;
+
 }
 /*  end about us style */
 

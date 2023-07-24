@@ -197,18 +197,23 @@ session_start();
         <div id="aboutbox" data-aos="fade-up">
 
             <div id="aboutContent">
-                <h3 class="text-4xl">من نحن ؟</h3>
 
+                <h3 class="text-4xl">من نحن ؟</h3>
+             
+              <div data-aos="fade-up">
                 <p>ﺷﺮﻛﺔ ﺳﻌﻮدﻳﺔ ﻣﺘﺨﺼﺼﺔ ﻓﻲ ﺗﻘﺪﻳﻢ اﻟﺨﺪﻣﺎت اﻹﺳﺘﺸﺎرﻳﺔ ، ﻟﺘﻤﻜﻴﻦ اﻟﻘﺪرات ﻓﻲ
                     اﻟﻤﻨﻈﻤﺎت واﻟﻤﺠﺘﻤﻌﺎت ﻋﻠﻰ اﻟﺴﻌﻲ ﻧﺤﻮ ﻣﻮاﻛﺒﺔ اﻟﻌﺎﻟﻢ ﻓﻲ اﻟﺘﻄﻮر ﻟﺠﻤﻴﻊ
                     اﻟﻤﺠﺎﻻت ، وﻟﺬﻟﻚ ﻧﻌﻤﻞ ﻣﻊ ﻋﻤﻼؤﻧﺎ ﻋﻠﻰ ﺗﻄﻮﻳﺮ ﻣﻨﻈﻤﺎﺗﻬﻢ ووﺿﻊ ﻟﻬﻢ ﺣﻠﻮل
                     اﺑﺘﻜﺎرﻳﺔ ﻟﻠﺘﻌﺎﻣﻞ ﻣﻊ اﻟﺘﺤﺪﻳﺎت واﻟﻤﺼﺎﻋﺐ
                 </p>
 
+              </div>
+
             </div>
 
-            <div id="aboutImg">
-                <img src="./assets/ركايا_full_.png" width="300" height="300" alt="Rakaya Logo">
+            <div id="aboutVideo">
+                <!-- <img src="./assets/ركايا_full_.png" width="300" height="300" alt="Rakaya Logo"> -->
+                <video class=" rakayaVideo"  src="./assets/rakaya.mp4"   controls type="video/mp4">your browser not support this video</video>
             </div>
         </div>
 

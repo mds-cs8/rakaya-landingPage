@@ -20,29 +20,18 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if ($user === null) {
-    die("token not found");
+    header("Location: tokenInfoPage.php");
+    exit();
+
 }
 
 if (strtotime($user["reset_token_expires_at"]) <= time()) {
-    die("token has expired");
+    header("Location: tokenInfoPage.php");
+    exit();
+
 }
 
-if (strlen($_POST["password"]) < 8) {
-    die("Password must be at least 8 characters");
-}
-
-if ( ! preg_match("/[a-z]/i", $_POST["password"])) {
-    die("Password must contain at least one letter");
-}
-
-if ( ! preg_match("/[0-9]/", $_POST["password"])) {
-    die("Password must contain at least one number");
-}
-
-if ($_POST["password"] !== $_POST["repassword"]) {
-    die("Passwords must match");
-}
-
+//update the password in DB 
 $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
 $sql = "UPDATE user
@@ -61,6 +50,7 @@ $stmt->execute();
 
 
 
+<!-- confirm reset password page (process successful or not )  -->
 
 
 <!DOCTYPE html>
@@ -68,7 +58,7 @@ $stmt->execute();
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rakaya</title>
+    <title>Reset Password </title>
 
     <!-- ui library >> tailwend -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
@@ -78,27 +68,53 @@ $stmt->execute();
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- custtom css -->
     <link rel="stylesheet" href="login.css">
+
+      <style>
+          
+          .loginBox2 img{
+            margin-top:3rem;
+            width: 60%;
+             height: 80%;
+          }
+
+          .loginBox2 h1{
+            color: #523623;
+            font-size: 25px;
+            margin-top:3rem;
+            margin-bottom:2rem;
+          }
+
+      </style>
+
+
+
 </head>
+
 <body>
       
-         <section class="signupBox2">
+         <section >
 
-         <div class= whole data-aos="fade-up" data-aos-duration="1000">
-               <h1>تم تحديث كلمة المرور بنجاح </h1>
+           <center>
+         <div  data-aos="fade-up" data-aos-duration="1000" class="loginBox2 ">
                 
-
+          
                   <a href="index.php">
 
-                  <img src="./assets/ركايا_full_.png" alt="rakaya logo">
+                  <img src="./assets/ركايا_full_.png" alt="rakaya logo" >
                  
                 </a>
+                
+                <h1>تم تحديث كلمة المرور بنجاح </h1>
 
                 
-                <a href="login.php">
+                <a href="login.php"  >
+                
+                 <small >     <h2>  يمكنك الآن <strong>تسجيل الدخول</strong>  </h2>     </small> 
 
-                     <h2>يمكنك تسجيل الدخول الآن</h2>
                 </a>
+
           </div>
+          </center>
 
         </section>
                
