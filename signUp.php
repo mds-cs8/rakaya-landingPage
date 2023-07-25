@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
 
 
 include 'conn-db.php';
-   $name=filter_var($_POST['name1'].$_POST['name2'],FILTER_SANITIZE_STRING);
+   $name=filter_var($_POST['name1']." ".$_POST['name2'],FILTER_SANITIZE_STRING);
    $password=filter_var($_POST['password'],FILTER_SANITIZE_STRING);
    $repassword=filter_var($_POST['repassword'],FILTER_SANITIZE_STRING);
    $email=filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
@@ -24,13 +24,13 @@ include 'conn-db.php';
    $usersimg="";
    
 	
-   $img_name = $_FILES['UserImg']['name'];
+    $img_name = $_FILES['UserImg']['name'];
 	$img_size = $_FILES['UserImg']['size'];
 	$tmp_name = $_FILES['UserImg']['tmp_name'];
 	$error = $_FILES['UserImg']['error'];
     $errors=[];
 
-
+     //validate uploaded image
     if ($error === 0) {
 		if ($img_size > 2000000) {
             // 2mb size
@@ -50,9 +50,10 @@ include 'conn-db.php';
             }else {
 				$errors[] = " jpg ,  jpeg , png الرجاء رفع صورة بالامتداد التالي ";
             }
-            
+
           }
-	}else {
+	}
+    else {
         $errors[] = "unknown error occurred!";
 	    }
 
@@ -102,12 +103,15 @@ include 'conn-db.php';
       $_POST['password']='';
       $_POST['phone']='';
       
+    
+
       $_SESSION['user']=[
         "name"=>$name,
         "email"=>$email,
         "img"=>$usersimg,
-
+        
       ];
+
       header('location:index.php');
     }}
 

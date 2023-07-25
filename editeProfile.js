@@ -194,7 +194,7 @@ btncheck(
   // check all inputs 
   function btncheck(email, password, repass, name1, name2, phone) 
   {
-    let sign = document.getElementById("updateAcountButton");
+    let sign = document.getElementById("save");
     if (email && password && repass && name1 && name2 && phone) {
       sign.removeAttribute("disabled");
       sign.style.cursor = "pointer";

@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Almarai", sans-serif !important;
+    direction: rtl;
   }
   
  
@@ -38,15 +39,23 @@ header {
     padding: 10px;
   }
 
+  /* image section */
+
 .imageSection , .infoSection{
   background-color: var(--sectionBackground);
 }
 
 .imageSection{
-    height: 10rem;
-
+    height: 15rem;
+    
  
 }
+
+/* 
+.userPhotoDiv img{
+margin-top: 20rem;
+} */
+
 
 
 .imageSectionTitle {
@@ -175,10 +184,7 @@ button {
     height:auto;
   }
 
-  #updateAcountButton {
-    /* margin-bottom: 3rem; */
 
-  }
 
   .headbuttons{
 

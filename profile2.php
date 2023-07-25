@@ -1,26 +1,143 @@
 <?php
 
-include 'login.php';
 
 session_start();
 
-// if (isset($_SESSION['user'])) {
-//     header('location:index.php');
-//     exit();
-// }
+include 'conn-db.php';
 
-$userEmail= $_SESSION['email'];
+$userEmail=   $_SESSION['user']['email']; //get user email
 
-$mysqli = require __DIR__ . "/conn-db.php";   //get the DB
-// $mysqli->set_charset(charset: 'utf8');        //to accept any character
+// $n1=  $_SESSION['user']['name1'];
+// $n2=  $_SESSION['user']['name2'];
 
-$sql="SELECT * FROM user WHERE email ='$userEmail' ";
-$q=$mysqli->prepare($sql);
+
+//fetch data
+$sql="SELECT * FROM user WHERE email = '$userEmail' ";
+$q=$conn->prepare($sql);
 $q->execute();
 $data=$q->fetch();
+$id=0; //get user id
 
-echo $data['email'];
 
+//check if it fetched
+if(!$data){
+          echo "no";
+}else
+ {
+$Nmae= $data['name'];
+$Email= $data['email'];
+$phone= $data['phoneNumber'];
+$password= $data['password'];
+$id=$data['id'];
+echo "id".$id ;
+}
+
+
+//update
+
+if (isset($_POST['submitSave']) ) 
+{  
+
+    $usersimg="";
+   
+	
+    $img_name = $_FILES['UserImg']['name'];
+	$img_size = $_FILES['UserImg']['size'];
+	$tmp_name = $_FILES['UserImg']['tmp_name'];
+	$error = $_FILES['UserImg']['error'];
+  
+    
+    $error=0;
+
+//validate image
+        if ($error === 0) {
+        if ($img_size > 2000000) {
+            // 2mb size
+            $errors[] = "نعتذر حجم الملف كبير";
+        }else {
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+
+            $allowed_exs = array("jpg", "jpeg", "png"); 
+
+            if (in_array($img_ex_lc, $allowed_exs)) {
+                $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+                $img_upload_path = 'usersImg/'.$new_img_name;
+                move_uploaded_file($tmp_name, $img_upload_path);
+                $usersimg = $new_img_name;
+            
+            }else {
+                $errors[] = " jpg ,  jpeg , png الرجاء رفع صورة بالامتداد التالي ";
+            }
+
+        }
+        }
+        else {
+        $errors[] = "unknown error occurred!";
+        }
+
+
+
+    
+//update code
+$n= $_POST['name1'].$_POST['name2'];
+$hashPass= password_hash($_POST["password"], PASSWORD_DEFAULT);
+$e= $_POST['email'];
+$phoneN= $_POST['phone'];
+
+
+$sql = "UPDATE user
+SET name = '$n',
+    email = '$e',
+    phoneNumber = '$phoneN',
+    password= '$hashPass',
+    UserImg = '$usersimg'
+WHERE id = '$id'";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->execute();
+   
+    
+    //check if it work
+    if( $stmt){
+        echo 'ok';
+
+    }
+    else{
+        echo "no";
+    }
+}//end if
+
+
+//delete code
+
+if (isset($_POST['submitDelete']) ) 
+{  
+    echo "delete";
+
+// $sql = "DELETE FROM user
+//     WHERE id = '$id'";
+
+$del = "DELETE FROM user WHERE id = '$id' ";
+// $stmt = $conn->prepare($del);
+// $stmt->execute();
+
+    $stmt = mysqli_query($mysqli ,$del)  ;      
+      
+    //check if it work
+    if( $stmt){
+        echo "deleted successfuly";
+    }
+    else{
+        echo "not deleted";
+    }
+   
+
+    header('location:login.php');
+    exit();
+
+}
 
 ?>
 
@@ -134,28 +251,29 @@ echo $data['email'];
 
 <!-- under nav -->
     <div class="h-full  p-8 , backgroundDiv">
+
+
         <div class="  rounded-lg shadow-xl pb-8 , imageSection">
-            
-           
-           <div class="headbuttons">
-            
-                  <button type="submit" id="updateAcountButton" name="submit" onclick="enableFields()"
-                     class=" block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">تحديث البيانات</button>
-          
-                     <button type="submit" id="deleteAcountButton" name="submit" 
-                     class="block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">حذف الحساب</button>
-       
-           </div>        
-
-            <!-- user image & info under photo -->
-            <div class="flex flex-col items-center -mt-20">
+          <!-- user image & info under photo -->
+            <div class="flex flex-col items-center -mt-20 , userPhotoDiv">
                 <!-- user photo -->
-                <img src="./usersImg/FACE-875-3.jpg" class="w-40 border-4 border-white rounded-full">
+                <button type="submit" id="userPhoto" class="w-20 h-20 rounded-full overflow-hidden mt-8">
+                        <img src="./usersImg/<?php echo( $_SESSION['user']['img'])?>"  class="w-full h-full ">
+                    </button>
+                   
                 <!-- username -->
-                <p class="text-4xl, nameUnderPhoto"> <?php echo  $data['name'] ?> </p>
-                <p class="text-2xl, nameUnderPhoto"> <?php echo  $data['email'] ?>  </p>
+                <h1 class=" font-semibold text-4xl, nameUnderPhoto"> <?php echo  $data['name'] ?> </h1>
+                <p class="  text-2xl, nameUnderPhoto"> <?php echo  $data['email'] ?>  </p>
 
-                <!-- <p class="text-sm text-gray-500">New York, USA</p> -->
+                 <div class="uploadImg">
+
+                    <label class="inline mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    for="file_input">تغيير الصورة</label>
+                                    <input class="w-240 h-10 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" name="UserImg">
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG,
+                                    JPG or GIF (MAX. 800x400px).</p>
+                  </div>
+  
             </div>
           
         </div> 
@@ -165,7 +283,19 @@ echo $data['email'];
             <div class="w-full flex flex-col 2xl:w-1/3">
 
             <div class="flex-1  rounded-lg shadow-xl p-8 , infoSection">
-            <form class="space-y-2 md:space-y-6  " action="profile2.php" method="POST" >
+
+      <form class="space-y-2 md:space-y-6  " action="profile2.php" method="POST" enctype=multipart/form-data >
+
+                    <div class="headbuttons">
+                            
+                            <!-- <button type="submit" id="updateAcountButton" name="submitUpdate" 
+                            class=" block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">تحديث البيانات</button>
+                     -->
+                            <button type="submit" id="deleteAcountButton" name="submitDelete" 
+                            class="block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">حذف الحساب</button>
+                
+                    </div>        
+
                
                <!-- name -->
                <div class="name">
@@ -175,9 +305,9 @@ echo $data['email'];
                        <label for="name1" class="mb-4 text-sm font-medium  text-gray-900  dark:text-white">الاسم
                            الأول</label>
      
-                       <input type="text" name="name1" id="name1" disabled ="disabled"
+                       <input type="text" name="name1" id="name1" 
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           placeholder="سارة" required  value="<?php if( isset($_POST["name1"])  ){ echo $_POST["name1"]; } ?>"> 
+                           placeholder="سارة" required  value="<?php echo $data['name']?>"  > 
                        <small id="name1_msg"></small>
      
                    </div>
@@ -186,9 +316,9 @@ echo $data['email'];
      
                        <label for="name2" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">الاسم
                            الأخير</label>
-                       <input type="text" name="name2" id="name2" disabled ="disabled"
+                       <input type="text" name="name2" id="name2"
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           placeholder="محمد" required value="<?php if( isset($_POST["name2"])  ){ echo $_POST["name2"]; } ?>" >
+                           placeholder="محمد" required value="<?php echo $data['name']?>"  >
                        <small id="name2_msg"></small>
                    </div>
      
@@ -199,9 +329,9 @@ echo $data['email'];
                    <div class="email">
                        <label for="email"
                            class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">الايميل</label>
-                       <input type="email" name="email" id="email" disabled ="disabled"
+                       <input type="email" name="email" id="email" 
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           placeholder="name@google.com" required  value="<?php echo  $data['email'] ?> "   >
+                           placeholder="name@google.com" required  value="<?php echo  $data['email']?>"   >
      
                        <small id="email_msg"></small>
                        <?php 
@@ -223,9 +353,9 @@ echo $data['email'];
                    <div class="phone">
                        <label for="phone" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">رقم
                            الهاتف</label>
-                       <input type="tel" id="phone" name="phone" disabled ="disabled"
+                       <input type="tel" id="phone" name="phone" 
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           required value="<?php echo  $data['phone'] ?> ">
+                           required value="<?php echo  $data['phoneNumber'] ?> ">
                        <small id="phone_msg"></small>
      
                    </div>
@@ -239,9 +369,9 @@ echo $data['email'];
                        <label for="password"
                            class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة
                            المرور</label>
-                       <input type="password" name="password" id="password" placeholder="••••••••"  disabled ="disabled"
+                       <input type="text" name="password" id="password" placeholder="••••••••"  
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           required  value="<?php echo  $data['password'] ?> "   >
+                           required  value="<?php echo $password ?> "   >
                     
                        <small id="password_msg">
                            كلمة المرور يجب أن <strong>لا تقل عن 6 أرقام</strong> ( 1 حرف صغير ,1 حرف كبير, رمز
@@ -256,9 +386,9 @@ echo $data['email'];
                        <label for="repassword" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">
                            تأكيد كلمة المرور
                        </label>
-                       <input type="password" name="repassword" id="repassword" placeholder="••••••••" disabled ="disabled"
+                       <input type="text" name="repassword" id="repassword" placeholder="••••••••" 
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           required  value="<?php if( isset($_POST["repassword"])  ){ echo $_POST["repassword"]; } ?>"   >
+                           required  value="<?php echo $password?> "    >
                        <small id="repassword_msg">
      
                        </small>
@@ -272,10 +402,10 @@ echo $data['email'];
                <!-- edit/cancle -->
                 <div class="submit" >
      
-               <button  class="editProfileButton" type="submit" id="save" name="submit "
-                   class=" font-medium rounded-lg text-sm px-2 py-2 text-center" onclick="disAbleFields()" >حفظ</button>
+               <button  class="editProfileButton" type="submit" id="save" name="submitSave"
+                   class=" font-medium rounded-lg text-sm px-2 py-2 text-center"  >حفظ</button>
                
-               <button  class="editProfileButton" type="submit" id="cancel" name="submit"
+               <button  class="editProfileButton" type="submit" id="cancel" name="submitCancel"
                      class=" font-medium rounded-lg text-sm px-2 py-4 text-center">الغاء</button>
                 </div> 
                
