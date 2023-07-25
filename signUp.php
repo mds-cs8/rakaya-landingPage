@@ -32,6 +32,7 @@ include 'conn-db.php';
 
      //validate uploaded image
     if ($error === 0) {
+        // check size
 		if ($img_size > 2000000) {
             // 2mb size
 			$errors[] = "نعتذر حجم الملف كبير";
@@ -40,9 +41,10 @@ include 'conn-db.php';
 			$img_ex_lc = strtolower($img_ex);
 
 			$allowed_exs = array("jpg", "jpeg", "png"); 
-
+                // check exstinon
 			if (in_array($img_ex_lc, $allowed_exs)) {
 				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+                // upload img to our folder
 				$img_upload_path = 'usersImg/'.$new_img_name;
 				move_uploaded_file($tmp_name, $img_upload_path);
                 $usersimg = $new_img_name;
@@ -109,10 +111,19 @@ include 'conn-db.php';
         "name"=>$name,
         "email"=>$email,
         "img"=>$usersimg,
-        
+        "userType"=>$users,
+
       ];
 
-      header('location:index.php');
+      if($_SESSION['user']['userType']){
+        header('location: dashboard.php');
+
+      }
+      else{
+        header('location:index.php');
+
+      }
+
     }}
 
 
@@ -257,8 +268,7 @@ include 'conn-db.php';
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     for="file_input">رفع صورة</label>
                                     <input class="w-full h-10 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" name="UserImg">
-                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG,
-                                    JPG or GIF (MAX. 800x400px).</p>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">الرجاء اختيار الصور بالامتداد التالي png , jpg , jpeg والحجم لا يزيد عن 2ميقا</p>
 
 
 
@@ -305,6 +315,7 @@ include 'conn-db.php';
                                     <option value="Consultant"> الاستشارات</option>
                                     <option value="Clint">عميل</option>
                                     <option value="Intern">متدرب</option>
+                                    <option value="admin">مسؤول (ADMIN)</option>
                                 </select>
 
                             </div>
@@ -346,7 +357,7 @@ if(isset($errors))
 
             <a href="index.php">
 
-                <img src="./assets/ركايا_full_.png" alt="rakaya logo">
+                <img src="./assets/ركايا_ابيض.png" alt="rakaya logo">
             </a>
 
             <h1> ركايا آفاق واسعة وامكانيات عالية</h1>
@@ -374,6 +385,9 @@ if(isset($errors))
     </script>
 
     <script src="./custom.js"></script>
+    <script>
+        document.querySelector(".headOfSingsection").style.height = (document.querySelector(".signupSectionClass").clientHeight) + "px"
+    </script>
 
 </body>
 
