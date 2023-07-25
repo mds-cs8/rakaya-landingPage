@@ -50,7 +50,8 @@ include 'conn-db.php';
             }else {
 				$errors[] = " jpg ,  jpeg , png الرجاء رفع صورة بالامتداد التالي ";
             }
-        }
+            
+          }
 	}else {
         $errors[] = "unknown error occurred!";
 	    }

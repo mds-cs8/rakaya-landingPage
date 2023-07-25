@@ -1,3 +1,31 @@
+<?php
+
+include 'login.php';
+
+session_start();
+
+// if (isset($_SESSION['user'])) {
+//     header('location:index.php');
+//     exit();
+// }
+
+$userEmail= $_SESSION['email'];
+
+$mysqli = require __DIR__ . "/conn-db.php";   //get the DB
+// $mysqli->set_charset(charset: 'utf8');        //to accept any character
+
+$sql="SELECT * FROM user WHERE email ='$userEmail' ";
+$q=$mysqli->prepare($sql);
+$q->execute();
+$data=$q->fetch();
+
+echo $data['email'];
+
+
+?>
+
+
+
 <!-- component -->
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +65,7 @@
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 , wholeDiv">
 
            <!-- company logo in navbar -->
-            <a href="" class="flex items-center ">
+            <a href="./index.php" class="flex items-center ">
                 <img src="./assets/ركايا_full_.png" class=" h-20 sm:h-20 mr-3 , logoNav" alt="Rakaya Logo">
             </a>
 
@@ -52,7 +80,7 @@
                     الخروج
                 </a>
 
-                <a href="profile.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">
+                <a href="profile2.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">
                     الملف الشخصي
                 </a>
 
@@ -106,26 +134,26 @@
 
 <!-- under nav -->
     <div class="h-full  p-8 , backgroundDiv">
-        <div class=" rounded-lg shadow-xl pb-8 , imageSection">
+        <div class="  rounded-lg shadow-xl pb-8 , imageSection">
             
            
            <div class="headbuttons">
             
-                  <button type="submit" id="deleteAcountButton" name="submit" onclick="enableFields()"
+                  <button type="submit" id="updateAcountButton" name="submit" onclick="enableFields()"
                      class=" block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">تحديث البيانات</button>
           
-                     <button type="submit" id="updateAcountButton" name="submit" 
-                     class="mt-4 block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">حذف الحساب</button>
+                     <button type="submit" id="deleteAcountButton" name="submit" 
+                     class="block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">حذف الحساب</button>
        
            </div>        
 
             <!-- user image & info under photo -->
-            <div class="flex flex-col items-center -mt-6">
+            <div class="flex flex-col items-center -mt-20">
                 <!-- user photo -->
-                <img src="https://vojislavd.com/ta-template-demo/assets/img/profile.jpg" class="w-40 border-4 border-white rounded-full">
+                <img src="./usersImg/FACE-875-3.jpg" class="w-40 border-4 border-white rounded-full">
                 <!-- username -->
-                <p class="text-4xl, nameUnderPhoto">سارة محمد</p>
-                <p class="text-2xl, nameUnderPhoto">sara@gmail.com </p>
+                <p class="text-4xl, nameUnderPhoto"> <?php echo  $data['name'] ?> </p>
+                <p class="text-2xl, nameUnderPhoto"> <?php echo  $data['email'] ?>  </p>
 
                 <!-- <p class="text-sm text-gray-500">New York, USA</p> -->
             </div>
@@ -147,7 +175,7 @@
                        <label for="name1" class="mb-4 text-sm font-medium  text-gray-900  dark:text-white">الاسم
                            الأول</label>
      
-                       <input type="text" name="name1" id="name1"
+                       <input type="text" name="name1" id="name1" disabled ="disabled"
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
                            placeholder="سارة" required  value="<?php if( isset($_POST["name1"])  ){ echo $_POST["name1"]; } ?>"> 
                        <small id="name1_msg"></small>
@@ -158,7 +186,7 @@
      
                        <label for="name2" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">الاسم
                            الأخير</label>
-                       <input type="text" name="name2" id="name2"
+                       <input type="text" name="name2" id="name2" disabled ="disabled"
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
                            placeholder="محمد" required value="<?php if( isset($_POST["name2"])  ){ echo $_POST["name2"]; } ?>" >
                        <small id="name2_msg"></small>
@@ -171,9 +199,9 @@
                    <div class="email">
                        <label for="email"
                            class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">الايميل</label>
-                       <input type="email" name="email" id="email"
+                       <input type="email" name="email" id="email" disabled ="disabled"
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           placeholder="name@google.com" required  value="<?php if( isset($_POST["email"])  ){ echo $_POST["email"]; } ?>"   >
+                           placeholder="name@google.com" required  value="<?php echo  $data['email'] ?> "   >
      
                        <small id="email_msg"></small>
                        <?php 
@@ -195,9 +223,9 @@
                    <div class="phone">
                        <label for="phone" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">رقم
                            الهاتف</label>
-                       <input type="tel" id="phone" name="phone"
+                       <input type="tel" id="phone" name="phone" disabled ="disabled"
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           required value="<?php if( isset($_POST["phone"])  ){ echo $_POST["phone"]; } ?>">
+                           required value="<?php echo  $data['phone'] ?> ">
                        <small id="phone_msg"></small>
      
                    </div>
@@ -211,9 +239,9 @@
                        <label for="password"
                            class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة
                            المرور</label>
-                       <input type="password" name="password" id="password" placeholder="••••••••"
+                       <input type="password" name="password" id="password" placeholder="••••••••"  disabled ="disabled"
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           required  value="<?php if( isset($_POST["password"])  ){ echo $_POST["password"]; } ?>" >
+                           required  value="<?php echo  $data['password'] ?> "   >
                     
                        <small id="password_msg">
                            كلمة المرور يجب أن <strong>لا تقل عن 6 أرقام</strong> ( 1 حرف صغير ,1 حرف كبير, رمز
@@ -228,7 +256,7 @@
                        <label for="repassword" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">
                            تأكيد كلمة المرور
                        </label>
-                       <input type="password" name="repassword" id="repassword" placeholder="••••••••"
+                       <input type="password" name="repassword" id="repassword" placeholder="••••••••" disabled ="disabled"
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
                            required  value="<?php if( isset($_POST["repassword"])  ){ echo $_POST["repassword"]; } ?>"   >
                        <small id="repassword_msg">
