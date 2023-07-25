@@ -51,17 +51,18 @@ session_start();
                 <div class="flex md:order-2 ">
                  <?php 
                      if(isset($_SESSION['user'])){
-                 ?>
+                                      ?>
                   
-                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="md:p-0 md:w-auto">
-                        <img src="./assets/user (2).png" alt="" class="w-8">
+                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="w-10 h-10 rounded-full overflow-hidden">
+                        <img src="./usersImg/<?php echo( $_SESSION['user']['img'])?>" alt="" class="w-full h-full ">
                     </button>
+                    
                     <!-- Dropdown menu -->
                     <div id="dropdownNavbar"
                         class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-40  dark:bg-gray-700 dark:divide-gray-600 ml-10">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                             <li>
-                                <a href="profile2.php"
+                                <a href="#"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">الحساب
                                     الشخصي</a>
                             </li>
@@ -75,7 +76,6 @@ session_start();
 
                     </div>
 
-                </div>
 
 
                  
@@ -94,7 +94,7 @@ session_start();
 
                       ?>
                 <button data-collapse-toggle="navbar-sticky" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 mr-3"
                     aria-controls="navbar-sticky" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -106,7 +106,7 @@ session_start();
             </div>
 
             <!-- 2div for navigations inside home sections -->
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 bg-gray-700 "
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 "
                 id="navbar-sticky">
 
                 <ul class="text-white flex flex-col p-4 md:p-0 mt-4 font-medium md:flex-row" id="navigationsmm">

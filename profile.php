@@ -1,13 +1,10 @@
 <?php
-
+session_start();
 
 
 if(isset($_POST['submit']))
 {
    
-
-
-    //////
 include 'conn-db.php';
    $name=filter_var($_POST['name1'].$_POST['name2'],FILTER_SANITIZE_STRING);
    $password=filter_var($_POST['password'],FILTER_SANITIZE_STRING);
@@ -92,8 +89,7 @@ include 'conn-db.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ui library >> tailwend -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" >
-    <!-- custtom css -->
-    <link rel="stylesheet" href="profile.css">
+   
     <!-- animation library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
     <!-- google fonts -->
@@ -102,7 +98,8 @@ include 'conn-db.php';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
-
+ <!-- custtom css -->
+ <link rel="stylesheet" href="profile.css">
     <title>profile</title>
 
 
@@ -112,7 +109,6 @@ include 'conn-db.php';
 
 <body>
 
-<header>
 
  <!-- navbar section -->
  <nav class="fixed w-full z-20 top-0 left-0 ">
@@ -132,13 +128,28 @@ include 'conn-db.php';
              ?>
                 
                 
-                <a href="logout.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
-                    الخروج
-                </a>
+                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="w-10 h-10 rounded-full overflow-hidden">
+                        <img src="./usersImg/<?php echo( $_SESSION['user']['img'])?>" alt="" class="w-full h-full ">
+                    </button>
+                    
+                    <!-- Dropdown menu -->
+                    <div id="dropdownNavbar"
+                        class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-40  dark:bg-gray-700 dark:divide-gray-600 ml-10">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                            <li>
+                                <a href="./profile.php"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">الحساب
+                                    الشخصي</a>
+                            </li>
+                            <li>
 
-                <a href="profile.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">
-                    الملف الشخصي
-                </a>
+                                <a href="./logout.php"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">تسجيل
+                                    الخروج</a>
+                            </li>
+                        </ul>
+
+                    </div>
 
 
 
@@ -200,7 +211,6 @@ include 'conn-db.php';
     </nav>               
    <!-- end navbar -->
    
-</header>               
 
 
 <section class="profileSection">
@@ -208,19 +218,15 @@ include 'conn-db.php';
      <!-- image and background -->
         <div class="underNav">
                 
-                <svg width="100" height="100">
-                <defs>
-                    <clipPath id="myCircle">
+                
+            <img src="./usersImg/<?php echo( $_SESSION['user']['img'])?>" alt="userImage" class="">
+            <div>
+            <p><?php echo( $_SESSION['user']['name'])?></p>
+            <p><?php echo( $_SESSION['user']['email'])?></p>
+            </div>
+            
 
-                    <circle cx="250" cy="145" r="150" fill=" #303954" />
 
-                    </clipPath>
-                </defs>
-            <img src="./assets/twitter.png" alt="userImage" width = "130" height="130">
-
-                </svg>
-
-            <!-- <img src="./assets/gps.png" alt="userImage" width = "100" height="100"> -->
 
         </div>
 
