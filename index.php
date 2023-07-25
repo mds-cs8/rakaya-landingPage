@@ -66,6 +66,13 @@ session_start();
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">الحساب
                                     الشخصي</a>
                             </li>
+                            <?php if($_SESSION['user']['userType']==="admin"){ ?>
+                            <li>
+                                <a href="./dashboard.php"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    لوحة التحكم</a>
+                            </li>
+                            <?php } ?>  
                             <li>
 
                                 <a href="./logout.php"

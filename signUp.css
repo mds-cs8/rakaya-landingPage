@@ -15,7 +15,7 @@ body {
   width: 100%;
   min-height: 100vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -42,7 +42,7 @@ body {
 .name1,
 .name2 {
   width: 45%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .name input {
   margin-bottom: 5px;
@@ -57,7 +57,7 @@ body {
 .email,
 .phone {
   width: 45%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .email-phone input {
   margin-bottom: 5px;
@@ -134,11 +134,11 @@ input {
 
 .headOfSingsection {
   width: 40%;
-  height: 580px;
+  height: 615px;
 }
 
 .headOfSign {
-  background-color: #faf8f2d6;
+  background-color: #303954;
   text-align: center;
   width: 100%;
   height: 100%;
@@ -161,14 +161,14 @@ input {
 }
 
 .headOfSign h1 {
-  color: #523623;
+  color: #fff;
   font-size: 25px;
   margin-bottom: unset;
 }
 .headOfSign h2 {
   font-weight: bolder;
   font-size: 30px;
-  color: #523623;
+  color: #dfb347;
 }
 
 .refrencelogin {
