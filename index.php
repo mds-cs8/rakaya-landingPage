@@ -49,9 +49,8 @@ session_start();
 
                 <!-- 1div  log-in link and button in navbar -->
                 <div class="flex md:order-2 ">
-                 <?php 
-                     if(isset($_SESSION['user'])){
-                                      ?>
+
+                 <?php  if(isset($_SESSION['user'])){ ?>
                   
                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="w-10 h-10 rounded-full overflow-hidden">
                         <img src="./usersImg/<?php echo( $_SESSION['user']['img'])?>"  class="w-full h-full ">
@@ -66,13 +65,16 @@ session_start();
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">الحساب
                                     الشخصي</a>
                             </li>
-                            <?php if($_SESSION['user']['userType']==="admin"){ ?>
+
+                            <?php if($_SESSION['user']['userType']==='admin'){ ?>
                             <li>
                                 <a href="./dashboard.php"
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                     لوحة التحكم</a>
                             </li>
-                            <?php } ?>  
+
+                            <?php } ?>
+
                             <li>
 
                                 <a href="./logout.php"
@@ -86,20 +88,14 @@ session_start();
 
 
                  
-                <?php 
-                  }else{
-                   ?>
+                <?php }else{ ?>
 
                 <a href="login.php"
                     class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
                     الدخول
                 </a>
 
-                <?php 
-
-                      }
-
-                ?>
+                <?php } ?>
 
 
                 <button data-collapse-toggle="navbar-sticky" type="button"

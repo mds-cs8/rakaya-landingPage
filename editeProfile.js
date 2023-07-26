@@ -27,8 +27,8 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const numperRegex = /^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$/;
 let name1 = document.getElementById("name1");
 let name1_msg = document.getElementById("name1_msg");
-let name2 = document.getElementById("name2");
-let name2_msg = document.getElementById("name2_msg");
+// let name2 = document.getElementById("name2");
+// let name2_msg = document.getElementById("name2_msg");
 
 let email = document.getElementById("email");
 let email_msg = document.getElementById("email_msg");
@@ -39,7 +39,6 @@ let password_msg = document.getElementById("password_msg");
 let repassword = document.getElementById("repassword");
 let repassword_msg = document.getElementById("repassword_msg");
 let name1Check = false;
-let name2Check = false;
 let phoneCheck = false;
 let repasswordCheck = false;
 let emailCheck = false;
@@ -51,8 +50,8 @@ btncheck(
     passwordCheck,
     repasswordCheck,
     phoneCheck,
-    name1Check,
-    name2Check
+    name1Check
+    
   );
   
   
@@ -75,30 +74,10 @@ btncheck(
         passwordCheck,
         repasswordCheck,
         phoneCheck,
-        name1Check,
-        name2Check
+        name1Check
       );
     });
-    name2.addEventListener("input", () => {
-      if (nameRegex.test(name2.value)) {
-        name2_msg.innerHTML = "";
-        name2.style.borderBottom = "3px solid green";
-        name2Check = true;
-      } else {
-        name2_msg.innerHTML = "الاسم يجب ان يحتوي حروف فقط";
-        name2_msg.style.color = "red";
-        name2.style.borderBottom = "3px solid red";
-        name2Check = false;
-      }
-      btncheck(
-        emailCheck,
-        passwordCheck,
-        repasswordCheck,
-        phoneCheck,
-        name1Check,
-        name2Check
-      );
-    });
+
     email.addEventListener("input", () => {
       console.log(emailRegex.test(email.value));
       if (emailRegex.test(email.value)) {
@@ -116,8 +95,7 @@ btncheck(
         passwordCheck,
         repasswordCheck,
         phoneCheck,
-        name1Check,
-        name2Check
+        name1Check
       );
     });
   
@@ -139,8 +117,7 @@ btncheck(
         passwordCheck,
         repasswordCheck,
         phoneCheck,
-        name1Check,
-        name2Check
+        name1Check
       );
     });
   
@@ -161,8 +138,7 @@ btncheck(
         passwordCheck,
         repasswordCheck,
         phoneCheck,
-        name1Check,
-        name2Check
+        name1Check
       );
     });
     phone.addEventListener("input", () => {
@@ -182,8 +158,7 @@ btncheck(
         passwordCheck,
         repasswordCheck,
         phoneCheck,
-        name1Check,
-        name2Check
+        name1Check
       );
     });
   }
@@ -192,10 +167,10 @@ btncheck(
   
   
   // check all inputs 
-  function btncheck(email, password, repass, name1, name2, phone) 
+  function btncheck(email, password, repass, name1, phone) 
   {
-    let sign = document.getElementById("sign-btn");
-    if (email && password && repass && name1 && name2 && phone) {
+    let sign = document.getElementById("save");
+    if (email && password && repass && name1 && phone) {
       sign.removeAttribute("disabled");
       sign.style.cursor = "pointer";
   
@@ -205,3 +180,4 @@ btncheck(
     }
   }
   
+
