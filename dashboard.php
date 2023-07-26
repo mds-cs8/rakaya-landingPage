@@ -140,6 +140,8 @@ session_start();
 <!-- end whole div -->
 
 </nav>
+
+
 <div class="admin-name shadow-lg ">
     <h1 class="msg">اهلا بك </h1>
     <h1 class="name"><?php  echo $_SESSION['user']['name'] ?> </h1>
