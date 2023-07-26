@@ -30,6 +30,10 @@ nav button {
 }
 
 .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 90%;
   min-height: 200px;
   padding: 10px;
@@ -42,7 +46,7 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  background: #C1AB72;
+  background: #c1ab72;
   color: #fff;
 }
 h3 {
@@ -71,7 +75,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 4px solid #C1AB72;
+  border-bottom: 4px solid #c1ab72;
   font-size: 14px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
@@ -94,7 +98,7 @@ p {
   background: #ebe8e8;
   font-size: 20px;
   border-radius: 10px;
-  border-bottom: 4px solid #C1AB72;
+  border-bottom: 4px solid #c1ab72;
   overflow: hidden;
 }
 .msg {
@@ -112,4 +116,22 @@ p {
   justify-content: start;
   width: 60%;
   height: 100%;
+}
+.pagination-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin-top: 20px;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #303954;
+  margin-right: 5px;
 }
