@@ -162,7 +162,7 @@ session_start();
 include 'conn-db.php';
 
 // find out the number of results stored in database
-$results_per_page = 2;
+$results_per_page = 5;
 
 $sql='SELECT * FROM user';
 $result = $mysqli->query($sql);
