@@ -224,14 +224,35 @@ $del = "DELETE FROM user WHERE id = '$id' ";
              ?>
                 
                 
-                <a href="logout.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
-                    الخروج
-                </a>
+                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="w-10 h-10 rounded-full overflow-hidden">
+                        <img src="./usersImg/<?php echo( $_SESSION['user']['img'])?>"  class="w-full h-full ">
+                    </button>
+                    
+                    <!-- Dropdown menu -->
+                    <div id="dropdownNavbar"
+                        class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-40  dark:bg-gray-700 dark:divide-gray-600 ml-10">
+                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                            <li>
+                                <a href="./profile2.php"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">الحساب
+                                    الشخصي</a>
+                            </li>
+                            <?php if($_SESSION['user']['userType']==="admin"){ ?>
+                            <li>
+                                <a href="./dashboard.php"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                    لوحة التحكم</a>
+                            </li>
+                            <?php } ?>  
+                            <li>
 
-                <a href="profile2.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">
-                    الملف الشخصي
-                </a>
+                                <a href="./logout.php"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">تسجيل
+                                    الخروج</a>
+                            </li>
+                        </ul>
 
+                    </div>
 
 
             <?php 
