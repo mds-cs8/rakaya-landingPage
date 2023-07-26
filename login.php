@@ -70,8 +70,11 @@ if(isset($_POST['submit'])){
          else{
             $_SESSION['user']=[
                 "name"=>$data['name'],
+                "img"=>$data['UserImg'],
+                "userType"=>$data['userType'],
                 "email"=>$email,
               ];
+             
             header('location:index.php');       //navigate tp this page if log-in successful
 
          }
