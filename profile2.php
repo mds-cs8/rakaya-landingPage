@@ -38,43 +38,43 @@ echo "id".$id ;
 if (isset($_POST['submitSave']) ) 
 {  
 
-    $usersimg="";
+//     $usersimg="";
    
 	
-    $img_name = $_FILES['UserImg']['name'];
-	$img_size = $_FILES['UserImg']['size'];
-	$tmp_name = $_FILES['UserImg']['tmp_name'];
-	$error = $_FILES['UserImg']['error'];
+//     $img_name = $_FILES['UserImg']['name'];
+// 	$img_size = $_FILES['UserImg']['size'];
+// 	$tmp_name = $_FILES['UserImg']['tmp_name'];
+// 	$error = $_FILES['UserImg']['error'];
   
     
-    $error=0;
+//     $error=0;
 
-//validate image
-        if ($error === 0) {
-        if ($img_size > 2000000) {
-            // 2mb size
-            $errors[] = "نعتذر حجم الملف كبير";
-        }else {
-            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-            $img_ex_lc = strtolower($img_ex);
+// //validate image
+//         if ($error === 0) {
+//         if ($img_size > 2000000) {
+//             // 2mb size
+//             $errors[] = "نعتذر حجم الملف كبير";
+//         }else {
+//             $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+//             $img_ex_lc = strtolower($img_ex);
 
-            $allowed_exs = array("jpg", "jpeg", "png"); 
+//             $allowed_exs = array("jpg", "jpeg", "png"); 
 
-            if (in_array($img_ex_lc, $allowed_exs)) {
-                $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-                $img_upload_path = 'usersImg/'.$new_img_name;
-                move_uploaded_file($tmp_name, $img_upload_path);
-                $usersimg = $new_img_name;
+//             if (in_array($img_ex_lc, $allowed_exs)) {
+//                 $new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+//                 $img_upload_path = 'usersImg/'.$new_img_name;
+//                 move_uploaded_file($tmp_name, $img_upload_path);
+//                 $usersimg = $new_img_name;
             
-            }else {
-                $errors[] = " jpg ,  jpeg , png الرجاء رفع صورة بالامتداد التالي ";
-            }
+//             }else {
+//                 $errors[] = " jpg ,  jpeg , png الرجاء رفع صورة بالامتداد التالي ";
+//             }
 
-        }
-        }
-        else {
-        $errors[] = "unknown error occurred!";
-        }
+//         }
+//         }
+//         else {
+//         $errors[] = "unknown error occurred!";
+//         }
 
 
 
@@ -90,8 +90,7 @@ $sql = "UPDATE user
 SET name = '$n',
     email = '$e',
     phoneNumber = '$phoneN',
-    password= '$hashPass',
-    UserImg = '$usersimg'
+    password= '$hashPass'
 WHERE id = '$id'";
 
     $stmt = $conn->prepare($sql);
@@ -122,9 +121,11 @@ if (isset($_POST['submitDelete']) )
 $del = "DELETE FROM user WHERE id = '$id' ";
 // $stmt = $conn->prepare($del);
 // $stmt->execute();
-
-    $stmt = mysqli_query($mysqli ,$del)  ;      
-      
+     
+    $stmt = mysqli_query($mysqli ,$del)  ;    
+    session_unset();
+    header('location:login.php');
+    
     //check if it work
     if( $stmt){
         echo "deleted successfuly";
@@ -134,8 +135,7 @@ $del = "DELETE FROM user WHERE id = '$id' ";
     }
    
 
-    header('location:login.php');
-    exit();
+ 
 
 }
 
@@ -257,8 +257,8 @@ $del = "DELETE FROM user WHERE id = '$id' ";
           <!-- user image & info under photo -->
             <div class="flex flex-col items-center -mt-20 , userPhotoDiv">
                 <!-- user photo -->
-                <button type="submit" id="userPhoto" class="w-20 h-20 rounded-full overflow-hidden mt-8">
-                        <img src="./usersImg/<?php echo( $_SESSION['user']['img'])?>"  class="w-full h-full ">
+                <button type="submit" id="userPhotoButton" class="w-20 h-20 rounded-full overflow-hidden mt-8" onclick="editImage()">
+                        <img id="userPhoto" src="./usersImg/<?php echo( $_SESSION['user']['img'])?>"  class="w-full h-full ">
                     </button>
                    
                 <!-- username -->
@@ -269,8 +269,8 @@ $del = "DELETE FROM user WHERE id = '$id' ";
 
                     <label class="inline mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     for="file_input">تغيير الصورة</label>
-                                    <input class="w-240 h-10 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" name="UserImg">
-                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG,
+                         <input  class="w-240 h-10 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" id="file_input" type="file" name="UserImg">
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help" onclick="editImage()">SVG, PNG,
                                     JPG or GIF (MAX. 800x400px).</p>
                   </div>
   
@@ -288,14 +288,41 @@ $del = "DELETE FROM user WHERE id = '$id' ";
 
                     <div class="headbuttons">
                             
-                            <!-- <button type="submit" id="updateAcountButton" name="submitUpdate" 
-                            class=" block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">تحديث البيانات</button>
-                     -->
-                            <button type="submit" id="deleteAcountButton" name="submitDelete" 
+                        
+                            <!-- <button type="submit" id="deleteAcountButton" name="submitDelete" 
                             class="block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">حذف الحساب</button>
-                
-                    </div>        
+                            -->
+                                                                                            
+                                                                
+                                <button  id="Delete" name="Delete" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="block text-white bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                            حذف الحساب
+                               </button>
 
+                                <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div class="relative w-full max-w-md max-h-full">
+                                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                            <div class="p-6 text-center">
+                                                <svg class="mx-auto mb-4 text-gray-100 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                                </svg>
+
+                                                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">عزيزنا العميل , هل ترغب بإتمام حذف حسابك ؟</h3>
+                                                <button  id="deleteAcountButton" name="submitDelete" data-modal-hide="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                                    نعم, أرغب بحذف حسابي
+                                                </button>
+                                                <button data-modal-hide="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">الغاء</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                    </div>
                
                <!-- name -->
                <div class="name">
@@ -405,9 +432,9 @@ $del = "DELETE FROM user WHERE id = '$id' ";
                <button  class="editProfileButton" type="submit" id="save" name="submitSave"
                    class=" font-medium rounded-lg text-sm px-2 py-2 text-center"  >حفظ</button>
                
-               <button  class="editProfileButton" type="submit" id="cancel" name="submitCancel"
+               <!-- <button  class="editProfileButton" type="submit" id="cancel" name="submitCancel"
                      class=" font-medium rounded-lg text-sm px-2 py-4 text-center">الغاء</button>
-                </div> 
+                </div>  -->
                
                
         </form>
@@ -428,7 +455,6 @@ $del = "DELETE FROM user WHERE id = '$id' ";
     AOS.init();
 </script>
 
-<script src="./custom.js"></script>
 <script src="./editeProfile.js"></script>
 
 

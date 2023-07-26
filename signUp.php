@@ -115,7 +115,7 @@ include 'conn-db.php';
 
       ];
 
-      if($_SESSION['user']['userType']){
+      if($_SESSION['user']['userType']=='admin'){
         header('location: dashboard.php');
 
       }

@@ -23,7 +23,7 @@
 /* header */
 header {
     width: 100%;
-    height: 18vh;
+    height: 10vh;
 
     /* margin-bottom: 80px; */
   }
@@ -47,8 +47,11 @@ header {
 
 .imageSection{
     height: 15rem;
-    
- 
+     align-items: center;
+}
+
+.userPhotoDiv{
+  margin-top: 2rem;
 }
 
 /* 
@@ -158,13 +161,24 @@ nav {
     margin-right: 20rem;
 }
 
-button {
+#save  {
     background: #816c4a !important;
     color: #fff !important;
     font-weight: bold;
     transition: all 0.5s ease;
     width: 30%;
     height: 30%;
+    align-items: center;
+    border-radius: 8%;
+  }
+
+   #Delete {
+    background: #816c4a !important;
+    color: #fff !important;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    width: 10%;
+    height: 10%;
     align-items: center;
     border-radius: 5%;
   }
@@ -173,20 +187,20 @@ button {
     background: #523623 !important;
   }
    
-  #deleteAcountButton:hover {
+  #Delete:hover {
     background: rgb(207, 12, 12) !important;
 
   }
-
+/* 
   #deleteAcountButton ,#updateAcountButton {
     align-items: center;
     width: 50% ;
     height:auto;
-  }
+  } */
 
 
 
-  .headbuttons{
+  .headbuttons #Delete{
 
            width: 20%;
            display: block;

@@ -194,7 +194,7 @@ btncheck(
   // check all inputs 
   function btncheck(email, password, repass, name1, name2, phone) 
   {
-    let sign = document.getElementById("save");
+    let sign = document.getElementById("sign-btn");
     if (email && password && repass && name1 && name2 && phone) {
       sign.removeAttribute("disabled");
       sign.style.cursor = "pointer";
