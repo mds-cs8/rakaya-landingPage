@@ -1,5 +1,7 @@
 <?php
 session_start();
+ if($_SESSION['user']['userType']==='admin'){ 
+
 ?>
 
 
@@ -362,7 +364,34 @@ include 'message.php';
 // retrive data
 include 'conn-db.php';
 
-$query = "SELECT * FROM user";
+// find out the number of results stored in database
+$results_per_page = 5;
+
+$sql='SELECT * FROM user';
+$result = $mysqli->query($sql);
+$number_of_results = mysqli_num_rows($result);
+
+// determine number of total pages available
+$number_of_pages = ceil($number_of_results/$results_per_page);
+
+
+// determine which page number visitor is currently on
+if (!isset($_GET['page'])) {
+    $page = 1;
+  } else {
+    $page = $_GET['page'];
+  }
+  
+  // determine the sql LIMIT starting number for the results on the displaying page
+  $this_page_first_result = ($page-1)*$results_per_page;
+  
+
+
+
+
+
+
+$query = "SELECT * FROM user  LIMIT ".$this_page_first_result . ',' .  $results_per_page ;
 
 $ID=0;
 
@@ -383,10 +412,13 @@ if ($result = $mysqli->query($query))
     echo "<a href="."./adminEdit.php?id=". $row['id'] .">"."<img  src=./assets/editing.png>"."</a>";
     echo "<a href=./adminDelete.php?id=". $row['id'] .">"."<img src=./assets/delete.png>"."</a>";
     echo "</p>";
-    
     echo "</div>";
-    
     }
+    echo "<div class = pagination-box>";
+for ($page=1;$page<=$number_of_pages;$page++) {
+    echo '<a class=pagination href="dashboard.php?page=' . $page . '">' . $page . '</a> ';
+}
+echo "</div>";
 
 }else 
 
@@ -404,7 +436,9 @@ if ($result = $mysqli->query($query))
 
 
 
+<div class = pagination-box>
 
+</div>
 
 </div>
 <!-- end dashboard -->
@@ -429,3 +463,4 @@ if ($result = $mysqli->query($query))
 
 </body>
 </html>
+<?php }?>
