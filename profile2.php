@@ -456,7 +456,7 @@ $del = "DELETE FROM user WHERE id = '$id' ";
                            المرور</label>
                        <input type="text" name="password" id="password" placeholder="••••••••"  
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           required  value="<?php echo $rpassword ?> "   >
+                           required    >
                     
                        <small id="password_msg">
                            كلمة المرور يجب أن <strong>لا تقل عن 6 أرقام</strong> ( 1 حرف صغير ,1 حرف كبير, رمز
@@ -473,7 +473,7 @@ $del = "DELETE FROM user WHERE id = '$id' ";
                        </label>
                        <input type="text" name="repassword" id="repassword" placeholder="••••••••" 
                            class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                           required  value="<?php echo $rpassword?> "    >
+                           required    >
                        <small id="repassword_msg">
      
                        </small>
