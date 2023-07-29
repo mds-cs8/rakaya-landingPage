@@ -29,6 +29,22 @@ nav button {
   margin: 20px;
 }
 
+
+/* body content style */
+
+.whole {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width: 100rem;
+}
+#addIcon{
+  margin-top: 6.5rem;
+  margin-right: 1rem;
+ 
+}
+
+
 .box {
   display: flex;
   flex-direction: column;
@@ -65,7 +81,7 @@ h3 {
   margin-bottom: 10px;
   gap: 10px;
 }
-.user p {
+p {
   background: #ebe8e8;
   width: calc(100% / 4);
   text-align: center;
@@ -119,107 +135,7 @@ h3 {
 }
 
 
-
-
-/* //form */
-
-/* section1 */
-
-.signupSectionClass {
-  width: 40%;
-  height: auto;
-}
-.signupBox1 {
-  border-radius: 5px;
-}
-
-.inputBoxs:focus {
-  border-color: gray !important;
-}
-
-.name {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.name1,
-.name2 {
-  width: 45%;
-  margin-bottom: 5px;
-}
-.name input {
-  margin-bottom: 5px;
-}
-
-.email-phone {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.email,
-.phone {
-  width: 45%;
-  margin-bottom: 5px;
-}
-.email-phone input {
-  margin-bottom: 5px;
-}
-
-.password {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.password input {
-  margin: 5px 0;
-}
-.pass1,
-.pass2 {
-  width: 45%;
-  margin-bottom: 5px;
-}
-input {
-  height: 2rem;
-  width: 10rem;
-}
-
-.genderAndUserType {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  align-items: center;
-}
-
-.gender,
-.userType,
-.img {
-  display: flex;
-  width: 50%;
-  margin-bottom: 5px;
-}
-
-.gender input[type="radio"]:checked {
-  background-color: gray;
-  /* border-color: black; */
-}
-
-
-.users {
-  appearance: none; /* Hide the default arrow provided by the browser */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: url("assets/down-arrow.png"); /* Replace 'path/to/arrow-icon.png' with the actual path to your arrow icon */
-  background-position: left center; /* Adjust the icon's position (right, center, etc.) */
-  background-size: 17px;
-  background-position: 10px;
-  background-repeat: no-repeat;
-  width: 150px;
-}
+ 
 .pagination-box {
   display: flex;
   align-items: center;

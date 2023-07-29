@@ -167,6 +167,8 @@ include 'conn-db.php';
                     </h1>
 
                     <form class="space-y-2 md:space-y-6 ,form" action="signUp.php" method="POST" enctype=multipart/form-data>
+                        
+
 
                         <!-- name -->
                         <div class="name">
@@ -251,7 +253,7 @@ include 'conn-db.php';
                                 </label>
                                 <input type="password" name="repassword" id="repassword" placeholder="••••••••"
                                     class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
-                                    required value="<?php if( isset($_POST[" repassword"]) ){ echo $_POST["repassword"];
+                                    required value="<?php if( isset($_POST["repassword"]) ){ echo $_POST["repassword"];
                                     } ?>" >
                                 <small id="repassword_msg">
 
@@ -319,19 +321,18 @@ include 'conn-db.php';
                             </div>
 
                         </div>
-                        <?php 
+                       
+                       <?php 
+                          if(isset($errors))
+                            {
+                                if(!empty($errors)){
+                                    foreach($errors as $msg){
 
-if(isset($errors))
-{
-      if(!empty($errors)){
-          foreach($errors as $msg){
-
-            echo   " <strong > <small > $msg </small> </strong> "   ;
-          }
-         }
-}
-
-?>
+                                        echo   " <strong > <small > $msg </small> </strong> "   ;
+                                    }
+                                    }
+                            }
+                        ?>
 
 
 

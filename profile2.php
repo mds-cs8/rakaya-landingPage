@@ -487,7 +487,7 @@ $del = "DELETE FROM user WHERE id = '$id' ";
                <!-- edit/cancle -->
                 <div class="submit" >
      
-               <button  class="editProfileButton" type="submit" id="save" name="submitSave"
+               <button  class="editProfileButton" type="submit" id="save" name="save"
                    class=" font-medium rounded-lg text-sm px-2 py-2 text-center"  >حفظ</button>
                
                <!-- <button  class="editProfileButton" type="submit" id="cancel" name="submitCancel"
