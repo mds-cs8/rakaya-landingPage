@@ -129,41 +129,130 @@ session_start();
 </nav>
 
 
+            
+        <!-- head of page -->
+    <div class="whole">
+
+        <div class="admin-name shadow-lg ">
+            <h1 class="msg">اهلا بك </h1>
+            <h1 class="name"><?php  echo $_SESSION['user']['name'] ?> </h1>
+        </div>
+
+        <!-- add user icon -->
+        <div id="addIcon">
+                        
+                <a href="adminadd.php"  class="  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
+                <img src="./assets/add-user.png" class=" " width="60" height="60">
+                </a>   
+        </div>
+  </div>
+
 <!-- this message appear after the edite the user make i (update user info or add new user ) -->
- <?php
+<?php
 if(isset($_SESSION['InfoMessage']))
 {
     ?>
      
         <div class="p-4 mb-4  text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">
         <?= $_SESSION['InfoMessage'] ?>
-      
-
            </div>
-             
   <?php
 }
-
 unset($_SESSION['InfoMessage']) ;
-?> 
+?>
 
 
 <!-- dashboard -->
 
+<div class="box">
+    <header>
+        <h3>الاسم</h3>
+        <h3>الايميل</h3>
+        <h3>رقم الجوال</h3>
+        <h3>نوع المستخدم</h3>
+        <h3>الاجراء</h3>
+    </header>
+
+ 
+<!-- retrive and organize data -->
+<?php
+
+// retrive data
+include 'conn-db.php';
+
+// find out the number of results stored in database
+$results_per_page = 5;
+
+$sql='SELECT * FROM user';
+$result = $mysqli->query($sql);
+$number_of_results = mysqli_num_rows($result);
+
+// determine number of total pages available
+$number_of_pages = ceil($number_of_results/$results_per_page);
 
 
-    <!-- user info -->
- <div id="user">
+// determine which page number visitor is currently on
+if (!isset($_GET['page'])) {
+    $page = 1;
+  } else {
+    $page = $_GET['page'];
+  }
+  
+  // determine the sql LIMIT starting number for the results on the displaying page
+  $this_page_first_result = ($page-1)*$results_per_page;
+  
+$query = "SELECT * FROM user  LIMIT ".$this_page_first_result . ',' .  $results_per_page ;
 
- </div>
+$ID=0;
+
+if ($result = $mysqli->query($query)) 
+{
+    // output data of each row
+    while ($row = $result->fetch_assoc()) 
+    {
+     $ID=$row['id'];
+   
+    echo "<div class=user>";
+    echo "<p>".$row["name"]."</p>";
+    echo "<p>".$row["email"]."</p>";
+    echo "<p>".$row["phoneNumber"]."</p>";
+    echo "<p>".$row["userType"]."</p>";
+
+    echo "<p class=action >";
+    echo "<a href="."./adminEdit.php?id=". $row['id'] .">"."<img  src=./assets/editing.png>"."</a>";
+    echo "<a href=./adminDelete.php?id=". $row['id'] .">"."<img src=./assets/delete.png>"."</a>";
+    echo "</p>";
+    echo "</div>";
+    }
+            echo "<div class = pagination-box>";
+        for ($page=1;$page<=$number_of_pages;$page++) {
+            echo '<a class=pagination href="dashboard.php?page=' . $page . '">' . $page . '</a> ';
+        }
+echo "</div>";
+
+}else 
+
+{
+  echo "0 results";
+}
 
 
-<div class = pagination-box id= "pagination-box">
+
+// edit data
+
+
+
+?>
+
+
+
+
+
+<div class = pagination-box>
 
 </div>
 
 </div>
-
 <!-- end dashboard -->
     
 
@@ -187,53 +276,24 @@ unset($_SESSION['InfoMessage']) ;
 
      <!-- ajax code  -->
     <script>
-       function fetch_data(page)
-        {
-            $.ajax(
-               {
-                  url: "test.php",
-                  method: "POST",
-                  data:{page: page},
-                  success: function(data)
-                  {
-                       $("#user").html(data);
-                       console.log("done");
-                  }
-
-
-
-                
-               });   
-                // end ajax
-        }
-        // end fun 
-        
-        fetch_data();
-
-        $(document).on("click","page-item",
-                    function()
-                    {
-                        var page = $(this).attr("id");
-                        fetch_data(page);
-                    }
-        )
-
-
-
-
+        // $(document).ready(function () {
+            
+        // });
+        // function getdata(){
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "fetchAllUsersCode.php",
+             
+        //         //if it fetched successfully
+        //         success: function (response)
+        //          {
+        //             console.log("response");
+                    
+        //         }
+        //        });
+        // }
     </script>
 
 </body>
 </html>
 <?php }?>
-
-
-<!-- pre -->
-
-   <!-- ajax code  -->
-   <!-- <script>
-        $(document).ready(function () {
-            $("#user").load("test.php")
-            // $("#pagination-box").load("fetchAllUsersCode.php")
-
-        }); -->

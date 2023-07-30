@@ -452,3 +452,10 @@ $del = "DELETE FROM user WHERE id = '$id' ";
 
 </body>
 </html>
+
+
+
+
+
+
+<!-- pre -->

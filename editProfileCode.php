@@ -35,4 +35,3 @@ WHERE id = '$userId'";
     else{
         echo "failure";
     }
-?>

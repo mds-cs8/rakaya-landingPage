@@ -8,7 +8,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ui library >> tailwend -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
@@ -28,8 +28,8 @@ session_start();
 
     <title>RAKAYA | Dashboard </title>
 </head>
-
 <body>
+  
 
  <!-- navbar section -->
  <nav class="fixed w-full z-20 top-0 left-0 ">
@@ -129,45 +129,130 @@ session_start();
 </nav>
 
 
-<!-- this message appear after the edite the user make i (update user info or add new user ) -->
- <?php
-if(isset($_SESSION['InfoMessage']))
-{
-    ?>
-     
-        <div class="p-4 mb-4  text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">
-        <?= $_SESSION['InfoMessage'] ?>
-      
+            
+        <!-- head of page -->
+    <div class="whole">
 
-           </div>
-             
-  <?php
-}
+        <div class="admin-name shadow-lg ">
+            <h1 class="msg">اهلا بك </h1>
+            <h1 class="name"><?php  echo $_SESSION['user']['name'] ?> </h1>
+        </div>
 
-unset($_SESSION['InfoMessage']) ;
-?> 
+        <!-- add user icon -->
+        <div id="addIcon">
+                        
+                <a href="adminadd.php"  class="  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
+                <img src="./assets/add-user.png" class=" " width="60" height="60">
+                </a>   
+        </div>
+  </div>
+
+
 
 
 <!-- dashboard -->
 
-
-
-    <!-- user info -->
- <div id="user">
-
- </div>
-
-
-<div class = pagination-box id= "pagination-box">
-
-</div>
-
-</div>
-
-<!-- end dashboard -->
-    
+<div class="box">
+    <header>
+        <h3>الاسم</h3>
+        <h3>الايميل</h3>
+        <h3>رقم الجوال</h3>
+        <h3>نوع المستخدم</h3>
+        <h3>الاجراء</h3>
+    </header>
 
     
+<!-- retrive and organize data -->
+<?php
+
+
+// retrive data
+include 'conn-db.php';
+
+
+// find out the number of results stored in database
+$results_per_page = 5;
+
+$sql='SELECT * FROM user';
+$result = $mysqli->query($sql);
+
+$number_of_results = mysqli_num_rows($result);
+
+// determine number of total pages available
+$number_of_pages = ceil($number_of_results/$results_per_page);
+
+
+// determine which page number visitor is currently on
+if (!isset($_GET['page'])) {
+    $page = 1;
+  } else {
+    $page = $_GET['page'];
+  }
+  
+  // determine the sql LIMIT starting number for the results on the displaying page
+  $this_page_first_result = ($page-1)*$results_per_page;
+  
+$query = "SELECT * FROM user  LIMIT ".$this_page_first_result . ',' .  $results_per_page ;
+
+
+if ($result = $mysqli->query($query) ) 
+{
+    // output data of each row
+    while ($row = $result->fetch_assoc()) 
+    {
+        $ID = $row['id'];
+    
+        echo "<div id=user class=user>";
+        echo "<p>".$row["name"]."</p>";
+        echo "<p>".$row["email"]."</p>";
+        echo "<p>".$row["phoneNumber"]."</p>";
+        echo "<p>".$row["userType"]."</p>";
+
+        echo "<p class=action >";
+        echo "<a href="."./adminEdit.php?id=". $row['id'] .">"."<img  src=./assets/editing.png>"."</a>";
+        echo "<a href=./adminDelete.php?id=". $row['id'] .">"."<img src=./assets/delete.png>"."</a>";
+
+        echo "</p>";
+
+        echo "</div>";
+
+
+      
+    }
+    // endwhile
+  
+    echo "<div class = pagination-box  id = pagination-box>";
+    for ($page=1;$page<=$number_of_pages;$page++) {
+        echo '<a class=pagination href="test.php?page=' . $page . '">' . $page . '</a> ';
+    }
+    echo "</div>";
+
+
+   
+}else 
+
+{
+  echo "0 results";
+}
+
+
+
+// edit data
+
+
+
+?>
+
+
+
+
+
+
+
+
+
+
+
 
     
     <!-- javascript library link -->
@@ -181,59 +266,6 @@ unset($_SESSION['InfoMessage']) ;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 
-    <!-- link for counter in header javascript code file -->
-    <!-- <script src="./custom.js"></script> -->
-
-
-     <!-- ajax code  -->
-    <script>
-       function fetch_data(page)
-        {
-            $.ajax(
-               {
-                  url: "test.php",
-                  method: "POST",
-                  data:{page: page},
-                  success: function(data)
-                  {
-                       $("#user").html(data);
-                       console.log("done");
-                  }
-
-
-
-                
-               });   
-                // end ajax
-        }
-        // end fun 
-        
-        fetch_data();
-
-        $(document).on("click","page-item",
-                    function()
-                    {
-                        var page = $(this).attr("id");
-                        fetch_data(page);
-                    }
-        )
-
-
-
-
-    </script>
-
 </body>
 </html>
 <?php }?>
-
-
-<!-- pre -->
-
-   <!-- ajax code  -->
-   <!-- <script>
-        $(document).ready(function () {
-            $("#user").load("test.php")
-            // $("#pagination-box").load("fetchAllUsersCode.php")
-
-        }); -->
