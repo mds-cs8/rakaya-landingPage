@@ -13,6 +13,9 @@ session_start();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
     <!-- custtom css -->
     <link rel="stylesheet" href="style.css">
+     <!-- JQuery library  -->
+     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
     <!-- animation library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <!-- google fonts -->
@@ -580,14 +583,23 @@ session_start();
         <!-- form section for contact us -->
         <div class="contact-us">
             <h3>تواصل معنا</h3>
-            <form>
+
+              
+        <div id="result" class="p-4 mb-4 text-center text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">   
+        </div>
+           
+
+
+
+            <form action="contactUsCode.php" method="POST" >
                 <div class="input">
-                    <input type="text" placeholder="الموضوع">
-                    <input type="email" placeholder="البريد الالكتروني">
+                    <input name="topic-contactUs" id="topic-contactUs" type="text" placeholder="الموضوع">
+                    <input name="email-contactUs" id="email-contactUs"  type="email" placeholder="البريد الالكتروني">
                 </div>
 
-                <textarea cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
-                <button class="form-btn">ارسل</button>
+                <textarea name ="message-contactUs" id="message-contactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
+                <button class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
+                
             </form>
         </div>
 
@@ -610,6 +622,40 @@ session_start();
     <!-- flowbite script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+
+    <script>
+    // $("form").submit(function(e)
+    // {
+    //       e.preventDefault(); //prevent the default action of sending data form
+    
+    //      $.post( 
+    //       'contactUsCode.php',
+    //     // $("form").attr('action'),
+           
+    //      $("form :input").serializeArray()  , //select all input in the form to pass it 
+    //      function(result)
+    //        { 
+    //             if(result == "success")
+    //               {
+    //                 $("#result").html("تم ارسال رسالتك بنجاح شكرًا لك!");
+    //               }
+    //               else
+    //               {
+    //                 $("#result").html("لم يتم ارسال رسالتك , فضلاً تأكد من المعلومات المدخلة");
+    //               }
+    //        }
+           
+           
+    //         );
+    
+    // } );
+
+
+
+</script>
+
+
+
 
     <!-- link for counter in header javascript code file -->
     <script src="./custom.js"></script>

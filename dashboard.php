@@ -14,6 +14,9 @@ session_start();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
     <!-- custtom css -->
     <link rel="stylesheet" href="dashboard.css">
+     <!-- JQuery library  -->
+     <script src="https://code.jquery.com/jquery-3.7.0.min.js" ></script>
+
     <!-- animation library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <!-- google fonts -->
@@ -170,7 +173,7 @@ unset($_SESSION['InfoMessage']) ;
         <h3>الاجراء</h3>
     </header>
 
-
+ 
 <!-- retrive and organize data -->
 <?php
 
@@ -243,6 +246,8 @@ echo "</div>";
 
 
 
+
+
 <div class = pagination-box>
 
 </div>
@@ -266,7 +271,28 @@ echo "</div>";
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 
     <!-- link for counter in header javascript code file -->
-    <script src="./custom.js"></script>
+    <!-- <script src="./custom.js"></script> -->
+
+
+     <!-- ajax code  -->
+    <script>
+        // $(document).ready(function () {
+            
+        // });
+        // function getdata(){
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "fetchAllUsersCode.php",
+             
+        //         //if it fetched successfully
+        //         success: function (response)
+        //          {
+        //             console.log("response");
+                    
+        //         }
+        //        });
+        // }
+    </script>
 
 </body>
 </html>

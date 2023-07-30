@@ -5,14 +5,14 @@ session_start();
 
 include 'conn-db.php';
 
+$userId =   $_SESSION['user']['id']; //get user email
 $userEmail=   $_SESSION['user']['email']; //get user email
 
 // $n1=  $_SESSION['user']['name1'];
 // $n2=  $_SESSION['user']['name2'];
 
-
 //fetch data
-$sql="SELECT * FROM user WHERE email = '$userEmail' ";
+$sql="SELECT * FROM user WHERE id = '$userId' ";
 $res=mysqli_query($mysqli,$sql);
 $row =mysqli_fetch_array($res) ;
 
@@ -22,123 +22,11 @@ $remail= $row['email'];
 $rphone= $row['phoneNumber'];
 $rpassword= $row['password'];
 $id=$row['id'];
-echo "id".$id ;
-echo"inside dataaaaaaa";
 
 }
 else{
     echo "nooo";
 }
-
-
-// $q=$conn->prepare($sql);
-// $q->execute();
-// $data=$q->fetch();
-// $id=0; //get user id
-
-
-
-
-
-// // check if it fetched
-// if(!$data){
-//            echo mysqli_error($mysqli); 
-     
-// }else
-//  {
-// $Nmae= $data['name'];
-// $Email= $data['email'];
-// $phone= $data['phoneNumber'];
-// $password= $data['password'];
-// $id=$data['id'];
-// echo "id".$id ;
-// echo"inside dataaaaaaa";
-// }
-
-
-//update
-
-if (isset($_POST['submitSave']) ) 
-{   
-     $usersimg="";
-    $img_name = $_FILES['UserImg']['name'];
-	$img_size = $_FILES['UserImg']['size'];
-	$tmp_name = $_FILES['UserImg']['tmp_name'];
-	$error = $_FILES['UserImg']['error'];
-    $errors=[];
-
-     //validate uploaded image
-    if ($error === 0) {
-        // check size
-		if ($img_size > 2000000) {
-            // 2mb size
-			$errors[] = "نعتذر حجم الملف كبير";
-		}else {
-			$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
-			$img_ex_lc = strtolower($img_ex);
-
-			$allowed_exs = array("jpg", "jpeg", "png"); 
-                // check exstinon
-			if (in_array($img_ex_lc, $allowed_exs)) {
-				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
-                // upload img to our folder
-				$img_upload_path = 'usersImg/'.$new_img_name;
-				move_uploaded_file($tmp_name, $img_upload_path);
-                $usersimg = $new_img_name;
-            
-            }else {
-				$errors[] = " jpg ,  jpeg , png الرجاء رفع صورة بالامتداد التالي ";
-            }
-
-          }
-	}
-    else {
-        $errors[] = "unknown error occurred!";
-	    }
-
-    
-    echo $usersimg;
-
-
-    
- //get imageFile from user and set it in profile
- if (isset( $_FILES['UserImg'])) 
- {
-     echo "heree";
-    $userImg = $_FILES['UserImg'];
-    $_SESSION['user']['img']= $usersimg;//update session
- } 
-    
-//update code
-$n= $_POST['name1'];
-$hashPass= password_hash($_POST["password"], PASSWORD_DEFAULT);
-$e= $_POST['email'];
-$phoneN= $_POST['phone'];
-
-
-$sql = "UPDATE user
-SET name = '$n',
-    email = '$e',
-    phoneNumber = '$phoneN',
-    password= '$hashPass',
-    UserImg ='$usersimg'
-WHERE id = '$id'";
-
-
-    $stmt = $conn->prepare($sql);
-
-    $stmt->execute();
-   
-
-    //check if it work
-    if( $stmt){
-        echo 'ok';
-
-    }
-    else{
-        echo "no";
-    }
-}//end if
 
 
 //delete code
@@ -155,14 +43,16 @@ $del = "DELETE FROM user WHERE id = '$id' ";
 // $stmt->execute();
      
     $stmt = mysqli_query($mysqli ,$del)  ;    
-    session_unset();
-    header('location:login.php');
-    
+   
     //check if it work
-    if( $stmt){
-        echo "deleted successfuly";
+    if( $stmt)
+    {
+        session_unset();
+        header('location:login.php');
+        exit();
     }
-    else{
+    else
+    {
         echo "not deleted";
     }
    
@@ -188,6 +78,8 @@ $del = "DELETE FROM user WHERE id = '$id' ";
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+    <!-- JQuery  -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
    <!-- our -->
      <!-- ui library >> tailwend -->
@@ -309,11 +201,14 @@ $del = "DELETE FROM user WHERE id = '$id' ";
 
             <div class="flex-1  rounded-lg shadow-xl p-8 , infoSection">
 
-      <form class="space-y-2 md:space-y-6  " action="profile2.php" method="POST" enctype=multipart/form-data >
+            
+
+
+      <form class="space-y-2 md:space-y-6  " action="editProfileCode.php" method="POST" enctype=multipart/form-data >
               
-      <div class="  rounded-lg shadow-xl pb-8 , imageSection">
+      <div class="  rounded-lg shadow-xl pb-8 mr-4, imageSection">
           <!-- user image & info under photo -->
-            <div class="flex flex-col items-center -mt-20 , userPhotoDiv">
+            <div class="flex flex-col items-center -mt-25 mr-4 justify-between , userPhotoDiv">
                 <!-- user photo -->
                 <button type="submit" id="userPhotoButton" class="w-20 h-20 rounded-full overflow-hidden mt-8" >
                         <img id="userPhoto" src="./usersImg/<?php echo( $_SESSION['user']['img'])?>"  class="w-full h-full ">
@@ -339,10 +234,12 @@ $del = "DELETE FROM user WHERE id = '$id' ";
         </div> 
         <!-- end div1 -->
 
-
-
-
-
+       
+            <div data-aos="zoom-in"  id="result" class="p-4 mb-4 text-center text-sm text-green-900 rounded-lg  dark:bg-gray-800 dark:text-green-400" role="alert">   
+               
+            </div>
+        
+        
 
                     <div class="headbuttons">
                             
@@ -350,9 +247,9 @@ $del = "DELETE FROM user WHERE id = '$id' ";
                             <!-- <button type="submit" id="deleteAcountButton" name="submitDelete" 
                             class="block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">حذف الحساب</button>
                             -->
-                                                                                            
-                                                                
-                                <button  id="Delete" name="Delete" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="block text-white bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+
+                                                             
+                            <button  id="Delete" name="Delete" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="block text-white bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                                             حذف الحساب
                                </button>
 
@@ -381,6 +278,8 @@ $del = "DELETE FROM user WHERE id = '$id' ";
                                 </div>
 
                     </div>
+                                                                                            
+                               
                
                <!-- name -->
                <div class="name">
@@ -513,8 +412,40 @@ $del = "DELETE FROM user WHERE id = '$id' ";
     AOS.init();
 </script>
 
-<script src="./editeProfile.js"></script>
+<script>
+    $("form").submit(function(e)
+    {
+          e.preventDefault(); //prevent the default action of sending data form
+    
+         $.post( 
+          'editProfileCode.php',
+        // $("form").attr('action'),
+           
+         $("form :input").serializeArray()  , //select all input in the form to pass it 
+         function(result)
+           { 
+                if(result == "success")
+                  {
+                    $("#result").html("تم تحديث البيانات بنجاح");
+                    console.log("done");
+                  }
+                  else
+                  {
+                    $("#result").html("لم يتم تحديث البيانات بنجاح");
 
+                  }
+           }
+           
+           
+            );
+    
+    } );
+
+
+
+</script>
+
+<script src="./editeProfile.js"></script>
 
 
 

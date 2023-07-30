@@ -24,7 +24,6 @@
 header {
     width: 100%;
     height: 10vh;
-
     /* margin-bottom: 80px; */
   }
   .login {
@@ -47,7 +46,7 @@ header {
 
 .imageSection{
     height: 15rem;
-     align-items: center;
+   
 }
 
 .userPhotoDiv{

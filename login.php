@@ -73,6 +73,7 @@ if(isset($_POST['submit'])){
                 "img"=>$data['UserImg'],
                 "userType"=>$data['userType'],
                 "email"=>$email,
+                "id"=>$data['id'],
               ];
              
             header('location:index.php');       //navigate tp this page if log-in successful
