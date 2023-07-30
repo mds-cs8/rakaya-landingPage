@@ -12,7 +12,7 @@ $userEmail=   $_SESSION['user']['email']; //get user email
 // $n2=  $_SESSION['user']['name2'];
 
 //fetch data
-$sql="SELECT * FROM user WHERE id = '$userId' ";
+$sql="SELECT * FROM user WHERE email = '$userEmail' ";
 $res=mysqli_query($mysqli,$sql);
 $row =mysqli_fetch_array($res) ;
 
