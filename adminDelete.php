@@ -16,5 +16,3 @@ if (isset($_GET['id'])) {
         $_SESSION['InfoMessage']="تم حذف المستخدم بنجاح ";
         header('location: dashboard.php');
     } }
-
-?>

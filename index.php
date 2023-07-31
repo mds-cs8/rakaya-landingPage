@@ -13,8 +13,8 @@ session_start();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
     <!-- custtom css -->
     <link rel="stylesheet" href="style.css">
-     <!-- JQuery library  -->
-     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <!-- JQuery library  -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
     <!-- animation library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
@@ -53,98 +53,83 @@ session_start();
                 <!-- 1div  log-in link and button in navbar -->
                 <div class="flex md:order-2 ">
 
-                 <?php  if(isset($_SESSION['user'])){ ?>
-                  
-                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="w-10 h-10 rounded-full overflow-hidden">
-                        <img src="./usersImg/<?php echo( $_SESSION['user']['img'])?>"  class="w-full h-full ">
+                    <?php if (isset($_SESSION['user'])) { ?>
+
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="w-10 h-10 rounded-full overflow-hidden">
+                            <img src="./usersImg/<?php echo ($_SESSION['user']['img']) ?>" class="w-full h-full ">
+                        </button>
+
+                        <!-- Dropdown menu -->
+                        <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-40  dark:bg-gray-700 dark:divide-gray-600 ml-10">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                                <li>
+                                    <a href="./profile2.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">الحساب
+                                        الشخصي</a>
+                                </li>
+
+                                <?php if ($_SESSION['user']['userType'] === 'admin') { ?>
+                                    <li>
+                                        <a href="./dashboard.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            لوحة التحكم</a>
+                                    </li>
+
+                                <?php } ?>
+
+                                <li>
+
+                                    <a href="./logout.php" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">تسجيل
+                                        الخروج</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+
+
+
+                    <?php } else { ?>
+
+                        <a href="login.php" class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
+                            الدخول
+                        </a>
+
+                    <?php } ?>
+
+
+                    <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 mr-3" aria-controls="navbar-sticky" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                        </svg>
                     </button>
-                    
-                    <!-- Dropdown menu -->
-                    <div id="dropdownNavbar"
-                        class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-40  dark:bg-gray-700 dark:divide-gray-600 ml-10">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                            <li>
-                                <a href="./profile2.php"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">الحساب
-                                    الشخصي</a>
-                            </li>
+                </div>
 
-                            <?php if($_SESSION['user']['userType']==='admin'){ ?>
-                            <li>
-                                <a href="./dashboard.php"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    لوحة التحكم</a>
-                            </li>
+                <!-- 2div for navigations inside home sections -->
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 " id="navbar-sticky">
 
-                            <?php } ?>
-
-                            <li>
-
-                                <a href="./logout.php"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">تسجيل
-                                    الخروج</a>
-                            </li>
-                        </ul>
-
-                    </div>
-
-
-
-                 
-                <?php }else{ ?>
-
-                <a href="login.php"
-                    class="login text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-1 py-2 text-center mr-3 md:mr-0 ml-3">تسجيل
-                    الدخول
-                </a>
-
-                <?php } ?>
-
-
-                <button data-collapse-toggle="navbar-sticky" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 mr-3"
-                    aria-controls="navbar-sticky" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-            </div>
-
-            <!-- 2div for navigations inside home sections -->
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 "
-                id="navbar-sticky">
-
-                <ul class="text-white flex flex-col p-4 md:p-0 mt-4 font-medium md:flex-row" id="navigationsmm">
-                    <li>
-                        <a href="#"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2"
-                            aria-current="page">
-                            الصفحة الرئيسية
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#about"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2">
-                            من نحن
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#service"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2">
-                            خدماتنا
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#footer"
-                            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2">
-                            تواصل معنا
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                    <ul class="text-white flex flex-col p-4 md:p-0 mt-4 font-medium md:flex-row" id="navigationsmm">
+                        <li>
+                            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2" aria-current="page">
+                                الصفحة الرئيسية
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#about" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2">
+                                من نحن
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#service" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2">
+                                خدماتنا
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#footer" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2">
+                                تواصل معنا
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
             </div>
             <!-- end whole div -->
@@ -208,21 +193,21 @@ session_start();
             <div id="aboutContent">
 
                 <h3 class="text-4xl">من نحن ؟</h3>
-             
-              <div data-aos="fade-up">
-                <p>ﺷﺮﻛﺔ ﺳﻌﻮدﻳﺔ ﻣﺘﺨﺼﺼﺔ ﻓﻲ ﺗﻘﺪﻳﻢ اﻟﺨﺪﻣﺎت اﻹﺳﺘﺸﺎرﻳﺔ ، ﻟﺘﻤﻜﻴﻦ اﻟﻘﺪرات ﻓﻲ
-                    اﻟﻤﻨﻈﻤﺎت واﻟﻤﺠﺘﻤﻌﺎت ﻋﻠﻰ اﻟﺴﻌﻲ ﻧﺤﻮ ﻣﻮاﻛﺒﺔ اﻟﻌﺎﻟﻢ ﻓﻲ اﻟﺘﻄﻮر ﻟﺠﻤﻴﻊ
-                    اﻟﻤﺠﺎﻻت ، وﻟﺬﻟﻚ ﻧﻌﻤﻞ ﻣﻊ ﻋﻤﻼؤﻧﺎ ﻋﻠﻰ ﺗﻄﻮﻳﺮ ﻣﻨﻈﻤﺎﺗﻬﻢ ووﺿﻊ ﻟﻬﻢ ﺣﻠﻮل
-                    اﺑﺘﻜﺎرﻳﺔ ﻟﻠﺘﻌﺎﻣﻞ ﻣﻊ اﻟﺘﺤﺪﻳﺎت واﻟﻤﺼﺎﻋﺐ
-                </p>
 
-              </div>
+                <div data-aos="fade-up">
+                    <p>ﺷﺮﻛﺔ ﺳﻌﻮدﻳﺔ ﻣﺘﺨﺼﺼﺔ ﻓﻲ ﺗﻘﺪﻳﻢ اﻟﺨﺪﻣﺎت اﻹﺳﺘﺸﺎرﻳﺔ ، ﻟﺘﻤﻜﻴﻦ اﻟﻘﺪرات ﻓﻲ
+                        اﻟﻤﻨﻈﻤﺎت واﻟﻤﺠﺘﻤﻌﺎت ﻋﻠﻰ اﻟﺴﻌﻲ ﻧﺤﻮ ﻣﻮاﻛﺒﺔ اﻟﻌﺎﻟﻢ ﻓﻲ اﻟﺘﻄﻮر ﻟﺠﻤﻴﻊ
+                        اﻟﻤﺠﺎﻻت ، وﻟﺬﻟﻚ ﻧﻌﻤﻞ ﻣﻊ ﻋﻤﻼؤﻧﺎ ﻋﻠﻰ ﺗﻄﻮﻳﺮ ﻣﻨﻈﻤﺎﺗﻬﻢ ووﺿﻊ ﻟﻬﻢ ﺣﻠﻮل
+                        اﺑﺘﻜﺎرﻳﺔ ﻟﻠﺘﻌﺎﻣﻞ ﻣﻊ اﻟﺘﺤﺪﻳﺎت واﻟﻤﺼﺎﻋﺐ
+                    </p>
+
+                </div>
 
             </div>
 
             <div id="aboutVideo">
                 <!-- <img src="./assets/ركايا_full_.png" width="300" height="300" alt="Rakaya Logo"> -->
-                <video class=" rakayaVideo"  src="./assets/rakaya.mp4"   controls type="video/mp4">your browser not support this video</video>
+                <video class=" rakayaVideo" src="./assets/rakaya.mp4" controls type="video/mp4">your browser not support this video</video>
             </div>
         </div>
 
@@ -242,12 +227,10 @@ session_start();
                 </div>
 
                 <!-- div2 for values -->
-                <div class="  space-y-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-12 md:space-y-0"
-                    id="valuescontainer">
+                <div class="  space-y-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-12 md:space-y-0" id="valuescontainer">
 
                     <div class="value" data-aos="zoom-in" data-aos-duration="500">
-                        <div
-                            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+                        <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                             <img src="assets/honesty.png" class="v1" alt="honesty logo">
                         </div>
                         <h3 class="mb-2 text-xl font-bold   dark:text-white">النزاهة</h3>
@@ -262,8 +245,7 @@ session_start();
 
                     <div class="value" data-aos="zoom-in" data-aos-duration="1000">
 
-                        <div
-                            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+                        <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
 
                             <img src="assets/protest.png" class="v2" alt="protest Logo">
 
@@ -279,8 +261,7 @@ session_start();
 
 
                     <div class="value" data-aos="zoom-in" data-aos-duration="1500">
-                        <div
-                            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+                        <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                             <img src="assets/customer-service.png" class="v3" alt="customer-service Logo">
                         </div>
                         <h3 class="mb-2 text-xl font-bold dark:text-white">التركيز على العميل</h3>
@@ -293,8 +274,7 @@ session_start();
 
 
                     <div class="value" data-aos="zoom-in" data-aos-duration="2000">
-                        <div
-                            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
+                        <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                             <img src="assets/excellence (2).png" class="v4" alt="excellence Logo">
                         </div>
                         <h3 class="mb-2 text-xl font-bold dark:text-white">التميز</h3>
@@ -487,50 +467,41 @@ session_start();
         <!-- whole div for title and images -->
         <div class="partners-box py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
 
-            <h2
-                class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 dark:text-white md:text-4xl">
+            <h2 class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 dark:text-white md:text-4xl">
                 شركاء النجاح
             </h2>
             <p>نفخر في ركايا بشراكاتنا مع عدد من أبرز الشركات التقنية العالمية لتقديم الخدمات الموثوقة لعملائنا</p>
 
             <!-- div for image links -->
-            <div
-                class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
+            <div class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400">
 
-                <a href="https://www.haj.gov.sa/Home" class="flex justify-center items-center" data-aos="zoom-in"
-                    data-aos-duration="500">
+                <a href="https://www.haj.gov.sa/Home" class="flex justify-center items-center" data-aos="zoom-in" data-aos-duration="500">
 
                     <img class="h-20  rounded-lg" src="assets/وزارة_الحج-لوقو-removebg-preview.png" alt="ministry logo">
 
 
                 </a>
 
-                <a href="https://www.sfda.gov.sa/ " class="flex justify-center items-center" target="_blank"
-                    data-aos="zoom-in" data-aos-duration="600">
+                <a href="https://www.sfda.gov.sa/ " class="flex justify-center items-center" target="_blank" data-aos="zoom-in" data-aos-duration="600">
                     <img class="h-20  rounded-lg" src="assets/الهيئة-العامة-للغذاء-والدواء-1.png" alt="partners logo">
 
                 </a>
 
-                <a href="  https://www.sdb.gov.sa/ar-sa/individual/individual-finance  "
-                    class="flex justify-center items-center" data-aos="zoom-in" data-aos-duration="700">
-                    <img class="h-20  rounded-lg" src="assets/بنك_التنمية-لوقو-removebg-preview (1).png"
-                        alt="Bank logo">
+                <a href="  https://www.sdb.gov.sa/ar-sa/individual/individual-finance  " class="flex justify-center items-center" data-aos="zoom-in" data-aos-duration="700">
+                    <img class="h-20  rounded-lg" src="assets/بنك_التنمية-لوقو-removebg-preview (1).png" alt="Bank logo">
 
 
                 </a>
 
-                <a href="https://www.google.com.sa/?hl=ar" class="flex justify-center items-center" data-aos="zoom-in"
-                    data-aos-duration="800">
+                <a href="https://www.google.com.sa/?hl=ar" class="flex justify-center items-center" data-aos="zoom-in" data-aos-duration="800">
                     <img class="h-20  rounded-lg" src="assets/google-logo-removebg-preview.png" alt="google logo">
 
                 </a>
-                <a href="https://www.my.gov.sa/wps/portal/snp/main" class="flex justify-center items-center"
-                    data-aos="zoom-in" data-aos-duration="900">
+                <a href="https://www.my.gov.sa/wps/portal/snp/main" class="flex justify-center items-center" data-aos="zoom-in" data-aos-duration="900">
                     <img class="h-12  rounded-lg" src="assets/المنصة -لوقو.png" alt="partner logo">
 
                 </a>
-                <a href="https://www.alrajhibank.com.sa/" class="flex justify-center items-center" data-aos="zoom-in"
-                    data-aos-duration="1000">
+                <a href="https://www.alrajhibank.com.sa/" class="flex justify-center items-center" data-aos="zoom-in" data-aos-duration="1000">
                     <img class="h-12  rounded-lg" src="assets/الراجحي-لوقو.png" alt="Bank logo">
 
                 </a>
@@ -560,8 +531,7 @@ session_start();
 
             <!-- social media links -->
             <div class="social-media">
-                <a href="https://api.whatsapp.com/send?phone=0570077055" target="_blank"> <img
-                        src="./assets/whatsapp.png" alt="whatsapp">
+                <a href="https://api.whatsapp.com/send?phone=0570077055" target="_blank"> <img src="./assets/whatsapp.png" alt="whatsapp">
                 </a>
 
                 <a href="https://twitter.com/rakayaco" target="_blank">
@@ -570,8 +540,7 @@ session_start();
                 <a href="https://www.linkedin.com/company/rakaya/" target="_blank">
                     <img src="./assets/linkedin.png" alt="linkedin">
                 </a>
-                <a href="https://www.google.com/maps?q=21.4033161,39.7152969&hl=en-SA&gl=sa&entry=gps&lucs=47067412&g_ep=CAISBjYuNjQuMxgAINeCAyoINDcwNjc0MTJCAlNB&g_st=ic"
-                    target="_blank">
+                <a href="https://www.google.com/maps?q=21.4033161,39.7152969&hl=en-SA&gl=sa&entry=gps&lucs=47067412&g_ep=CAISBjYuNjQuMxgAINeCAyoINDcwNjc0MTJCAlNB&g_st=ic" target="_blank">
                     <img src="./assets/gps.png" alt="rakaya location">
                 </a>
 
@@ -584,22 +553,22 @@ session_start();
         <div class="contact-us">
             <h3>تواصل معنا</h3>
 
-              
-        <div id="result" class="p-4 mb-4 text-center text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">   
-        </div>
-           
+
+            <div id="result" class="p-4 mb-4 text-center text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">
+            </div>
 
 
 
-            <form action="contactUsCode.php" method="POST" >
+
+            <form action="contactUsCode.php" method="POST">
                 <div class="input">
                     <input name="topic-contactUs" id="topic-contactUs" type="text" placeholder="الموضوع">
-                    <input name="email-contactUs" id="email-contactUs"  type="email" placeholder="البريد الالكتروني">
+                    <input name="email-contactUs" id="email-contactUs" type="email" placeholder="البريد الالكتروني">
                 </div>
 
-                <textarea name ="message-contactUs" id="message-contactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
-                <button class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
-                
+                <textarea name="message-contactUs" id="message-contactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
+                <button class="form-btn" name="contctFormSubmit" id="contctFormSubmit">ارسل</button>
+
             </form>
         </div>
 
@@ -624,35 +593,32 @@ session_start();
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 
     <script>
-    // $("form").submit(function(e)
-    // {
-    //       e.preventDefault(); //prevent the default action of sending data form
-    
-    //      $.post( 
-    //       'contactUsCode.php',
-    //     // $("form").attr('action'),
-           
-    //      $("form :input").serializeArray()  , //select all input in the form to pass it 
-    //      function(result)
-    //        { 
-    //             if(result == "success")
-    //               {
-    //                 $("#result").html("تم ارسال رسالتك بنجاح شكرًا لك!");
-    //               }
-    //               else
-    //               {
-    //                 $("#result").html("لم يتم ارسال رسالتك , فضلاً تأكد من المعلومات المدخلة");
-    //               }
-    //        }
-           
-           
-    //         );
-    
-    // } );
+        // $("form").submit(function(e)
+        // {
+        //       e.preventDefault(); //prevent the default action of sending data form
+
+        //      $.post( 
+        //       'contactUsCode.php',
+        //     // $("form").attr('action'),
+
+        //      $("form :input").serializeArray()  , //select all input in the form to pass it 
+        //      function(result)
+        //        { 
+        //             if(result == "success")
+        //               {
+        //                 $("#result").html("تم ارسال رسالتك بنجاح شكرًا لك!");
+        //               }
+        //               else
+        //               {
+        //                 $("#result").html("لم يتم ارسال رسالتك , فضلاً تأكد من المعلومات المدخلة");
+        //               }
+        //        }
 
 
+        //         );
 
-</script>
+        // } );
+    </script>
 
 
 
