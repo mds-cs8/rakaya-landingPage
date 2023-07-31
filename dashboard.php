@@ -127,7 +127,21 @@ session_start();
 <!-- end whole div -->
 
 </nav>
+<div class="whole">
 
+        <div class="admin-name shadow-lg ">
+            <h1 class="msg">اهلا بك </h1>
+            <h1 class="name"><?php  echo $_SESSION['user']['name'] ?> </h1>
+        </div>
+
+        <!-- add user icon -->
+        <div id="addIcon">
+                        
+                <a href="adminadd.php"  class="  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >
+                <img src="./assets/add-user.png" class=" " width="60" height="60">
+                </a>   
+        </div>
+  </div>
 
 <!-- this message appear after the edite the user make i (update user info or add new user ) -->
  <?php
@@ -154,15 +168,25 @@ unset($_SESSION['InfoMessage']) ;
 
     <!-- user info -->
  <div id="user">
+ <div class="box">
+    <header>
+        <h3>الاسم</h3>
+        <h3>الايميل</h3>
+        <h3>رقم الجوال</h3>
+        <h3>نوع المستخدم</h3>
+        <h3>الاجراء</h3>
+    </header>
+</div>
 
+
+ <div id=user-box>
+
+</div>
  </div>
 
 
-<div class = pagination-box id= "pagination-box">
 
-</div>
 
-</div>
 
 <!-- end dashboard -->
     
@@ -186,43 +210,26 @@ unset($_SESSION['InfoMessage']) ;
 
 
      <!-- ajax code  -->
-    <script>
-       function fetch_data(page)
-        {
-            $.ajax(
-               {
-                  url: "test.php",
-                  method: "POST",
-                  data:{page: page},
-                  success: function(data)
-                  {
-                       $("#user").html(data);
-                       console.log("done");
-                  }
-
-
-
-                
-               });   
-                // end ajax
-        }
-        // end fun 
-        
-        fetch_data();
-
-        $(document).on("click","page-item",
-                    function()
-                    {
-                        var page = $(this).attr("id");
-                        fetch_data(page);
-                    }
-        )
-
-
-
-
-    </script>
-
+     <script>  
+ $(document).ready(function(){  
+      load_data();  
+      function load_data(page)  
+      {  
+           $.ajax({  
+                url:"testpage.php",  
+                method:"POST",  
+                data:{page:page},  
+                success:function(data){  
+                     $('#user-box').html(data);  
+                }  
+           })  
+      }  
+      $(document).on('click', '.pagination_link', function(){  
+           var page = $(this).attr("id");  
+           load_data(page);  
+      });  
+ });  
+ </script>  
 </body>
 </html>
 <?php }?>

@@ -29,21 +29,18 @@ nav button {
   margin: 20px;
 }
 
-
 /* body content style */
 
 .whole {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   width: 100rem;
 }
-#addIcon{
+#addIcon {
   margin-top: 6.5rem;
   margin-right: 1rem;
- 
 }
-
 
 .box {
   display: flex;
@@ -71,12 +68,13 @@ h3 {
   padding: 10px;
   border-radius: 10px;
 }
-.user {
+#user {
   display: flex;
   width: 100%;
   min-height: 100px;
   color: #000;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-bottom: 10px;
   gap: 10px;
@@ -134,16 +132,15 @@ p {
   height: 100%;
 }
 
-
- 
-.pagination-box {
+.page-box {
   display: flex;
   align-items: center;
   justify-content: center;
   width: auto;
   margin-top: 20px;
+  width: 100%;
 }
-.pagination {
+.pagination_link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,6 +148,21 @@ p {
   width: 30px;
   height: 30px;
   border-radius: 100%;
-  background-color: #303954;
   margin-right: 5px;
+  cursor: pointer;
+  background: #303954;
+}
+#user-box {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+.user-data {
+  display: flex;
+}
+.user-box {
+  width: 100%;
+}
+.page-box {
+  display: flex;
 }
