@@ -608,7 +608,7 @@ echo '</script>';
                 <textarea name ="messagecontactUs" id="messagecontactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
                 <small id="message_msg"></small>
 
-                <button type="submit" class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
+                <button type="button" class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
                 
             </form>
             <!-- end form -->
