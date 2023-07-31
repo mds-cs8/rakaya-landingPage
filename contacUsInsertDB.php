@@ -36,12 +36,15 @@ $name=$_SESSION['user']['name'];
 
     if($res)
     {
-        echo "message saved";
+             $_SESSION['status']= "تم ارسال رسالتك بنجاح! شكرً لك";
+                $_SESSION['status_code']= "success";
+
     }
     else{
-        echo "notttt saved";
+            $_SESSION['status']= "لم يتم ارسال الرسالة";
+                $_SESSION['status_code']= "warning";
     }
-
+     
 }
 
 

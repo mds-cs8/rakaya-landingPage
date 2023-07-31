@@ -5,11 +5,13 @@ session_start();
 
 include 'conn-db.php';
 
-$userEmail =   $_SESSION['user']['email']; //get user email
+// $userEmail =   $_SESSION['user']['email']; //get user email
+$email =   $_SESSION['user']['email']; //get user email
+
 
 
 //fetch data
-$sql = "SELECT * FROM user WHERE email = '$userEmail' ";
+$sql = "SELECT * FROM user WHERE email = '$email' ";
 $res = mysqli_query($mysqli, $sql);
 $row = mysqli_fetch_array($res);
 
@@ -26,27 +28,27 @@ if ($row) {
 
 //delete code
 
-if (isset($_POST['submitDelete'])) {
-    echo "delete";
+// if (isset($_POST['submitDelete'])) {
+//     echo "delete";
 
-    // $sql = "DELETE FROM user
-    //     WHERE id = '$id'";
+//     // $sql = "DELETE FROM user
+//     //     WHERE id = '$id'";
 
-    $del = "DELETE FROM user WHERE id = '$id' ";
-    // $stmt = $conn->prepare($del);
-    // $stmt->execute();
+//     $del = "DELETE FROM user WHERE email = '$userEmail' ";
+//     // $stmt = $conn->prepare($del);
+//     // $stmt->execute();
 
-    $stmt = mysqli_query($mysqli, $del);
+//     $stmt = mysqli_query($mysqli, $del);
 
-    //check if it work
-    if ($stmt) {
-        session_unset();
-        header('location:login.php');
-        exit();
-    } else {
-        echo "not deleted";
-    }
-}
+//     //check if it work
+//     if ($stmt) {
+//         session_unset();
+//         header('location:login.php');
+//         // exit();
+//     } else {
+//         echo "not deleted";
+//     }
+// }
 
 ?>
 
@@ -152,21 +154,6 @@ if (isset($_POST['submitDelete'])) {
                     </button>
                 </div>
 
-                <!-- 2div for navigations inside home sections -->
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 " id="navbar-sticky">
-
-                    <ul class="text-white flex flex-col p-4 md:p-0 mt-4 font-medium md:flex-row" id="navigationsmm">
-                        <li>
-                            <a href="index.php" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 mx-2" aria-current="page">
-                                الصفحة الرئيسية
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
-            <!-- end whole div -->
 
         </nav>
         <!-- end navbar -->
@@ -181,10 +168,10 @@ if (isset($_POST['submitDelete'])) {
 
                 <div class="flex-1  rounded-lg shadow-xl p-8 , infoSection">
 
+                 
 
 
-
-                    <form class="space-y-2 md:space-y-6  " action="editProfileCode.php" method="POST" enctype=multipart/form-data>
+                    <form id="editProfile"  class="space-y-2 md:space-y-6  " action="editProfileCode.php" method="POST" enctype=multipart/form-data>
 
                         <div class="  rounded-lg shadow-xl pb-8 mr-4, imageSection">
                             <!-- user image & info under photo -->
@@ -212,10 +199,24 @@ if (isset($_POST['submitDelete'])) {
                         <!-- end div1 -->
 
 
-                        <div data-aos="zoom-in" id="result" class="p-4 mb-4 text-center text-sm text-green-900 rounded-lg  dark:bg-gray-800 dark:text-green-400" role="alert">
-
+                        <div data-aos="zoom-in" id="result" class="p-4 mb-8 text-center text-sm text-green-900 rounded-lg  dark:bg-gray-800 dark:text-green-400" role="alert">
+                           
                         </div>
 
+                        <?php   if(isset($_SESSION["emailCheckResult"]))
+                                     {
+                                    
+                                       echo " <small>".$_SESSION["emailCheckResult"]. "</small> " ;
+                                     
+                                     }
+                                    
+                                     unset($_SESSION['emailCheckResult']);
+
+                            ?>
+
+                      
+                         
+              
 
 
                         <div class="headbuttons">
@@ -224,37 +225,6 @@ if (isset($_POST['submitDelete'])) {
                             <!-- <button type="submit" id="deleteAcountButton" name="submitDelete" 
                             class="block  text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center">حذف الحساب</button>
                             -->
-
-
-                            <button id="Delete" name="Delete" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="block text-white bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                حذف الحساب
-                            </button>
-
-                            <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                <div class="relative w-full max-w-md max-h-full">
-                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                            </svg>
-                                            <span class="sr-only">Close modal</span>
-                                        </button>
-                                        <div class="p-6 text-center">
-                                            <svg class="mx-auto mb-4 text-gray-100 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                            </svg>
-
-                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">عزيزنا العميل , هل ترغب بإتمام حذف حسابك ؟</h3>
-                                            <button id="deleteAcountButton" name="submitDelete" data-modal-hide="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                                                نعم, أرغب بحذف حسابي
-                                            </button>
-                                            <button data-modal-hide="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">الغاء</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
 
 
 
@@ -266,7 +236,7 @@ if (isset($_POST['submitDelete'])) {
                                 <label for="name1" class="mb-4 text-sm font-medium  text-gray-900  dark:text-white">الاسم
                                 </label>
 
-                                <input type="text" name="name1" id="name1" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" placeholder="سارة" required value="<?php echo $rname  ?>">
+                                <input type="text" name="name1" id="name1" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" placeholder="سارة"  value="<?php echo $rname  ?>">
                                 <small id="name1_msg"></small>
 
                             </div>
@@ -287,8 +257,8 @@ if (isset($_POST['submitDelete'])) {
                         <div class="email-phone">
                             <div class="email">
                                 <label for="email" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">الايميل</label>
-                                <input type="email" name="email" id="email" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" placeholder="name@google.com" required value="<?php echo  $remail ?>">
-
+                                <input type="email" name="email" id="email" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" placeholder="name@google.com"  value="<?php echo  $remail ?>">
+                     
                                 <small id="email_msg"></small>
                                 <?php
 
@@ -308,7 +278,7 @@ if (isset($_POST['submitDelete'])) {
                             <div class="phone">
                                 <label for="phone" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">رقم
                                     الهاتف</label>
-                                <input type="tel" id="phone" name="phone" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" required value="<?php echo  $rphone ?> ">
+                                <input type="tel" id="phone" name="phone" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"  value="<?php echo  $rphone ?> ">
                                 <small id="phone_msg"></small>
 
                             </div>
@@ -321,7 +291,7 @@ if (isset($_POST['submitDelete'])) {
                             <div class="pass1">
                                 <label for="password" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة
                                     المرور</label>
-                                <input type="text" name="password" id="password" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" required>
+                                <input type="text" name="password" id="password" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" >
 
                                 <small id="password_msg">
                                     كلمة المرور يجب أن <strong>لا تقل عن 6 أرقام</strong> ( 1 حرف صغير ,1 حرف كبير, رمز
@@ -358,6 +328,45 @@ if (isset($_POST['submitDelete'])) {
 
 
                     </form>
+
+                        <!-- ooooooooo -->
+
+                     
+                        <button id="Delete" name="Delete" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="flex  flex-col items-center  block text-white bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                                حذف الحساب
+                            </button>
+
+                            <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div class="relative w-full max-w-md max-h-full">
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="p-6 text-center">
+                                            <svg class="mx-auto mb-4 text-gray-100 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
+
+                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">عزيزنا العميل , هل ترغب بإتمام حذف حسابك ؟</h3>
+
+                                           <form action="deleteProfile.php" method="POST"  >
+                                           <button id="deleteAcountButton" name="submitDelete" data-modal-hide="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                                نعم, أرغب بحذف حسابي
+                                            </button>
+                                           </form>
+                                           
+                                            <button data-modal-hide="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">الغاء</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
                 </div>
                 <!-- end div2 -->
 
@@ -376,7 +385,7 @@ if (isset($_POST['submitDelete'])) {
                 </script>
 
                 <script>
-                    $("form").submit(function(e) {
+                    $("#editProfile").submit(function(e) {
                         e.preventDefault(); //prevent the default action of sending data form
 
                         $.post(

@@ -1,5 +1,10 @@
 <?php
 session_start();
+// store the value of session inside javascript to use the session value in ajax code (:
+echo '<script>';
+echo 'var statusMessage = "' . $_SESSION['status'] . '";';
+echo 'var statusCode = "' . $_SESSION['status_code'] . '";';
+echo '</script>';
 ?>
 
 
@@ -19,7 +24,7 @@ session_start();
      <!-- JQuery library  -->
      <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-    
+
     <!-- animation library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 
@@ -558,19 +563,52 @@ session_start();
         <div class="contact-us">
             <h3>تواصل معنا</h3>
 
-              
+<!--               
             <div id="form-message" class="p-4 mb-4 text-center text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">   
-           </div> 
-           
+           </div>  -->
+       <!-- <?php
+
+       if(isset( $_SESSION['status']) &&  $_SESSION['status'] !=''  )
+         { 
+            ?>
+             
+                 <script>
+                      swal({
+                        title: " <?php echo $_SESSION['status']; ?>",
+                        // text: "You clicked the button!",
+                        icon: " <?php echo $_SESSION['status_code']; ?>",
+                        button:"حسنًا"
+                        });
+                  </script>
+             
+                  
+               
+           <?php 
+
+            unset($_SESSION['status']);
+         }
+   
+       ?>
+           -->
+
+
+
+
+           <!-- action="contacUsInsertDB.php" -->
          
-            <form action="contacUsInsertDB.php" id="contactUsId" method="POST">
+            <form  action="contacUsInsertDB.php" id="contactUsId" method="POST">
                 <div class="input">
-                    <input name="topiccontactUs" id="topiccontactUs" type="text" placeholder="الموضوع">
-                    <input name="emailcontactUs" id="emailcontactUs"  type="text" placeholder="البريد الالكتروني">
+                    <input class="py-6  px-2" name="topiccontactUs" id="topiccontactUs" type="text" placeholder="الموضوع">
+                    <small id="subject_msg"></small>
+                    <input  class="py-6 px-2" name="emailcontactUs" id="emailcontactUs"  type="text" placeholder="البريد الالكتروني">
+                    <small id="email_msg"></small>
+
                 </div>
 
                 <textarea name ="messagecontactUs" id="messagecontactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
-                <button type="button" class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
+                <small id="message_msg"></small>
+
+                <button type="submit" class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
                 
             </form>
             <!-- end form -->
@@ -600,23 +638,35 @@ session_start();
     <script>
 
 $(document).ready(function(){  
-    
+
           $('#contctFormSubmit').click(function(){
-              
+
             var topiccontactUs = $('#topiccontactUs').val() ; 
             var messagecontactUs = $('#messagecontactUs').val() ; 
             var emailcontactUs = $('#emailcontactUs').val() ; 
            
 
             if(topiccontactUs ==''|| messagecontactUs ==''|| emailcontactUs=='' )
-             {
-                     
-                $('#form-message').html("من فضلك , يجب تعبأة جميع الحقول ");
-               
+             { 
+               // alert using sweetalert 
+
+                swal({
+                    title: "من فضلك , يجب تعبأة جميع الحقول " ,
+                    // text: "You clicked the button!",
+                    icon: "warning",
+                    button:"حسنًا"
+                    });
+
+
              }
              else
              { 
-                $('#form-message').html(" تم ارسال رسالتك");
+                        swal({
+                                title: "تم تنفيذ طلبك بنجاح",
+                                // text: "You clicked the button!",
+                                icon: "success",
+                                button:"حسنًا"
+                                });
 
                 $.ajax({
                     url:"contacUsInsertDB.php",  
@@ -626,6 +676,13 @@ $(document).ready(function(){
                     success:function(data)
                     {  
                         console.log("success");
+                          // alert using sweetalert 
+                        swal({
+                                title: statusMessage ,
+                                // text: "You clicked the button!",
+                                icon: statusCode,
+                                button:"حسنًا"
+                                });
                      //clear the form 
                     //  $("form").trigger("reset");
                     //  $('#form-message').fadeIn().html(data);
@@ -637,9 +694,16 @@ $(document).ready(function(){
                       
 
 
-                    }  
+                    }  ,
                     // end success
- 
+                    error: function () {
+                        // alert using sweetalert 
+                        swal({
+                            title: "حدث خطأ أثناء الارسال",
+                            icon: "error",
+                            button: "حسنًا"
+                        });
+                    } 
 
                 });
                 // end ajax
@@ -647,6 +711,8 @@ $(document).ready(function(){
              }
                 //  end else
 
+                
+               
             });
             // end click
 
@@ -662,6 +728,9 @@ $(document).ready(function(){
         // } );
     </script>
 
+   
+    <!-- sweet alert js library -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 
@@ -671,6 +740,8 @@ $(document).ready(function(){
      <!-- link to ajax file  -->
      <!-- <script src="./contactUsAjax.js"></script> -->
 
+     <!-- validate  -->
+     <script src="./conatUsValidation.js"></script>
 
    
 </body>
