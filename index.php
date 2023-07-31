@@ -9,15 +9,20 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- ui library >> tailwend -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
+
     <!-- custtom css -->
     <link rel="stylesheet" href="style.css">
+
      <!-- JQuery library  -->
      <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
+    
     <!-- animation library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -585,24 +590,24 @@ session_start();
             <h3>تواصل معنا</h3>
 
               
-        <div id="result" class="p-4 mb-4 text-center text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">   
-        </div>
+            <div id="form-message" class="p-4 mb-4 text-center text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">   
+           </div> 
            
-
-
-
-            <form action="contactUsCode.php" method="POST" >
+         
+            <form action="contacUsInsertDB.php" id="contactUsId" method="POST">
                 <div class="input">
-                    <input name="topic-contactUs" id="topic-contactUs" type="text" placeholder="الموضوع">
-                    <input name="email-contactUs" id="email-contactUs"  type="email" placeholder="البريد الالكتروني">
+                    <input name="topiccontactUs" id="topiccontactUs" type="text" placeholder="الموضوع">
+                    <input name="emailcontactUs" id="emailcontactUs"  type="text" placeholder="البريد الالكتروني">
                 </div>
 
-                <textarea name ="message-contactUs" id="message-contactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
-                <button class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
+                <textarea name ="messagecontactUs" id="messagecontactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
+                <button type="button" class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
                 
             </form>
-        </div>
+            <!-- end form -->
 
+        </div>
+         <!-- end contact section -->
     </footer>
 
     <!-- section under footer for copy right -->
@@ -624,31 +629,63 @@ session_start();
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 
     <script>
-    // $("form").submit(function(e)
-    // {
-    //       e.preventDefault(); //prevent the default action of sending data form
+
+$(document).ready(function(){  
     
-    //      $.post( 
-    //       'contactUsCode.php',
-    //     // $("form").attr('action'),
+          $('#contctFormSubmit').click(function(){
+              
+            var topiccontactUs = $('#topiccontactUs').val() ; 
+            var messagecontactUs = $('#messagecontactUs').val() ; 
+            var emailcontactUs = $('#emailcontactUs').val() ; 
            
-    //      $("form :input").serializeArray()  , //select all input in the form to pass it 
-    //      function(result)
-    //        { 
-    //             if(result == "success")
-    //               {
-    //                 $("#result").html("تم ارسال رسالتك بنجاح شكرًا لك!");
-    //               }
-    //               else
-    //               {
-    //                 $("#result").html("لم يتم ارسال رسالتك , فضلاً تأكد من المعلومات المدخلة");
-    //               }
-    //        }
-           
-           
-    //         );
+
+            if(topiccontactUs ==''|| messagecontactUs ==''|| emailcontactUs=='' )
+             {
+                     
+                $('#form-message').html("من فضلك , يجب تعبأة جميع الحقول ");
+               
+             }
+             else
+             { 
+                $('#form-message').html(" تم ارسال رسالتك");
+
+                $.ajax({
+                    url:"contacUsInsertDB.php",  
+                    method:"POST",  
+                    data:  {topiccontactUs:topiccontactUs , messagecontactUs:messagecontactUs ,emailcontactUs:emailcontactUs}, 
+               
+                    success:function(data)
+                    {  
+                        console.log("success");
+                     //clear the form 
+                    //  $("form").trigger("reset");
+                    //  $('#form-message').fadeIn().html(data);
+                    //   setTimeOut(function(){
+                    //     $('#form-message').fadeOut('slow');
+
+                    //      }, 500);
+                      
+                      
+
+
+                    }  
+                    // end success
+ 
+
+                });
+                // end ajax
+
+             }
+                //  end else
+
+            });
+            // end click
+
+ });
+
+// end fun
     
-    // } );
+         
 
 
 
@@ -660,6 +697,25 @@ session_start();
     <!-- link for counter in header javascript code file -->
     <script src="./custom.js"></script>
 
+     <!-- link to ajax file  -->
+     <!-- <script src="./contactUsAjax.js"></script> -->
+
+
+   
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- {topiccontactUs:topiccontactUs , messagecontactUs:messagecontactUs ,emailcontactUs:emailcontactUs}, -->
+<!-- $("#contactUsId").serialize -->

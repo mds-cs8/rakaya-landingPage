@@ -168,6 +168,7 @@ unset($_SESSION['InfoMessage']) ;
 
     <!-- user info -->
  <div id="user">
+    
  <div class="box">
     <header>
         <h3>الاسم</h3>
@@ -182,6 +183,7 @@ unset($_SESSION['InfoMessage']) ;
  <div id=user-box>
 
 </div>
+
  </div>
 
 

@@ -1,81 +1,74 @@
-<!-- processing input -->
-
+<!-- here processing the request to send the form to email  -->
 <?php
 
-if(isset($_POST['contctFormSubmit']))
-{
-  
-include 'conn-db.php';
- 
-   $email=filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{     
+    
+    $subject = test_input($_POST["topic-contactUs"]);
+    $message = test_input($_POST["message-contactUs"]);
+    $email = filter_var(trim($_POST["email-contactUs"]) , FILTER_SANITIZE_EMAIL);
 
-   $error="";
-   $foundEmail="";
 
-   // validate email
-   if(empty($email)){
-    $error="يجب كتابة البريد الاكترونى";
-   }elseif(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
-    $error="البريد الاكترونى غير صالح";
+   // Check the data that will be sent to the mailer
+   if (empty($subject) || empty($message) || empty($email)) {
+    http_response_code(400);
+    print json_encode(['error' => 1,'msg' =>"error in the enterd data , insert write data"]);
    }
-  
-   $stm="SELECT email FROM user WHERE email ='$email' ";
-   $q=$conn->prepare($stm);
-   $q->execute();
-   $data=$q->fetch();
-   
-   if(!$data){
-    $foundEmail= "لا يوجد حساب بهذا البريد الالكتروني";
-   
-    $validationPassed = false;
+ 
 
-    }
-    else{
-        $validationPassed = true;
+// recipient email address
+// $recipient = "rakayatech@gmail.com";
+$recipient = $email;
 
+// set email subject
+$subject =   $subject;
 
-                                    
-                            //values inside submited form
+// build email conent
+$email_content = "Email: $email\n\n";
+$email_content .= "Message:\n$message\n";
+$email_headers = "From: <$email>";
 
-                            $email = $_POST["email-contactUs"];
-                            $topicEmail = $_POST["topic-contactUs"];
-                            $contentEmail = $_POST["message-contactUs"];
+// send the email 
+if( mail($recipient,$subject,$email_content ,$email_headers ))
+{
+         http_response_code(200);
+         print json_encode( ['error'=>0 ,'msg' =>"thanks , your message has been sent"] );
 
-
-
-                            $mail = require_once __DIR__ . "/send-email.php";
-                            $mail->setFrom("noreply@exapmle.com");
-                            $mail->addAddress($email);
-                            $mail->Subject =  $topicEmail ; 
-                            $mail->Body =<<<END
-                                     
-                                      $contentEmail 
-
-                            END;
+} 
+// if the email doesnot sent it will excute 
+else
+{
+    http_response_code(500);
+    print json_encode( ['error'=>1 , 'msg' =>"there is a mistack during sending the message"] );
 
 
-                            //code handle sending message to user email 
-                                try{
-                                    $mail->send();
-                                    echo "success";
+}
 
 
 
-                                }catch(Exception $e)
-                                {
-                                    echo"Messsage could not be  send  .Mailer error: {$mail->ErrorInfo}";
-                                }
+}
+// END IF
+else
+{
+    http_response_code(403);
+    print json_encode( ['error'=>1 , 'msg' =>"there is a problem , please , try again "] );
 
 
-
-             }    //end else
-                 
+}
 
 
-  
+// function validate the data
+function test_input($data)
+{
+    $data = trim($data);
+    $data=filter_var($data, FILTER_SANITIZE_STRING);
+    $data=str_replace(array("\r","\n"),array(" ", " "),$data);
+    $data=stripslashes($data);
+    $data=htmlspecialchars($data);
+    return  $data;
 
+}
+ 
 
-  
-}//end if 
 
 ?>
