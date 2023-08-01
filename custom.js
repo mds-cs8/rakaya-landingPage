@@ -49,12 +49,12 @@ let password = document.getElementById("password");
 let password_msg = document.getElementById("password_msg");
 let repassword = document.getElementById("repassword");
 let repassword_msg = document.getElementById("repassword_msg");
-let name1Check = false;
-let name2Check = false;
-let phoneCheck = false;
-let repasswordCheck = false;
-let emailCheck = false;
-let passwordCheck = false;
+let name1Check = true;
+let name2Check = true;
+let phoneCheck = true;
+let repasswordCheck = true;
+let emailCheck = true;
+let passwordCheck = true;
 
 
 

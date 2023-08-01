@@ -1,24 +1,3 @@
-// disable and enable fields
-
-function enableFields() {
-    var fields = document.querySelectorAll("input");
-    
-    for (var i = 0; i < fields.length; i++) {
-      fields[i].disabled = false;
-    }
-  }
-
-
-
-function disAbleFields() {
-    var fields = document.querySelectorAll("input");
-    
-    for (var i = 0; i < fields.length; i++) {
-      fields[i].disabled = true;
-    }
-  }
-
-
 
   //update profile VALIDATION
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
