@@ -1,14 +1,11 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Almarai", sans-serif !important;
-    direction: rtl;
-  }
-  
- 
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Almarai", sans-serif !important;
+  direction: rtl;
+}
 
-  
 :root {
   --sectionBackground: #faf8f2;
   --sectionTitle: 3.5rem;
@@ -17,203 +14,178 @@
   --textColor: #523623;
   --paraColor: #816c4a;
 }
-
-
+body {
+  background: #816c4a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
 
 /* header */
 header {
-    width: 100%;
-    height: 10vh;
-    /* margin-bottom: 80px; */
-  }
-  .login {
-    background: #303954 !important;
-    padding: 10px;
-    transition: all 0.5s ease;
-    font-size: 10px;
-  }
-  
-  .login:hover {
-    background: #526089 !important;
-    padding: 10px;
-  }
+  width: 100%;
+  height: 10vh;
+  /* margin-bottom: 80px; */
+}
 
-  /* image section */
+/* image section */
 
-.imageSection , .infoSection{
+.infoSection {
+  position: relative;
+  width: 100%;
   background-color: var(--sectionBackground);
+  background: #c1ab72;
+  height: auto;
 }
 
-.imageSection{
-    height: 15rem;
-   
+.userPhotoDiv {
+  display: flex;
+}
+.user_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.uploadImg {
+  display: flex;
+  flex-direction: column;
 }
 
-.userPhotoDiv{
-  margin-top: 2rem;
+.backgroundDiv {
+  position: relative;
+  padding: 20px;
+  margin: 50px auto;
+  background-color: var(--sectionBackground);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-/* 
-.userPhotoDiv img{
-margin-top: 20rem;
-} */
-
-
-
-.imageSectionTitle {
-          margin-left: 60rem;
-          text-align: left;
-          /* color: var(--textColor); */
-          font-weight: 500;
-          color: #0d0b0b !important;
-         font-size: 20px;
-
-}
-.backgroundDiv{
-    background-color: var(--paraColor);
-}
-
 
 /* nav */
 
 nav {
-    background: #faf8f2 !important;
-    /* background: transparent !important; */
-  }
-  
-  nav button {
-    background-color: aliceblue !important;
-  }
-  
-  #navigationsmm a {
-    color: #0d0b0b !important;
-    font-size: 20px;
-    margin: 20px;
-  }
+  background: #faf8f2 !important;
+  /* background: transparent !important; */
+}
 
+nav button {
+  background-color: aliceblue !important;
+}
 
- 
-  /* form fields */
- .name {
-   width: 100%;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-evenly;
- }
- .name1,
- .name2 {
-   width: 25%;
-   margin-bottom: 10px;
- }
- .name input {
-   margin-bottom: 5px;
- }
- 
- .email-phone {
-   width: 100%;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content:  space-evenly;
- }
- .email,
- .phone {
-   width: 25%;
-   margin-bottom: 10px;
- }
- .email-phone input {
-   margin-bottom: 5px;
- }
- 
- .password {
-   width: 100%;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content:  space-evenly;
- }
- .password input {
-   margin: 5px 0;
- }
- .pass1,
- .pass2 {
-   width: 25%;
-   margin-bottom: 5px;
- }
- input {
-   height: 2rem;
-   width: 10rem;
- }
- 
+#navigationsmm a {
+  color: #0d0b0b !important;
+  font-size: 20px;
+  margin: 20px;
+}
 
+/* form fields */
+.name {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.name1,
+.uploadImg {
+  width: 40%;
+  margin-bottom: 10px;
+}
+.name input {
+  margin-bottom: 5px;
+}
+
+.email-phone {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap !important;
+  justify-content: space-evenly !important;
+}
+.email,
+.phone {
+  width: 40%;
+  margin-bottom: 10px;
+}
+.email-phone input {
+  margin-bottom: 5px;
+}
+
+.password {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.password input {
+  margin: 5px 0;
+}
+.pass1,
+.pass2 {
+  width: 40%;
+  margin-bottom: 5px;
+}
+input {
+  height: 2rem;
+  width: 10rem;
+}
 
 /* submit style */
 
-.submit
-{
-    width: 40%;
-    height: 10%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:space-evenly;
-    /* background-color: brown; */
-    align-items: center;
-    display: inline-flex;
-    margin-right: 20rem;
+.submit {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#save  {
-    background: #816c4a !important;
-    color: #fff !important;
-    font-weight: bold;
-    transition: all 0.5s ease;
-    width: 30%;
-    height: 30%;
-    align-items: center;
-    border-radius: 8%;
-  }
-
-   #Delete {
-    background: #816c4a !important;
-    color: #fff !important;
-    font-weight: bold;
-    transition: all 0.5s ease;
-    width: 10%;
-    height: 10%;
-    align-items: center;
-    border-radius: 5%;
-  }
-
-  .editProfileButton:hover , #updateAcountButton:hover{
-    background: #523623 !important;
-  }
-   
-  #Delete:hover {
-    background: rgb(207, 12, 12) !important;
-
-  }
-/* 
-  #deleteAcountButton ,#updateAcountButton {
-    align-items: center;
-    width: 50% ;
-    height:auto;
-  } */
-
-
-
-  .headbuttons #Delete{
-
-           width: 20%;
-           display: block;
-           margin-left: 60rem;
-
-  }
-
-
-.infoSection{
-    direction: rtl;
+#save {
+  background: #816c4a !important;
+  color: #fff !important;
+  font-weight: bold;
+  transition: all 0.5s ease;
+  width: 80px;
+  padding: 10px;
+  align-items: center;
+  border-radius: 8%;
 }
 
-form{
-    width: 95%;
-    align-items: center;
-    justify-content: space-evenly;
+#Delete {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #816c4a !important;
+  color: #fff !important;
+  font-weight: bold;
+  transition: all 0.5s ease;
+  width: 100px;
+  padding: 10px;
+  font-size: 10px;
+  border-radius: 5%;
+}
+
+.editProfileButton:hover,
+#updateAcountButton:hover {
+  background: #523623 !important;
+}
+
+#Delete:hover {
+  background: rgb(207, 12, 12) !important;
+}
+
+.infoSection {
+  direction: rtl;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }

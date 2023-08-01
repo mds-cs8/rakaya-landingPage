@@ -32,14 +32,12 @@ nav button {
 /* body content style */
 
 .whole {
+  width: 350px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 100rem;
-}
-#addIcon {
-  margin-top: 6.5rem;
-  margin-right: 1rem;
+  margin-top: 150px;
+  margin-bottom: 20px;
 }
 
 .box {
@@ -78,7 +76,9 @@ h3 {
   gap: 10px;
 }
 p {
-  width: calc(100% / 4);
+  /* width: calc(100% / 5); */
+  width: 250px;
+  height: 80px;
   text-align: center;
   min-height: 70px;
   padding: 10px;
@@ -86,6 +86,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  word-break: break-all;
   border-bottom: 4px solid #c1ab72;
   font-size: 14px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -106,10 +107,8 @@ p:hover {
   width: 20px;
 }
 .admin-name {
-  margin-top: 150px;
-  margin-bottom: 50px;
   display: flex;
-  width: 300px;
+  width: 80%;
   height: 60px;
   justify-content: space-between;
   align-items: center;
@@ -119,6 +118,7 @@ p:hover {
   border-bottom: 4px solid #c1ab72;
   overflow: hidden;
 }
+
 .msg {
   display: flex;
   align-items: center;

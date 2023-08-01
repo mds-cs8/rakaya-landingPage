@@ -126,8 +126,8 @@ if ($_SESSION['user']['userType'] === 'admin') {
             <!-- add user icon -->
             <div id="addIcon">
 
-                <a href="adminadd.php" class="  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <img src="./assets/add-user.png" class=" " width="60" height="60">
+                <a href="adminadd.php" class="focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <img src="./assets/add-user.png" width="55" height="55">
                 </a>
             </div>
         </div>
@@ -163,6 +163,7 @@ if ($_SESSION['user']['userType'] === 'admin') {
             </div>
             <!-- // here we fetch data -->
             <div id=user-box>
+
             </div>
         </div>
 

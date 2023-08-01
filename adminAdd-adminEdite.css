@@ -1,224 +1,237 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Almarai", sans-serif !important;
-  }
-  body {
-    direction: rtl !important;
-    min-height: 100vh !important ;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  nav {
-    background: #faf8f2 !important;
-    /* background: transparent !important; */
-  }
-  
-  nav button {
-    background-color: aliceblue !important;
-  }
-  
-  #navigationsmm a {
-    color: #0d0b0b !important;
-    font-size: 20px;
-    margin: 20px;
-  }
-  
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Almarai", sans-serif !important;
+}
+body {
+  direction: rtl !important;
+  min-height: 100vh !important ;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-  /* form style */
+nav {
+  background: #faf8f2 !important;
+  /* background: transparent !important; */
+}
+
+nav button {
+  background-color: aliceblue !important;
+}
+
+#navigationsmm a {
+  color: #0d0b0b !important;
+  font-size: 20px;
+  margin: 20px;
+}
+
+/* form style */
 .signupSectionClass {
-    margin-top: 10rem;
-    width: 40%;
-    height: auto;
-    background-color: #523623;
+  margin-top: 10rem;
+  width: 40%;
+  height: auto;
+  background-color: #523623;
+  border-radius: 10px;
+}
+
+.inputBoxs:focus {
+  border-color: gray !important;
+}
+
+.name {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.uploadImg {
+  display: flex;
+  flex-direction: column;
+}
+.uploadImg input {
+  width: 100%;
+}
+.name1,
+.uploadImg {
+  width: 45%;
+  margin-bottom: 5px;
+}
+.name input {
+  margin-bottom: 5px;
+}
+
+.email-phone {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.email,
+.phone {
+  width: 45%;
+  margin-bottom: 5px;
+}
+.email-phone input {
+  margin-bottom: 5px;
+}
+
+.password {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.password input {
+  margin: 5px 0;
+}
+.pass1,
+.pass2 {
+  width: 45%;
+  margin-bottom: 5px;
+}
+input {
+  height: 2rem;
+  width: 8rem;
+}
+
+.genderAndUserType {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-items: center;
+}
+
+.gender,
+.userType {
+  display: flex;
+  width: 50%;
+  margin-bottom: 5px;
+}
+
+.gender input[type="radio"]:checked {
+  background-color: gray;
+  /* border-color: black; */
+}
+
+.users {
+  appearance: none; /* Hide the default arrow provided by the browser */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("assets/down-arrow.png"); /* Replace 'path/to/arrow-icon.png' with the actual path to your arrow icon */
+  background-position: left center; /* Adjust the icon's position (right, center, etc.) */
+  background-size: 17px;
+  background-position: 10px;
+  background-repeat: no-repeat;
+  width: 150px;
+}
+
+.signupBox2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #faf8f2;
+  margin-top: 150px;
+  width: 50%;
+  height: 80%;
+  border-radius: 10px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signupBox2 h1 {
+  color: #523623;
+  font-size: 30px;
+}
+
+.saveBtn {
+  background: #816c4a !important;
+  color: #fff !important;
+  font-weight: bold;
+  transition: all 0.5s ease;
+  justify-content: center;
+  width: 100px;
+}
+.saveBtn:hover {
+  background: #523623 !important;
+}
+
+/* re */
+@media only screen and (max-width: 900px) {
+  .signupBox2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #faf8f2;
+    margin-top: 150px;
+    width: 95%;
+    height: 80%;
     border-radius: 10px;
-
+  }
+  .headOfSingsection {
+    width: 90%;
+    height: 500px;
+    display: none;
+  }
+  .signupSectionClass {
+    width: 90%;
   }
 
-  
-  .inputBoxs:focus {
-    border-color: gray !important;
-  }
-  
   .name {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
-
+    justify-content: space-between;
   }
   .name1,
-  .name2 {
-    width: 45%;
-    margin-bottom: 5px;
+  .uploadImg {
+    width: 100%;
+    margin-bottom: 10px;
   }
   .name input {
-    margin-bottom: 5px;
+    margin: 10px 0;
   }
-  
-  .email-phone {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+
   .email,
   .phone {
-    width: 45%;
-    margin-bottom: 5px;
+    width: 100%;
+    margin-bottom: 10px;
   }
   .email-phone input {
-    margin-bottom: 5px;
+    margin: 10px 0;
   }
-  
-  .password {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .password input {
-    margin: 5px 0;
-  }
+
   .pass1,
   .pass2 {
-    width: 45%;
-    margin-bottom: 5px;
+    width: 100%;
+    margin-bottom: 10px;
   }
   input {
     height: 2rem;
-    width: 8rem;
+    width: 10rem;
   }
-  
-  .genderAndUserType {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    align-items: center;
-  }
-  
+
   .gender,
   .userType,
   .img {
     display: flex;
-    width: 50%;
-    margin-bottom: 5px;
+    width: 80%;
+    margin-bottom: 10px;
   }
-  
-  .gender input[type="radio"]:checked {
-    background-color: gray;
-    /* border-color: black; */
-  }
-  
-  .users {
-    appearance: none; /* Hide the default arrow provided by the browser */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("assets/down-arrow.png"); /* Replace 'path/to/arrow-icon.png' with the actual path to your arrow icon */
-    background-position: left center; /* Adjust the icon's position (right, center, etc.) */
-    background-size: 17px;
-    background-position: 10px;
-    background-repeat: no-repeat;
-    width: 150px;
-  }
-  
-  .signupBox2 {
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    background-color: #faf8f2d6;
-     margin-top: 10rem;
-    width: 50%;
-    height: 80%;
-    border-radius: 10px;
-  }
-  
-  .signupBox2 h1 {
-    color: #523623;
-    font-size: 30px;
-  }
+}
 
-
-  
-.saveBtn {
-    background: #816c4a !important;
-    color: #fff !important;
-    font-weight: bold;
-    transition: all 0.5s ease;
-    width: 20rem;
-   justify-content:center;
-
-  }
-  .saveBtn:hover {
-    background: #523623 !important;
-  }
-  
-  
-/* re */
-@media only screen and (max-width: 900px) {
-    .headOfSingsection {
-      width: 90%;
-      height: 500px;
-      display: none;
-    }
-    .signupSectionClass {
-      width: 90%;
-    }
-  
-    .name {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    .name1,
-    .name2 {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    .name input {
-      margin: 10px 0;
-    }
-  
-    .email,
-    .phone {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    .email-phone input {
-      margin: 10px 0;
-    }
-  
-    .pass1,
-    .pass2 {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    input {
-      height: 2rem;
-      width: 10rem;
-    }
-  
-    .gender,
-    .userType,
-    .img {
-      display: flex;
-      width: 80%;
-      margin-bottom: 10px;
-    }
-  }
-  
-  .img {
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding: "5px";
-    width: 70%;
-  }
-  
+.img {
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: "5px";
+  width: 70%;
+}
