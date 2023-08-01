@@ -25,11 +25,12 @@ if (isset($_POST['submitDelete'])) {
     //check if it work
     if ($stmt) {
         session_unset();
-        header('location:login.php');
+        session_destroy();
+
+        header('location:index.php');
+
         // exit();
     } else {
         echo "not deleted";
     }
 }
-
-?>
