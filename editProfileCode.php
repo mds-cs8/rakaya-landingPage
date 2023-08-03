@@ -14,6 +14,10 @@ $hashPass= password_hash($_POST["password"], PASSWORD_DEFAULT);
 $e= $_POST['email'];
 $phoneN= $_POST['phone'];
 
+
+if($e!=$_SESSION['user']['email'])
+
+{
 $stm = "SELECT email FROM user WHERE email ='$e' ";
 $q = $conn->prepare($stm);
 $q->execute();
@@ -22,6 +26,8 @@ $data = $q->fetch();
 if ($data) {
 
      $_SESSION["emailCheckResult"]="البريد الإلكتروني موجود بالفعل ";
+
+}
 
 }
 

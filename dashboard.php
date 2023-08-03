@@ -153,6 +153,10 @@ if ($_SESSION['user']['userType'] === 'admin') {
             </div>
         </div>
 
+
+
+   
+
         <!-- end dashboard -->
 
         <!-- javascript library link -->
@@ -172,10 +176,12 @@ if ($_SESSION['user']['userType'] === 'admin') {
 
         <!-- ajax code  -->
         <script>
-            $(document).ready(function() {
+            $(document).ready(function() 
+            {
                 load_data();
 
-                function load_data(page) {
+                function load_data(page)
+                 {
                     $.ajax({
                         url: "testpage.php",
                         method: "POST",
@@ -187,12 +193,14 @@ if ($_SESSION['user']['userType'] === 'admin') {
                         }
                     })
                 }
+
                 $(document).on('click', '.pagination_link', function() {
                     var page = $(this).attr("id");
                     load_data(page);
                 });
             });
         </script>
+        
     </body>
 
     </html>

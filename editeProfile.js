@@ -59,11 +59,14 @@ btncheck(
 
     email.addEventListener("input", () => {
       console.log(emailRegex.test(email.value));
-      if (emailRegex.test(email.value)) {
+   if(emailRegex.test(email.value) )
+      {
         email_msg.innerHTML = "";
         email.style.borderBottom = "3px solid green";
         emailCheck = true;
-      } else {
+
+      }else
+      {
         email_msg.innerHTML = "ايميل غير صحيح";
         email_msg.style.color = "red";
         email.style.borderBottom = "3px solid red";

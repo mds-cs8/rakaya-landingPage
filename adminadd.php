@@ -6,6 +6,8 @@ session_start();
 
 $userType = "";
 $users = "";
+$gender="";
+
 if (isset($_POST['save'])) {
 
 
@@ -69,15 +71,17 @@ if (isset($_POST['save'])) {
     } elseif (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
         $errors[] = "البريد الاكترونى غير صالح";
     }
+     
 
     $stm = "SELECT email FROM user WHERE email ='$email' ";
     $q = $conn->prepare($stm);
     $q->execute();
     $data = $q->fetch();
 
-    if ($data) {
+    if ($data)
+     {
         $errors[] = " البريد الإلكتروني موجود بالفعل, يُرجى ادخال بريد الكرتوني آخر";
-    }
+     }
 
 
     // validate password
@@ -235,14 +239,18 @@ if (isset($_POST['save'])) {
                         <label for="name1" class="mb-4 text-sm font-medium  text-gray-900  dark:text-white">الاسم
                         </label>
 
-                        <input type="text" name="name1" id="name1" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" placeholder="سارة" value="<?php echo $name ?>">
+                        <input type="text" name="name1" id="name1" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" placeholder="سارة" value="<?php if (isset($_POST["name1"])) {
+                                                                                                                                                                                                                                            echo $_POST["name1"];
+                                                                                                                                                                                                                                        } ?>">
                         <small id="name1_msg"></small>
 
                     </div>
+
+
                     <div class="uploadImg ">
 
                         <label class="inline mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">تغيير الصورة</label>
-                        <input id="file_input" type="file" name="UserImg" class="w-[100%] h-10 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help">
+                        <input id="file_input" type="file" name="UserImg" class="w-[100%] h-10 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="file_input_help" value="<?php if (isset($_POST["UserImg"])) { echo $_POST["UserImg"]; } ?>">
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG,
                             JPG or GIF (MAX. 800x400px).</p>
                     </div>
@@ -317,10 +325,10 @@ if (isset($_POST['save'])) {
 
                         <label for="gender" class=" ml-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">الجنس</label>
 
-                        <input type="radio" id="female" name="gender" value="female" class="ml-2 border border-gray-300">
+                        <input type="radio" id="female" name="gender" required value="female" class="ml-2 border border-gray-300" <?php echo $gender == "female" ? 'checked' : '' ?>  >
                         <label for="female">أنثى</label>
 
-                        <input type="radio" id="male" name="gender" value="male" class="mr-3   ml-2 bg-gray-50 border border-gray-300">
+                        <input type="radio" id="male" name="gender" required value="male" class="mr-3   ml-2 bg-gray-50 border border-gray-300" <?php echo $gender == "male" ? 'checked' : '' ?>  >
                         <label for="male">ذكر</label>
 
                     </div>
@@ -335,11 +343,11 @@ if (isset($_POST['save'])) {
 
                         <select name="users" id="users" size="1" class=" py-px  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 , users">
 
-                            <option value="Developer" <?php echo $users == "Developer" ? 'selected' : '' ?>>مطور</option>
-                            <option value="Consultant" <?php echo $users == "Consultant" ? 'selected' : '' ?>> الاستشارات</option>
-                            <option value="Clint" <?php echo $users == "Clint" ? 'selected' : '' ?>>عميل</option>
-                            <option value="Intern" <?php echo $users == "Intern" ? 'selected' : '' ?>>متدرب</option>
-                            <option value="admin" <?php echo $users == "admin" ? 'selected' : '' ?>>مسؤول (ADMIN)</option>
+                            <option value="Developer" <?php echo $users == "Developer" ? 'selected' : '' ?> required >مطور</option>
+                            <option value="Consultant" <?php echo $users == "Consultant" ? 'selected' : '' ?> required > الاستشارات</option>
+                            <option value="Clint" <?php echo $users == "Clint" ? 'selected' : '' ?>  required >عميل</option>
+                            <option value="Intern" <?php echo $users == "Intern" ? 'selected' : '' ?> required >متدرب</option>
+                            <option value="admin" <?php echo $users == "admin" ? 'selected' : '' ?>  required >مسؤول (ADMIN)</option>
                         </select>
 
                     </div>

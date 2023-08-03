@@ -21,8 +21,8 @@ echo '</script>';
     <!-- custtom css -->
     <link rel="stylesheet" href="style.css">
 
-     <!-- JQuery library  -->
-     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <!-- JQuery library  -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
 
     <!-- animation library -->
@@ -563,14 +563,13 @@ echo '</script>';
         <div class="contact-us">
             <h3>تواصل معنا</h3>
 
-<!--               
+            <!--               
             <div id="form-message" class="p-4 mb-4 text-center text-sm text-green-800 rounded-lg bg-green-100 dark:bg-gray-800 dark:text-green-400" role="alert">   
            </div>  -->
-       <!-- <?php
+            <!-- <?php
 
-       if(isset( $_SESSION['status']) &&  $_SESSION['status'] !=''  )
-         { 
-            ?>
+                    if (isset($_SESSION['status']) &&  $_SESSION['status'] != '') {
+                    ?>
              
                  <script>
                       swal({
@@ -583,38 +582,38 @@ echo '</script>';
              
                   
                
-           <?php 
+           <?php
 
-            unset($_SESSION['status']);
-         }
-   
-       ?>
+                        unset($_SESSION['status']);
+                    }
+
+            ?>
            -->
 
 
 
 
-           <!-- action="contacUsInsertDB.php" -->
-         
-            <form  action="contacUsInsertDB.php" id="contactUsId" method="POST">
+            <!-- action="contacUsInsertDB.php" -->
+
+            <form action="contacUsInsertDB.php" id="contactUsId" method="POST">
                 <div class="input">
-                    <input class="py-6  px-2" name="topiccontactUs" id="topiccontactUs" type="text" placeholder="الموضوع">
+                    <input class="py-6  px-2" name="topiccontactUs" id="topiccontactUs" type="text" placeholder="الموضوع" required >
                     <small id="subject_msg"></small>
-                    <input  class="py-6 px-2" name="emailcontactUs" id="emailcontactUs"  type="text" placeholder="البريد الالكتروني">
+                    <input class="py-6 px-2" name="emailcontactUs" id="emailcontactUs" type="text" placeholder="البريد الالكتروني" required >
                     <small id="email_msg"></small>
 
                 </div>
 
-                <textarea name ="messagecontactUs" id="messagecontactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........."></textarea>
+                <textarea name="messagecontactUs" id="messagecontactUs" cols="50" rows="5" placeholder="اكتب رسالتك ........." required></textarea>
                 <small id="message_msg"></small>
 
-                <button type="button" class="form-btn" name="contctFormSubmit" id="contctFormSubmit" >ارسل</button>
-                
+                <button type="button" class="form-btn" name="contctFormSubmit" id="contctFormSubmit">ارسل</button>
+
             </form>
             <!-- end form -->
 
         </div>
-         <!-- end contact section -->
+        <!-- end contact section -->
     </footer>
 
     <!-- section under footer for copy right -->
@@ -636,91 +635,90 @@ echo '</script>';
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 
     <script>
+        $(document).ready(function() {
 
-$(document).ready(function(){  
+            $('#contctFormSubmit').click(function() {
 
-          $('#contctFormSubmit').click(function(){
+                var topiccontactUs = $('#topiccontactUs').val();
+                var messagecontactUs = $('#messagecontactUs').val();
+                var emailcontactUs = $('#emailcontactUs').val();
 
-            var topiccontactUs = $('#topiccontactUs').val() ; 
-            var messagecontactUs = $('#messagecontactUs').val() ; 
-            var emailcontactUs = $('#emailcontactUs').val() ; 
-           
 
-            if(topiccontactUs ==''|| messagecontactUs ==''|| emailcontactUs=='' )
-             { 
-               // alert using sweetalert 
+                if (topiccontactUs == '' || messagecontactUs == '' || emailcontactUs == '') {
+                    // alert using sweetalert 
 
-                swal({
-                    title: "من فضلك , يجب تعبأة جميع الحقول " ,
-                    // text: "You clicked the button!",
-                    icon: "warning",
-                    button:"حسنًا"
+                    swal({
+                        title: "من فضلك , يجب تعبأة جميع الحقول ",
+                        // text: "You clicked the button!",
+                        icon: "warning",
+                        button: "حسنًا"
                     });
 
 
-             }
-             else
-             { 
-                        swal({
-                                title: "تم تنفيذ طلبك بنجاح",
-                                // text: "You clicked the button!",
-                                icon: "success",
-                                button:"حسنًا"
-                                });
+                } else {
+                    swal({
+                        title: " , شكرًا لك تم ارسال رسالتك بنجاح",
+                        // text: "You clicked the button!",
+                        icon: "success",
+                        button: "حسنًا"
+                    });
 
-                $.ajax({
-                    url:"contacUsInsertDB.php",  
-                    method:"POST",  
-                    data:  {topiccontactUs:topiccontactUs , messagecontactUs:messagecontactUs ,emailcontactUs:emailcontactUs}, 
-               
-                    success:function(data)
-                    {  
-                        console.log("success");
-                          // alert using sweetalert 
-                        swal({
-                                title: statusMessage ,
+                    $.ajax({
+                        url: "contacUsInsertDB.php",
+                        method: "POST",
+                        data: {
+                            topiccontactUs: topiccontactUs,
+                            messagecontactUs: messagecontactUs,
+                            emailcontactUs: emailcontactUs
+                        },
+
+                        success: function(data) {
+                            console.log("success");
+                            // alert using sweetalert 
+                            swal({
+                                title: statusMessage,
                                 // text: "You clicked the button!",
                                 icon: statusCode,
-                                button:"حسنًا"
-                                });
-                     //clear the form 
-                    //  $("form").trigger("reset");
-                    //  $('#form-message').fadeIn().html(data);
-                    //   setTimeOut(function(){
-                    //     $('#form-message').fadeOut('slow');
+                                button: "حسنًا"
+                            });
+                            //clear the form 
+                            //  $("form").trigger("reset");
+                            //  $('#form-message').fadeIn().html(data);
+                            //   setTimeOut(function(){
+                            //     $('#form-message').fadeOut('slow');
 
-                    //      }, 500);
-                      
-                      
+                            //      }, 500);
 
 
-                    }  ,
-                    // end success
-                    error: function () {
-                        // alert using sweetalert 
-                        swal({
-                            title: "حدث خطأ أثناء الارسال",
-                            icon: "error",
-                            button: "حسنًا"
-                        });
-                    } 
 
-                });
-                // end ajax
 
-             }
+                        },
+                        // end success
+                        error: function() {
+                            // alert using sweetalert 
+                            swal({
+                                title: "حدث خطأ أثناء الارسال",
+                                icon: "error",
+                                button: "حسنًا"
+                            });
+                        }
+
+                    });
+                    // end ajax
+
+                }
                 //  end else
 
-                
-               
+
+
             });
             // end click
 
- });
+        });
 
-// end fun
-    
-         
+        // end fun
+
+
 
 
         //         );
@@ -728,7 +726,7 @@ $(document).ready(function(){
         // } );
     </script>
 
-   
+
     <!-- sweet alert js library -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -737,13 +735,13 @@ $(document).ready(function(){
     <!-- link for counter in header javascript code file -->
     <script src="./custom.js"></script>
 
-     <!-- link to ajax file  -->
-     <!-- <script src="./contactUsAjax.js"></script> -->
+    <!-- link to ajax file  -->
+    <!-- <script src="./contactUsAjax.js"></script> -->
 
-     <!-- validate  -->
-     <script src="./conatUsValidation.js"></script>
+    <!-- validate  -->
+    <script src="./conatUsValidation.js"></script>
 
-   
+
 </body>
 
 </html>

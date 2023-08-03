@@ -62,6 +62,7 @@ include 'conn-db.php';
                             //check if the email there then the message of email
                             if($mysqli->affected_rows)
                             {
+                                
                             $mail = require_once __DIR__ . "/send-email.php";
                             $mail->setFrom("noreply@exapmle.com");
                             $mail->addAddress($email);

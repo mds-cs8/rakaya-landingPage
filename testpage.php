@@ -5,6 +5,7 @@
  $record_per_page = 5;  
  $page = '';  
  $output = '';  
+
  if(isset($_POST["page"]))  
  {  
       $page = $_POST["page"];  
@@ -13,6 +14,8 @@
  {  
       $page = 1;  
  }  
+
+
  $start_from = ($page - 1)*$record_per_page;  
  $query = "SELECT * FROM user ORDER BY id DESC LIMIT $start_from, $record_per_page";  
  $result = $mysqli->query($query);
@@ -30,11 +33,13 @@
     echo "<p class=action >";
     echo "<a href="."./adminEdit.php?id=". $row['id'] .">"."<img  src=./assets/editing.png>"."</a>";
     echo "<a href=./adminDelete.php?id=". $row['id'] .">"."<img src=./assets/delete.png>"."</a>";
+ 
 
     echo "</p>";
 
     echo "</div>";
  }  
+ 
  $page_query = "SELECT * FROM user ORDER BY id DESC";  
  $page_result =  $result = $mysqli->query($page_query);
   

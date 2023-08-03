@@ -36,6 +36,12 @@ if (isset($_GET['id'])) {
     } else {
         echo "nooo fetch";
     }
+ 
+
+   
+    $_SESSION['testEmail'] = $email ;
+
+    
 }
 
 ?>
@@ -185,6 +191,10 @@ if (isset($_GET['id'])) {
 
                         <small id="email_msg"></small>
 
+                      <?php  if(isset($_SESSION["emailCheckResult"]))
+                      {echo  $_SESSION["emailCheckResult"] ;}
+                       ?>
+
                     </div>
 
                     <!-- phone number -->
@@ -204,7 +214,7 @@ if (isset($_GET['id'])) {
                     <div class="pass1">
                         <label for="password" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة
                             المرور</label>
-                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs">
+                        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" value=" <?php echo $password ?>  ">
 
                         <small id="password_msg">
                             كلمة المرور يجب أن <strong>لا تقل عن 6 أرقام</strong> ( 1 حرف صغير ,1 حرف كبير, رمز
@@ -219,7 +229,7 @@ if (isset($_GET['id'])) {
                         <label for="repassword" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             تأكيد كلمة المرور
                         </label>
-                        <input type="password" name="repassword" id="repassword" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs">
+                        <input type="password" name="repassword" id="repassword" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs" value=" <?php echo $password ?> " >
                         <small id="repassword_msg"></small>
                     </div>
 
@@ -235,7 +245,7 @@ if (isset($_GET['id'])) {
 
                         <label for="gender" class=" ml-3 mb-2 text-sm font-medium text-gray-900 dark:text-white">الجنس</label>
 
-                        <input type="radio" id="female" name="gender" value="female" class="ml-2 border border-gray-300" <?php echo $gender == "female" ? 'checked' : '' ?>>
+                        <input type="radio" id="female" name="gender" value="female" class="ml-2 border border-gray-300" <?php echo $gender == "female" ? 'checked' : '' ?> >
                         <label for="female">أنثى</label>
 
                         <input type="radio" id="male" name="gender" value="male" class="mr-3   ml-2 bg-gray-50 border border-gray-300" <?php echo $gender == "male" ? 'checked' : '' ?>>

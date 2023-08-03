@@ -46,7 +46,36 @@ if (isset($_POST['save'])) {
         $errors[] = "لم يتم اختيار صورة ";
     }
 
+          
+     $test= $_POST['email'];
+       // test if the enterd email not the same that in the db then we will check if it inside the db ? then if it ok that mean there is like this email in db
+    if( $_SESSION['testEmail'] != $_POST['email'])
 
+    { 
+        echo "test";
+        $stm = "SELECT email FROM user WHERE email = '$test' ";
+        $q = $conn->prepare($stm);
+        $q->execute();
+        $data = $q->fetch();
+        
+
+        if ($data) {
+
+            // $_SESSION["emailCheckResult"]="البريد الإلكتروني موجود بالفعل";
+
+         
+
+        }
+        else
+        {
+            // delete this value from the session we no need it later
+            unset($_SESSION['testEmail'] );
+            unset($_SESSION['emailCheckResult'] );
+
+        }
+
+    }
+    
 
 
     //update code

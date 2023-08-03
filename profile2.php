@@ -169,15 +169,7 @@ if ($row) {
             </div>
             <!-- name -->
             <div class="name">
-                <?php if (isset($_SESSION["emailCheckResult"])) {
-
-                    echo " <small>" . $_SESSION["emailCheckResult"] . "</small> ";
-                }
-
-                unset($_SESSION['emailCheckResult']);
-
-                ?>
-
+              
                 <div class="name1 w-[100%] md:w-[40%]">
 
                     <label for="name1" class="mb-4 text-sm font-medium  text-gray-900  dark:text-white">الاسم
@@ -217,6 +209,22 @@ if ($row) {
                     }
 
                     ?>
+
+                    <?php if (isset($_SESSION["emailCheckResult"])) {
+
+                        echo " <small>" . $_SESSION["emailCheckResult"] . "</small> ";
+                        }
+
+                        unset($_SESSION['emailCheckResult']);
+
+                        ?>
+
+
+
+
+
+
+
                 </div>
 
                 <!-- phone number -->
@@ -236,7 +244,9 @@ if ($row) {
                 <div class="pass1 w-[100%] md:w-[40%]">
                     <label for="password" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">كلمة
                         المرور</label>
-                    <input type="text" name="password" id="password" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs">
+                    <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
+                    value="<?php echo   $rpassword ?>"
+                    >
 
                     <small id="password_msg">
                         كلمة المرور يجب أن <strong>لا تقل عن 6 أرقام</strong> ( 1 حرف صغير ,1 حرف كبير, رمز
@@ -251,7 +261,9 @@ if ($row) {
                     <label for="repassword" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         تأكيد كلمة المرور
                     </label>
-                    <input type="text" name="repassword" id="repassword" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs">
+                    <input type="password" name="repassword" id="repassword" placeholder="••••••••" class="bg-gray-50  text-gray-900 sm:text-sm rounded-md block w-full p-2.5 dark:placeholder-gray-400 dark:text-white inputBoxs"
+                    value="<?php echo   $rpassword ?>"
+                    >
                     <small id="repassword_msg">
 
                     </small>
